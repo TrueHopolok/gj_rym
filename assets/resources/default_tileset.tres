@@ -1,11 +1,10 @@
 [gd_resource type="TileSet" format=3 uid="uid://cdiuvfr8mt68m"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pr8jm"]
-load_path = "res://.godot/imported/tile_set.png-af58467ef29adbc87b5622d087625c5c.ctex"
+[ext_resource type="Texture2D" uid="uid://bfogkg2ndtg7c" path="res://assets/art/default_tileset.png" id="1_tywei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nlxlh"]
 resource_name = "default"
-texture = SubResource("CompressedTexture2D_pr8jm")
+texture = ExtResource("1_tywei")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
 0:0/0/terrain_set = 0
