@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://mlfopegdrvw6"]
 
-[ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="3_nd71p"]
-[ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="8_rnaij"]
-[ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="9_h3xc6"]
+[ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="1_65iv0"]
+[ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_l2n4a"]
+[ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="3_ye8wr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
 size = Vector2(672, 20)
@@ -14,18 +14,15 @@ size = Vector2(312, 50)
 
 [node name="AmbientAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1179099831]
 bus = &"SFX_panning"
-script = ExtResource("8_rnaij")
+script = ExtResource("1_65iv0")
 _enable_bus_panning = true
 metadata/_custom_type_script = "uid://cau4hs0c4s1p8"
 
-[node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("9_h3xc6")]
+[node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("2_l2n4a")]
 visible = false
 
-[node name="Player" parent="." unique_id=1054591316 instance=ExtResource("3_nd71p")]
-position = Vector2(208, 176)
-MAX_RUNNING_SPEED = 300.0
-RUN_FORCE = 1200.0
-SLOW_FORCE = 2400.0
+[node name="Player" parent="." unique_id=1054591316 instance=ExtResource("3_ye8wr")]
+position = Vector2(288, 240)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=427132199]
 
