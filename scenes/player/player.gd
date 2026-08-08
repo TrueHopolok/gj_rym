@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 enum PLAYER_STATES {
-	BUSY = 10,  # used for cutscenes / manual control
+	BUSY = 10, # used for cutscenes / manual control
 	DIED = 20,
 	IDLE = 30,
 	MOVE = 40,
@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	_movement_horizontal(delta)
 	_movement_vertical()
 	_update_state()
-	if OS.is_debug_build():
+	if OS.is_debug_build() && get_tree().debug_collisions_hint:
 		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
 
 	move_and_slide()
@@ -94,7 +94,7 @@ func _movement_vertical() -> void:
 		return
 	_buffer_jump.stop()
 	_buffer_coyote.stop()
-	velocity.y = -JUMP_FORCE
+	velocity.y = - JUMP_FORCE
 
 
 func _update_state() -> void:
