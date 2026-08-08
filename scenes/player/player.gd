@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
 		if _is_spike_collision(col):
-			_spike_death()
+			_spike_death(col.get_position(), col.get_normal())
 			break
 	_resistance_horizontal()
 	_resistance_vertical(delta)
@@ -173,12 +173,13 @@ func _is_spike_collision(col: KinematicCollision2D) -> bool:
 	return false
 
 
-func _spike_death() -> void:
+func _spike_death(pos: Vector2, normal: Vector2) -> void:
 	queue_free()
 	var inst: Node2D = CORPSE_SPIKED.instantiate()
 	get_parent().add_child(inst)
 
-	inst.global_position = global_position
+	inst.global_position = pos
+	inst.global_rotation = normal.angle()
 
 
 func die() -> void:
