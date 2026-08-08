@@ -15,6 +15,7 @@ position = Vector2(80, 0)
 
 [node name="Exit" parent="." index="2" unique_id=1728432730]
 position = Vector2(80, -136)
+_next_lvl = "res://scenes/levels/campaign/campaign5.tscn"
 
 [node name="Door" parent="." index="3" unique_id=304512104 instance=ExtResource("2_lagr8")]
 position = Vector2(144, 0)
