@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_l2n4a"]
 [ext_resource type="PackedScene" uid="uid://pi75mcoh6y61" path="res://scenes/corpse/corpse.tscn" id="4_l2n4a"]
 [ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="5_ye8wr"]
-[ext_resource type="PackedScene" uid="uid://blmnw83pchkbb" path="res://scenes/power_component/arrow_shooter.tscn" id="6_acxp7"]
+[ext_resource type="PackedScene" uid="uid://blmnw83pchkbb" path="res://scenes/power_components/arrow_shooter.tscn" id="6_acxp7"]
 [ext_resource type="PackedScene" uid="uid://cdaej1boel371" path="res://scenes/arrow/arrow.tscn" id="6_ckmbu"]
 [ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="7_acxp7"]
-[ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_component/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
+[ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_components/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
 [ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="9_3ahxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
