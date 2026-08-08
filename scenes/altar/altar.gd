@@ -1,7 +1,6 @@
 class_name Altar
 extends Node2D
 
-
 @export var _player: PackedScene
 
 
