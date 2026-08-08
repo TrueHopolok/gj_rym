@@ -1,22 +1,20 @@
 [gd_scene format=3 uid="uid://dgnms3d15yn6j"]
 
-[ext_resource type="Texture2D" uid="uid://74lqll8ohbkv" path="res://assets/art/temp/dead_ass.png" id="1_d4ibb"]
 [ext_resource type="Script" uid="uid://dsgd620v4sbxi" path="res://scenes/corpse/corpse_spiked.gd" id="1_sa436"]
+[ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_sa436"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sa436"]
-radius = 4.0
+radius = 6.0
+height = 36.0
 
 [node name="CorpseSpiked" type="StaticBody2D" unique_id=1406346243]
 collision_mask = 0
 script = ExtResource("1_sa436")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536082948]
-shape = SubResource("CapsuleShape2D_sa436")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1477519282]
 clip_children = 2
 rotation = 1.5707964
-texture = ExtResource("1_d4ibb")
+texture = ExtResource("2_sa436")
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=314681109]
 offset_left = -31.0
@@ -24,3 +22,6 @@ offset_top = -22.0
 offset_right = 30.0
 offset_bottom = 13.0
 color = Color(0.49019608, 0.047058824, 0.23529412, 0.6117647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536082948]
+shape = SubResource("CapsuleShape2D_sa436")

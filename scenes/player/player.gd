@@ -43,6 +43,8 @@ var state: PLAYER_STATES = PLAYER_STATES.IDLE
 @onready var _buffer_mega: Timer = $BufferMega
 @onready var _buffer_coyote: Timer = $BufferCoyote
 @onready var _kick_area: Area2D = %KickArea
+@onready var _sprite: AnimatedSprite2D = %Sprite
+@onready var _flipper: Node2D = %FlipaFlipa
 
 
 func _ready() -> void:
@@ -76,6 +78,7 @@ func _physics_process(delta: float) -> void:
 	_update_state()
 	if OS.is_debug_build() && get_tree().debug_collisions_hint:
 		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
+	_update_animations()
 	move_and_slide()
 
 
@@ -151,6 +154,21 @@ func _update_state() -> void:
 		state = PLAYER_STATES.MOVE
 	else:
 		state = PLAYER_STATES.IDLE
+
+
+func _update_animations() -> void:
+	if not is_zero_approx(velocity.x):
+		_flipper.scale.x = signf(velocity.x)
+	match state:
+		PLAYER_STATES.IDLE:
+			_sprite.play(&"idle")
+		PLAYER_STATES.MOVE:
+			_sprite.play(&"run")
+		PLAYER_STATES.JUMP:
+			if velocity.y < 0:
+				_sprite.play(&"jump")
+			else:
+				_sprite.play(&"fall")
 
 
 func _handle_kick(col: Object) -> void:
