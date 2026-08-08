@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="1_65iv0"]
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_l2n4a"]
-[ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="3_ye8wr"]
 [ext_resource type="PackedScene" uid="uid://pi75mcoh6y61" path="res://scenes/corpse/corpse.tscn" id="4_l2n4a"]
 [ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="5_ye8wr"]
+[ext_resource type="PackedScene" uid="uid://blmnw83pchkbb" path="res://scenes/power_components/arrow_shooter.tscn" id="6_acxp7"]
 [ext_resource type="PackedScene" uid="uid://cdaej1boel371" path="res://scenes/arrow/arrow.tscn" id="6_ckmbu"]
-[ext_resource type="PackedScene" uid="uid://blmnw83pchkbb" path="res://scenes/power_component/arrow_shooter.tscn" id="7_p7smk"]
-[ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_component/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
+[ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="7_acxp7"]
+[ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_components/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
+[ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="9_3ahxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(312, 50)
@@ -27,9 +28,6 @@ metadata/_custom_type_script = "uid://cau4hs0c4s1p8"
 
 [node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("2_l2n4a")]
 visible = false
-
-[node name="Player" parent="." unique_id=1054591316 instance=ExtResource("3_ye8wr")]
-position = Vector2(288, 240)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=427132199]
 
@@ -57,14 +55,20 @@ tile_set = ExtResource("5_ye8wr")
 
 [node name="Arrow" parent="." unique_id=1084523612 instance=ExtResource("6_ckmbu")]
 position = Vector2(240, 232)
+collision_mask = 7
 
-[node name="ArrowShooter" parent="." unique_id=381259425 instance=ExtResource("7_p7smk")]
-position = Vector2(392, 102)
-rotation = 2.6179938
+[node name="ArrowShooter" parent="." unique_id=381259425 instance=ExtResource("6_acxp7")]
+position = Vector2(367, 92)
+rotation = 2.8385282
 timer_enable = true
-timer_interval = 2.0
-arrow_velocity = 300.0
 
 [node name="PressurePlate" parent="." unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("8_acxp7")]
 position = Vector2(442, 144)
 target = NodePath("../ArrowShooter")
+
+[node name="Altar" parent="." unique_id=1836274703 instance=ExtResource("9_3ahxw")]
+position = Vector2(384, 168)
+
+[node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("7_acxp7")]
+position = Vector2(576, 104)
+_next_lvl = "res://scenes/levels/level1.tscn"

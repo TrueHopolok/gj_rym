@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c2iawpi0rhu1r"]
+
+[ext_resource type="Script" uid="uid://bgt125d5wu5bp" path="res://scenes/exit/exit.gd" id="1_ymjir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
+
+[node name="Exit" type="Area2D" unique_id=1728432730]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ymjir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1932077198]
+shape = SubResource("RectangleShape2D_jxfr3")
+debug_color = Color(1.0107458e-06, 0.64258057, 0.3206096, 0.41960785)

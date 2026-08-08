@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgvpulhqs7edf"]
 
-[ext_resource type="Script" uid="uid://c867t63op7bxe" path="res://scenes/power_component/pressure_plate/pressure_plate.gd" id="1_yvfbx"]
+[ext_resource type="Script" uid="uid://c867t63op7bxe" path="res://scenes/power_components/pressure_plate/pressure_plate.gd" id="1_yvfbx"]
 
 [sub_resource type="Animation" id="Animation_yvfbx"]
 length = 0.001

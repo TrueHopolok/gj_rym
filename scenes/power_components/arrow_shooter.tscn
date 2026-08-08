@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blmnw83pchkbb"]
 
-[ext_resource type="Script" uid="uid://djdsde080hg80" path="res://scenes/power_component/arrow_shooter.gd" id="1_gluw2"]
+[ext_resource type="Script" uid="uid://djdsde080hg80" path="res://scenes/power_components/arrow_shooter.gd" id="1_gluw2"]
 
 [node name="ArrowShooter" type="Node2D" unique_id=381259425]
 script = ExtResource("1_gluw2")

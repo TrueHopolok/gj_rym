@@ -1,17 +1,20 @@
 class_name Player
 extends CharacterBody2D
 
+signal died
+signal exited
+
 enum PLAYER_STATES {
-	BUSY = 10,  # used for cutscenes / manual control
-	DIED = 20,
+	SKIP = 10,  # used for cutscenes / manual control
+	BUSY = 20,  # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
 }
 
 const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
+	PLAYER_STATES.SKIP: "SKIP",
 	PLAYER_STATES.BUSY: "BUSY",
-	PLAYER_STATES.DIED: "DIED",
 	PLAYER_STATES.IDLE: "IDLE",
 	PLAYER_STATES.MOVE: "MOVE",
 	PLAYER_STATES.JUMP: "JUMP",
@@ -40,11 +43,22 @@ var state: PLAYER_STATES = PLAYER_STATES.IDLE
 @onready var _buffer_mega: Timer = $BufferMega
 @onready var _buffer_coyote: Timer = $BufferCoyote
 @onready var _kick_area: Area2D = %KickArea
+@onready var _sprite: AnimatedSprite2D = %Sprite
+@onready var _flipper: Node2D = %FlipaFlipa
 
 
 func _ready() -> void:
 	_kick_area.body_entered.connect(_handle_kick)
 	_kick_area.area_entered.connect(_handle_kick)
+
+	_sprite.animation_finished.connect(
+		func() -> void:
+			if _sprite.animation == &"kick":
+				_sprite.play("idle")
+	)
+	print("SPAWN ANIMTATION START, STATE SKIP")
+	print("SPAWN ANIM FINISH => CHANGE STATE TO IDLE")
+	print("EXIT ANIM FINISH => EMIT EXITED")
 
 
 func _input(event: InputEvent) -> void:
@@ -53,21 +67,24 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if state <= PLAYER_STATES.DIED:
+	if state <= PLAYER_STATES.SKIP:
+		return
+	_resistance_horizontal()
+	_resistance_vertical(delta)
+	if state <= PLAYER_STATES.BUSY:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
 		if CorpseSpiked.is_spike_collision(col):
 			_spike_death(col.get_position(), col.get_normal())
 			break
-	_resistance_horizontal()
-	_resistance_vertical(delta)
 	_movement_horizontal(delta)
 	_movement_pogo()
 	_movement_jump()
 	_update_state()
 	if OS.is_debug_build() && get_tree().debug_collisions_hint:
 		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
+	_update_animations()
 	move_and_slide()
 
 
@@ -106,7 +123,6 @@ func _movement_pogo() -> void:
 		var corpse: Corpse = get_slide_collision(i).get_collider() as Corpse
 		if !is_instance_valid(corpse):
 			continue
-		# todo: check corpse being static
 		var force: float = POGO_FORCE
 		_buffer_coyote.stop()
 		if !_buffer_jump.is_stopped():
@@ -146,10 +162,31 @@ func _update_state() -> void:
 		state = PLAYER_STATES.IDLE
 
 
+func _update_animations() -> void:
+	if not is_zero_approx(velocity.x):
+		_flipper.scale.x = signf(velocity.x)
+
+	if _sprite.animation == &"kick":
+		return  # let it play out
+
+	match state:
+		PLAYER_STATES.IDLE:
+			_sprite.play(&"idle")
+		PLAYER_STATES.MOVE:
+			_sprite.play(&"run")
+		PLAYER_STATES.JUMP:
+			if velocity.y < 0:
+				_sprite.play(&"jump")
+			else:
+				_sprite.play(&"fall")
+
+
 func _handle_kick(col: Object) -> void:
 	var corpse: Corpse = col as Corpse
 	if not is_instance_valid(corpse):
 		return
+
+	_sprite.play(&"kick")
 
 	var dir: float = signf(corpse.global_position.x - global_position.x)
 	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1)
@@ -162,13 +199,18 @@ func _handle_kick(col: Object) -> void:
 func _spike_death(pos: Vector2, normal: Vector2) -> void:
 	queue_free()
 	CorpseSpiked.spawn(get_parent(), normal, pos)
+	died.emit()
 
 
 func die() -> void:
 	queue_free()
-
 	var inst: Corpse = CORPSE.instantiate()
 	get_parent().add_child(inst)
-
 	inst.global_position = global_position
 	inst.velocity = velocity
+	died.emit()
+
+
+func exit() -> void:
+	state = PLAYER_STATES.SKIP
+	exited.emit()
