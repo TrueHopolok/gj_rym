@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dqa7i1mbuww54" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://bcpvweib8xpvr" path="res://assets/art/anim_idle.png" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://qad1ixts4fvp" path="res://assets/art/anim_jump.png" id="2_lvxji"]
+[ext_resource type="Texture2D" uid="uid://c73cp3koa0e0m" path="res://assets/art/kick.png" id="4_75vfm"]
 [ext_resource type="Texture2D" uid="uid://bf646gywfh16k" path="res://assets/art/anim_run.png" id="4_p47bc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
@@ -36,6 +37,14 @@ region = Rect2(2, 21, 17, 34)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h17s1"]
 atlas = ExtResource("2_lvxji")
 region = Rect2(21, 22, 18, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgqa7"]
+atlas = ExtResource("4_75vfm")
+region = Rect2(0, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ydkj"]
+atlas = ExtResource("4_75vfm")
+region = Rect2(32, 0, 32, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_je7p5"]
 atlas = ExtResource("4_p47bc")
@@ -115,6 +124,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lgqa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ydkj")
+}],
+"loop": 0,
+"name": &"kick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_je7p5")
 }, {
 "duration": 1.0,
@@ -160,7 +180,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_q7okr")
-animation = &"fall"
+animation = &"kick"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1761597414]
