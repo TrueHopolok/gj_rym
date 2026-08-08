@@ -50,6 +50,12 @@ var state: PLAYER_STATES = PLAYER_STATES.IDLE
 func _ready() -> void:
 	_kick_area.body_entered.connect(_handle_kick)
 	_kick_area.area_entered.connect(_handle_kick)
+
+	_sprite.animation_finished.connect(
+		func() -> void:
+			if _sprite.animation == &"kick":
+				_sprite.play("idle")
+	)
 	print("SPAWN ANIMTATION START, STATE SKIP")
 	print("SPAWN ANIM FINISH => CHANGE STATE TO IDLE")
 	print("EXIT ANIM FINISH => EMIT EXITED")
@@ -159,6 +165,10 @@ func _update_state() -> void:
 func _update_animations() -> void:
 	if not is_zero_approx(velocity.x):
 		_flipper.scale.x = signf(velocity.x)
+
+	if _sprite.animation == &"kick":
+		return  # let it play out
+
 	match state:
 		PLAYER_STATES.IDLE:
 			_sprite.play(&"idle")
@@ -175,6 +185,8 @@ func _handle_kick(col: Object) -> void:
 	var corpse: Corpse = col as Corpse
 	if not is_instance_valid(corpse):
 		return
+
+	_sprite.play(&"kick")
 
 	var dir: float = signf(corpse.global_position.x - global_position.x)
 	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1)

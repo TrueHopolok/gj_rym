@@ -1,7 +1,6 @@
 class_name Corpse
 extends CharacterBody2D
 
-
 const MAX_SLIDES: int = 8
 
 @export_group("Bounce", "bounce")
@@ -75,7 +74,6 @@ func _physics_process(delta: float) -> void:
 		var slide: Vector2 = velocity.slide(normal) * slide_friction
 
 		velocity = bounce + slide
-
 
 	_update_animations()
 
