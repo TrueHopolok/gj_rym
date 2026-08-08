@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://cdiuvfr8mt68m"]
 
-[ext_resource type="Texture2D" uid="uid://bfogkg2ndtg7c" path="res://assets/art/default_tileset.png" id="1_tywei"]
+[ext_resource type="Texture2D" uid="uid://41myr3r2dv6q" path="res://assets/art/default_tileset.png" id="1_tywei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nlxlh"]
 resource_name = "default"
