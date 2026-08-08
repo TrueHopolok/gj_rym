@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
 size = Vector2(672, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
+size = Vector2(312, 50)
+
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
 [node name="AmbientAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1179099831]
@@ -20,9 +23,18 @@ visible = false
 
 [node name="Player" parent="." unique_id=1054591316 instance=ExtResource("3_nd71p")]
 position = Vector2(208, 176)
+MAX_RUNNING_SPEED = 300.0
+RUN_FORCE = 1200.0
+SLOW_FORCE = 2400.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=427132199]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=49877365]
 position = Vector2(320, 264)
 shape = SubResource("RectangleShape2D_jxfr3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D" unique_id=191104361]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D" unique_id=1804373689]
+position = Vector2(516, 193)
+shape = SubResource("RectangleShape2D_nd71p")
