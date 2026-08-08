@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 enum PLAYER_STATES {
-	BUSY = 10, # used for cutscenes / manual control
+	BUSY = 10,  # used for cutscenes / manual control
 	DIED = 20,
 	IDLE = 30,
 	MOVE = 40,
@@ -25,6 +25,8 @@ const BUFFER_JUMP_LENGTH: float = 0.05
 const BUFFER_COYOTE_LENGTH: float = 0.20
 
 const KICK_VELOCITY: Vector2 = Vector2(400, 300)
+
+const CORPSE_POGO_VELOCITY: float = 450.0
 
 @onready var _debug_state_label: Label = $DebugStateLabel
 @onready var _buffer_coyote: Timer = $BufferCoyote
@@ -59,6 +61,15 @@ func _physics_process(delta: float) -> void:
 		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
 
 	move_and_slide()
+
+	for idx: int in get_slide_collision_count():
+		var col: KinematicCollision2D = get_slide_collision(idx)
+		var corpse: Corpse = col.get_collider() as Corpse
+		if not is_instance_valid(corpse):
+			continue
+
+		velocity.y = -CORPSE_POGO_VELOCITY
+		break
 
 
 func _resistance_horizontal() -> void:
@@ -95,7 +106,7 @@ func _movement_vertical() -> void:
 		return
 	_buffer_jump.stop()
 	_buffer_coyote.stop()
-	velocity.y = - JUMP_FORCE
+	velocity.y = -JUMP_FORCE
 
 
 func _update_state() -> void:
