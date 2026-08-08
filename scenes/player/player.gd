@@ -5,8 +5,8 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	SKIP = 10, # used for cutscenes / manual control
-	BUSY = 20, # same but has gravitation
+	SKIP = 10,  # used for cutscenes / manual control
+	BUSY = 20,  # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
