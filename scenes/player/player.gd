@@ -5,16 +5,16 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	BUSY = 10, # used for cutscenes / manual control
-	DIED = 20,
+	SKIP = 10, # used for cutscenes / manual control
+	BUSY = 20, # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
 }
 
 const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
+	PLAYER_STATES.SKIP: "SKIP",
 	PLAYER_STATES.BUSY: "BUSY",
-	PLAYER_STATES.DIED: "DIED",
 	PLAYER_STATES.IDLE: "IDLE",
 	PLAYER_STATES.MOVE: "MOVE",
 	PLAYER_STATES.JUMP: "JUMP",
@@ -48,6 +48,9 @@ var state: PLAYER_STATES = PLAYER_STATES.IDLE
 func _ready() -> void:
 	_kick_area.body_entered.connect(_handle_kick)
 	_kick_area.area_entered.connect(_handle_kick)
+	print("SPAWN ANIMTATION START, STATE SKIP")
+	print("SPAWN ANIM FINISH => CHANGE STATE TO IDLE")
+	print("EXIT ANIM FINISH => EMIT EXITED")
 
 
 func _input(event: InputEvent) -> void:
@@ -56,15 +59,17 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if state <= PLAYER_STATES.DIED:
+	if state <= PLAYER_STATES.SKIP:
+		return
+	_resistance_horizontal()
+	_resistance_vertical(delta)
+	if state <= PLAYER_STATES.BUSY:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
 		if CorpseSpiked.is_spike_collision(col):
 			_spike_death(col.get_position(), col.get_normal())
 			break
-	_resistance_horizontal()
-	_resistance_vertical(delta)
 	_movement_horizontal(delta)
 	_movement_pogo()
 	_movement_jump()
@@ -109,7 +114,6 @@ func _movement_pogo() -> void:
 		var corpse: Corpse = get_slide_collision(i).get_collider() as Corpse
 		if !is_instance_valid(corpse):
 			continue
-		# todo: check corpse being static
 		var force: float = POGO_FORCE
 		_buffer_coyote.stop()
 		if !_buffer_jump.is_stopped():
@@ -177,10 +181,6 @@ func die() -> void:
 	died.emit()
 
 
-func spawn() -> void:
-	print("I AM SPAWNING")
-
-
 func exit() -> void:
-	print("I AM EXITING")
+	state = PLAYER_STATES.SKIP
 	exited.emit()

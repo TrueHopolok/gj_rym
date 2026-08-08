@@ -11,6 +11,7 @@ func _exit(body: PhysicsBody2D) -> void:
 		return
 	set_deferred('monitoring', false)
 	set_deferred('monitoriable', false)
+	player.global_position = global_position
 	player.exited.connect(_exited)
 	player.exit()
 
