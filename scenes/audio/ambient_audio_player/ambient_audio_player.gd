@@ -32,9 +32,7 @@ func _ready() -> void:
 
 	if _enable_bus_panning:
 		if bus != &"SFX_panning":
-			push_warning(
-				"[AmbienceAudioPlayer]: player is not set on SFX_panning bus\nenable panning is disabled"
-			)
+			push_warning("[AmbienceAudioPlayer]: player is not set on SFX_panning bus\nenable panning is disabled")
 			_enable_bus_panning = false
 			return
 		var bus_idx: int = AudioServer.get_bus_index(bus)
@@ -46,9 +44,7 @@ func _ready() -> void:
 			return
 		var effect: AudioEffect = AudioServer.get_bus_effect(bus_idx, 0)
 		if !is_instance_of(effect, AudioEffectPanner):
-			push_warning(
-				"[AmbienceAudioPlayer]: SFX_panning bus has invalid effect\nenable panning is disabled"
-			)
+			push_warning("[AmbienceAudioPlayer]: SFX_panning bus has invalid effect\nenable panning is disabled")
 			_enable_bus_panning = false
 			return
 		_effect_panner = effect
