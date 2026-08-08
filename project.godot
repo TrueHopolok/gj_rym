@@ -84,6 +84,7 @@ folder_colors={
 [global_group]
 
 settings_audio=""
+player="Player yopta"
 
 [gui]
 
