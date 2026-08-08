@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://pi75mcoh6y61" path="res://scenes/corpse/corpse.tscn" id="4_l2n4a"]
 [ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="5_ye8wr"]
 [ext_resource type="PackedScene" uid="uid://cdaej1boel371" path="res://scenes/arrow/arrow.tscn" id="6_ckmbu"]
+[ext_resource type="PackedScene" uid="uid://blmnw83pchkbb" path="res://scenes/power_component/arrow_shooter.tscn" id="7_p7smk"]
+[ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_component/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(312, 50)
@@ -55,3 +57,14 @@ tile_set = ExtResource("5_ye8wr")
 
 [node name="Arrow" parent="." unique_id=1084523612 instance=ExtResource("6_ckmbu")]
 position = Vector2(240, 232)
+
+[node name="ArrowShooter" parent="." unique_id=381259425 instance=ExtResource("7_p7smk")]
+position = Vector2(392, 102)
+rotation = 2.6179938
+timer_enable = true
+timer_interval = 2.0
+arrow_velocity = 300.0
+
+[node name="PressurePlate" parent="." unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("8_acxp7")]
+position = Vector2(442, 144)
+target = NodePath("../ArrowShooter")
