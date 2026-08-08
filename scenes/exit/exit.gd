@@ -1,6 +1,9 @@
 extends Area2D
 
 
+@export_file_path("*.tscn") var _next_lvl: String
+
+
 func _ready() -> void:
 	body_entered.connect(_exit)
 
@@ -17,5 +20,7 @@ func _exit(body: PhysicsBody2D) -> void:
 
 
 func _exited() -> void:
-	print("He exited, switch sharmanka")
-	Transition.reload_scene()
+	if !FileAccess.file_exists(_next_lvl):
+		Transition.reload_scene()
+	else:
+		Transition.change_scene_path(_next_lvl)

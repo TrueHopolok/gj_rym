@@ -12,5 +12,6 @@ func _ready() -> void:
 func spawn() -> void:
 	var inst: Player = _player.instantiate() as Player
 	inst.global_position = global_position
+	inst.global_position.y -= 16 # yes, magic constant, but idc
 	inst.died.connect(spawn, CONNECT_ONE_SHOT)
 	get_parent().add_child.call_deferred(inst)

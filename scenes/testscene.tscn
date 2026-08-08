@@ -66,8 +66,9 @@ timer_enable = true
 position = Vector2(442, 144)
 target = NodePath("../ArrowShooter")
 
-[node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("7_acxp7")]
-position = Vector2(576, 104)
-
 [node name="Altar" parent="." unique_id=1836274703 instance=ExtResource("9_3ahxw")]
 position = Vector2(384, 168)
+
+[node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("7_acxp7")]
+position = Vector2(576, 104)
+_next_lvl = "res://scenes/levels/level1.tscn"
