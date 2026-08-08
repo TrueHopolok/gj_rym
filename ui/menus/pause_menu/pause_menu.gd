@@ -1,7 +1,6 @@
 extends CanvasLayer
 
-
-@onready var bg: Node2D = $BG
+@onready var bg: ColorRect = $BG
 
 
 func _process(_delta: float) -> void:
@@ -10,7 +9,7 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&'pause_game'):
+	if event.is_action_pressed(&"pause_game"):
 		for child: Node in $ContinueButton.get_children():
 			if is_instance_of(child, AudioStreamPlayer):
 				(child as AudioStreamPlayer).play()

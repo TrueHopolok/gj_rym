@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dicchdqkcl0jo"]
+
+[ext_resource type="PackedScene" uid="uid://pi75mcoh6y61" path="res://scenes/corpse/corpse.tscn" id="1_bvg0l"]
+[ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_component/pressure_plate/pressure_plate.tscn" id="2_o5ldj"]
+[ext_resource type="PackedScene" uid="uid://dlrs4jnou0am" path="res://scenes/power_component/door/door.tscn" id="3_alfxb"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2cv6y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r87dm"]
+normal = Vector2(-0.70710677, -0.70710677)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ftlv2"]
+normal = Vector2(0.3215824, -0.9468816)
+
+[node name="Testscene" type="Node2D" unique_id=1242484443]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1579616041]
+position = Vector2(233, 216)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=461963112]
+shape = SubResource("WorldBoundaryShape2D_2cv6y")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=335241673]
+position = Vector2(124, -31)
+shape = SubResource("WorldBoundaryShape2D_r87dm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=618847874]
+position = Vector2(-227, -46)
+shape = SubResource("WorldBoundaryShape2D_ftlv2")
+
+[node name="Corpse" parent="." unique_id=735534107 instance=ExtResource("1_bvg0l")]
+position = Vector2(-252, 56)
+
+[node name="PressurePlate" parent="." unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("2_o5ldj")]
+position = Vector2(299, 214)
+target = NodePath("../Door")
+
+[node name="Door" parent="." unique_id=304512104 instance=ExtResource("3_alfxb")]
+position = Vector2(356, 213)

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://pi75mcoh6y61"]
+
+[ext_resource type="Script" uid="uid://dh0lf2as3iqtn" path="res://scenes/corpse/corpse.gd" id="1_03kni"]
+[ext_resource type="Texture2D" uid="uid://74lqll8ohbkv" path="res://assets/art/temp/dead_ass.png" id="1_8aieo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q7okr"]
+radius = 4.0
+
+[node name="Corpse" type="CharacterBody2D" unique_id=735534107]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_03kni")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1479767176]
+texture = ExtResource("1_8aieo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=255411056]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_q7okr")

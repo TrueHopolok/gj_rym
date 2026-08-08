@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://mqufp14bsu2u"]
+
+[ext_resource type="Script" uid="uid://dqa7i1mbuww54" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://b805wkbcjsr4h" path="res://assets/art/temp/mr_cool.png" id="2_dovo2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxfr3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
+size = Vector2(30, 32)
+
+[node name="Player" type="CharacterBody2D" unique_id=1054591316]
+collision_layer = 3
+collision_mask = 13
+script = ExtResource("1_8afob")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1809918386]
+position = Vector2(0, -1)
+texture = ExtResource("2_dovo2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1761597414]
+shape = SubResource("CapsuleShape2D_jxfr3")
+
+[node name="BufferJump" type="Timer" parent="." unique_id=1877728417]
+one_shot = true
+
+[node name="BufferCoyote" type="Timer" parent="." unique_id=1479847424]
+one_shot = true
+
+[node name="BufferMega" type="Timer" parent="." unique_id=2039799184]
+one_shot = true
+
+[node name="DebugStateLabel" type="Label" parent="." unique_id=1716235676]
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = -18.0
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="KickArea" type="Area2D" parent="." unique_id=1530189634]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KickArea" unique_id=1515131708]
+position = Vector2(-6.5168274e-07, -3.9999995)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_dovo2")
+debug_color = Color(0.9600126, 1.0588765e-06, 0.5211233, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2023437890]
+position_smoothing_enabled = true
