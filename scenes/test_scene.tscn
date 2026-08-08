@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://mlfopegdrvw6"]
+
+[ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="8_rnaij"]
+[ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="9_h3xc6"]
+
+[node name="TestScene" type="Node2D" unique_id=988521978]
+
+[node name="AmbientAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1179099831]
+bus = &"SFX_panning"
+script = ExtResource("8_rnaij")
+_enable_bus_panning = true
+metadata/_custom_type_script = "uid://cau4hs0c4s1p8"
+
+[node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("9_h3xc6")]
+visible = false
