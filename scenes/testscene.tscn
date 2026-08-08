@@ -55,14 +55,16 @@ tile_set = ExtResource("5_ye8wr")
 
 [node name="Arrow" parent="." unique_id=1084523612 instance=ExtResource("6_ckmbu")]
 position = Vector2(240, 232)
+collision_mask = 7
 
 [node name="ArrowShooter" parent="." unique_id=381259425 instance=ExtResource("6_acxp7")]
 position = Vector2(367, 92)
 rotation = 2.8385282
 timer_enable = true
 
-[node name="PressurePlate" parent="." unique_id=1564805376 instance=ExtResource("8_acxp7")]
+[node name="PressurePlate" parent="." unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("8_acxp7")]
 position = Vector2(442, 144)
+target = NodePath("../ArrowShooter")
 
 [node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("7_acxp7")]
 position = Vector2(576, 104)
