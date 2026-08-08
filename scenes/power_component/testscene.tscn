@@ -29,7 +29,7 @@ position = Vector2(-227, -46)
 shape = SubResource("WorldBoundaryShape2D_ftlv2")
 
 [node name="Corpse" parent="." unique_id=735534107 instance=ExtResource("1_bvg0l")]
-position = Vector2(-252, 55)
+position = Vector2(-252, 56)
 
 [node name="PressurePlate" parent="." unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("2_o5ldj")]
 position = Vector2(299, 214)
