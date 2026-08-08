@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 enum PLAYER_STATES {
-	BUSY = 10,  # used for cutscenes / manual control
+	BUSY = 10, # used for cutscenes / manual control
 	DIED = 20,
 	IDLE = 30,
 	MOVE = 40,
@@ -28,12 +28,13 @@ const KICK_VELOCITY: Vector2 = Vector2(400, 300)
 
 const CORPSE_POGO_VELOCITY: float = 450.0
 
+var _was_normal_jump: bool = false
+var state: PLAYER_STATES = PLAYER_STATES.IDLE
+
 @onready var _debug_state_label: Label = $DebugStateLabel
 @onready var _buffer_coyote: Timer = $BufferCoyote
 @onready var _buffer_jump: Timer = $BufferJump
 @onready var _kick_area: Area2D = %KickArea
-
-var state: int = PLAYER_STATES.IDLE
 
 
 func _ready() -> void:
@@ -68,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(corpse):
 			continue
 
-		velocity.y = -CORPSE_POGO_VELOCITY
+		velocity.y = - CORPSE_POGO_VELOCITY
 		break
 
 
@@ -90,12 +91,15 @@ func _movement_horizontal(delta: float) -> void:
 
 func _resistance_vertical(delta: float) -> void:
 	if is_on_floor():
+		_was_normal_jump = false
 		_buffer_coyote.start(BUFFER_COYOTE_LENGTH)
 		return
 	velocity.y = minf(velocity.y + delta * get_gravity().y, MAX_FALLING_SPEED)
-	if velocity.y < 0.0 && Input.is_action_just_released(&"jump"):
+	if velocity.y < 0.0 && _was_normal_jump && Input.is_action_just_released(&"jump"):
+		_was_normal_jump = false
 		velocity.y *= 0.4
 	if velocity.y > 0.0:
+		_was_normal_jump = false
 		velocity.y = minf(velocity.y + delta * get_gravity().y, MAX_FALLING_SPEED)
 
 
@@ -106,7 +110,9 @@ func _movement_vertical() -> void:
 		return
 	_buffer_jump.stop()
 	_buffer_coyote.stop()
-	velocity.y = -JUMP_FORCE
+	_was_normal_jump = true
+	print(_was_normal_jump)
+	velocity.y = - JUMP_FORCE
 
 
 func _update_state() -> void:
