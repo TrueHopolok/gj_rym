@@ -1,14 +1,9 @@
-[gd_scene format=3 uid="uid://mlfopegdrvw6"]
+[gd_scene format=4 uid="uid://mlfopegdrvw6"]
 
 [ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="1_65iv0"]
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_l2n4a"]
 [ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="3_ye8wr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
-size = Vector2(672, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
-size = Vector2(312, 50)
+[ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="4_l2n4a"]
 
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
@@ -21,17 +16,10 @@ metadata/_custom_type_script = "uid://cau4hs0c4s1p8"
 [node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("2_l2n4a")]
 visible = false
 
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=153627691]
+z_index = -1
+tile_map_data = PackedByteArray("AAAFAAgAAAAAAAEAAAAFAAkAAAAAAAIAAAAGAAgAAAACAAEAAAAGAAcAAAACAAAAAAAFAAcAAAAAAAAAAAAGAAkAAAACAAIAAAADAAwAAAABAAAAAAAEAAwAAAABAAAAAAAFAAwAAAABAAAAAAAGAAwAAAABAAAAAAAHAAwAAAABAAAAAAAIAAwAAAABAAAAAAAJAAwAAAABAAAAAAAKAAwAAAABAAAAAAALAAwAAAABAAAAAAAMAAwAAAABAAAAAAANAAwAAAABAAAAAAAOAAwAAAABAAAAAAAPAAwAAAADAAAAAAAQAAwAAAAEAAAAAAARAAwAAAABAAAAAAASAAwAAAABAAAAAAATAAwAAAADAAAAAAAUAAwAAAAEAAAAAAAUAA0AAAABAAIAAAATAA0AAAABAAIAAAASAA0AAAABAAIAAAARAA0AAAABAAIAAAAQAA0AAAABAAIAAAAPAA0AAAABAAIAAAACAAwAAAAAAAAAAAACAA0AAAAAAAIAAAADAA0AAAABAAIAAAAEAA0AAAABAAIAAAAFAA0AAAABAAIAAAAGAA0AAAABAAIAAAAHAA0AAAABAAIAAAAIAA0AAAABAAIAAAAJAA0AAAABAAIAAAAKAA0AAAABAAIAAAALAA0AAAABAAIAAAAMAA0AAAABAAIAAAANAA0AAAABAAIAAAAOAA0AAAABAAIAAAAQAAsAAAACAAAAAAAPAAsAAAAAAAAAAAATAAsAAAAAAAEAAAATAAoAAAAAAAAAAAAUAAoAAAACAAAAAAAUAAsAAAACAAEAAAAVAAwAAAABAAAAAAAWAAwAAAABAAAAAAAXAAkAAAAAAAAAAAAXAAoAAAAAAAEAAAAXAAsAAAAAAAEAAAAXAAwAAAADAAAAAAAXAA0AAAABAAIAAAAWAA0AAAABAAIAAAAVAA0AAAABAAIAAAAYAAkAAAACAAAAAAAYAAoAAAACAAEAAAAYAAsAAAACAAEAAAAYAAwAAAACAAEAAAAYAA0AAAACAAIAAAAKAAkAAAACAAIAAAAKAAgAAAACAAAAAAAJAAkAAAAAAAIAAAAJAAgAAAAAAAAAAAA=")
+tile_set = ExtResource("4_l2n4a")
+
 [node name="Player" parent="." unique_id=1054591316 instance=ExtResource("3_ye8wr")]
 position = Vector2(288, 240)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=427132199]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=49877365]
-position = Vector2(320, 264)
-shape = SubResource("RectangleShape2D_jxfr3")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D" unique_id=191104361]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D" unique_id=1804373689]
-position = Vector2(516, 193)
-shape = SubResource("RectangleShape2D_nd71p")

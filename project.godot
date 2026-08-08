@@ -72,6 +72,7 @@ folder_colors={
 "res://assets/": "red",
 "res://assets/audio/": "yellow",
 "res://assets/fonts/": "orange",
+"res://assets/resources/": "pink",
 "res://assets/themes/": "orange",
 "res://build/": "gray",
 "res://objects/": "green",
