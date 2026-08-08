@@ -1,6 +1,9 @@
 class_name Corpse
 extends CharacterBody2D
 
+
+const MAX_SLIDES: int = 8
+
 @export_group("Bounce", "bounce")
 @export var bounce_factor: float = 0.7
 @export var bounce_min_velocity: float = 150.0
@@ -8,6 +11,10 @@ extends CharacterBody2D
 @export var x_decel: float = 50.0
 @export var slide_friction: float = 0.5
 @export var drag: float = 10.0
+
+var _last_normal: Vector2 = Vector2.ONE * NAN
+
+@onready var _sprite: AnimatedSprite2D = $Sprite2D
 
 
 ## Public API used to knock the corpse around.
@@ -25,7 +32,8 @@ func apply_impulse(vec: Vector2) -> void:
 		velocity.y = vec.y
 
 
-const MAX_SLIDES: int = 8
+func _ready() -> void:
+	_sprite.flip_h = randi() % 2 == 0
 
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
 	var time: float = delta
 
+	_last_normal = Vector2.ONE * NAN
 	for i: int in MAX_SLIDES:
 		var travel: Vector2 = velocity * time
 		if travel.is_zero_approx():
@@ -44,6 +53,8 @@ func _physics_process(delta: float) -> void:
 		var col: KinematicCollision2D = move_and_collide(travel)
 		if col == null:
 			break
+
+		_last_normal = col.get_normal()
 
 		time *= col.get_remainder().length() / travel.length()
 
@@ -66,5 +77,19 @@ func _physics_process(delta: float) -> void:
 		velocity = bounce + slide
 
 
+	_update_animations()
+
+
 func _sq(f: float) -> float:
 	return f * f
+
+
+func _update_animations() -> void:
+	if not _last_normal.is_finite() or absf(_last_normal.angle_to(Vector2.UP)) > PI * 0.25:
+		# airborne / wall collision
+		if velocity.y > 0:
+			_sprite.play("fall")
+		else:
+			_sprite.play("jump")
+	else:
+		_sprite.play(&"idle")
