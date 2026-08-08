@@ -26,6 +26,9 @@ one_shot = true
 [node name="BufferCoyote" type="Timer" parent="." unique_id=1479847424]
 one_shot = true
 
+[node name="BufferMega" type="Timer" parent="." unique_id=2039799184]
+one_shot = true
+
 [node name="DebugStateLabel" type="Label" parent="." unique_id=1716235676]
 offset_left = -24.0
 offset_top = -32.0
