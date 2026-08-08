@@ -65,6 +65,11 @@ func _physics_process(delta: float) -> void:
 
 	for idx: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(idx)
+
+		if _is_spike_collision(col):
+			_spike_death()
+			break
+
 		var corpse: Corpse = col.get_collider() as Corpse
 		if not is_instance_valid(corpse):
 			continue
@@ -111,7 +116,6 @@ func _movement_vertical() -> void:
 	_buffer_jump.stop()
 	_buffer_coyote.stop()
 	_was_normal_jump = true
-	print(_was_normal_jump)
 	velocity.y = - JUMP_FORCE
 
 
@@ -135,6 +139,23 @@ func _handle_kick(col: Object) -> void:
 
 	add_collision_exception_with(corpse)
 	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
+
+
+func _is_spike_collision(col: KinematicCollision2D) -> bool:
+	if col.get_collider() is TileMapLayer:
+		var tm: TileMapLayer = col.get_collider() as TileMapLayer
+		var pos: Vector2i = tm.local_to_map(tm.to_local(col.get_position() - col.get_normal()))
+		var td: TileData = tm.get_cell_tile_data(pos)
+		return td != null and td.get_custom_data("is_spike")
+	elif col.get_collider() is Node:
+		var node: Node = col.get_collider()
+		return node.is_in_group(&"spike")
+
+	return false
+
+
+func _spike_death() -> void:
+	print("OH NO, I DIED on a SPIKE!")
 
 
 func die() -> void:
