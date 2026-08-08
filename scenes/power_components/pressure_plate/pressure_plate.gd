@@ -3,13 +3,22 @@ class_name PresesurePlate
 extends Node2D
 
 @export var target: PowerComponent = null
-@export var symbol: PowerComponent.Symbol = PowerComponent.Symbol.IOI_GATE: set = _update_symbol
+@export var symbol: PowerComponent.Symbol = PowerComponent.Symbol.IOI_GATE:
+	set(v):
+		symbol = v
+		if is_inside_tree():
+			_update_symbol.call_deferred()
 
 var _was_pressed: bool = false
 
 @onready var _area_2d: Area2D = %Area2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _symbol_sprite: Sprite2D = %Symbol
+
+
+
+func _ready() -> void:
+	_update_symbol.call_deferred()
 
 
 func _physics_process(_delta: float) -> void:
@@ -26,12 +35,7 @@ func _physics_process(_delta: float) -> void:
 	target.set_powered(pressed)
 
 
-func _update_symbol(s: PowerComponent.Symbol) -> void:
-	symbol = s
-
-	(
-		func () -> void:
-			if not _symbol_sprite.is_node_ready():
-				await _symbol_sprite.ready
-			_symbol_sprite.frame = int(s)
-	).call_deferred()
+func _update_symbol() -> void:
+	if not _symbol_sprite.is_node_ready():
+		await _symbol_sprite.ready
+	_symbol_sprite.frame = int(symbol)
