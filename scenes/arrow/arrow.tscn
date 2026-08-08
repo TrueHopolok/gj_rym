@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cdaej1boel371"]
+
+[ext_resource type="Script" uid="uid://4fxkqfjttdid" path="res://scenes/arrow/arrow.gd" id="1_uynht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3ktp"]
+size = Vector2(20, 10)
+
+[node name="Arrow" type="CharacterBody2D" unique_id=1084523612]
+collision_layer = 0
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_uynht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809128331]
+shape = SubResource("RectangleShape2D_x3ktp")

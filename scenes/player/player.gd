@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 enum PLAYER_STATES {
@@ -117,3 +118,7 @@ func _handle_kick(col: Object) -> void:
 
 	add_collision_exception_with(corpse)
 	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
+
+
+func die() -> void:
+	print("OH NO, I DIED!")
