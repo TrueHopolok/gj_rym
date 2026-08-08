@@ -1,25 +1,40 @@
 extends CharacterBody2D
 
+const MOVEMENT_RUNNING_SPEED: float = 100.0
+const MOVEMENT_SLOWING_SPEED: float = 100.0
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+enum PLAYER_STATES {
+    BUSY = 10, # used for cutscenes / manual control
+    DIED = 20,
+    IDLE = 30,
+    MOVE = 40,
+    JUMP = 50,
+}
+
+var state: int = PLAYER_STATES.IDLE
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+    if (state <= PLAYER_STATES.BUSY): return
+    if (state <= PLAYER_STATES.DIED):
+        move_and_slide()
+        return
+    state = PLAYER_STATES.IDLE
+    _movement_horizontal(delta)
+    _movement_vertical(delta)
+    move_and_slide()
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+func _movement_horizontal(delta: float) -> void:
+    var input_dir: float = Input.get_axis('', '')
+    if (input_dir == 0):
+        velocity.x -= sign(velocity.x) * delta * MOVEMENT_SLOWING_SPEED
+        if (abs(velocity.x) > 0): state = PLAYER_STATES.MOVE
+        return
+    if (input_dir != sign(velocity.x)): velocity.x = 0
+    velocity.x += input_dir * delta * MOVEMENT_RUNNING_SPEED
+    state = PLAYER_STATES.MOVE
 
-	move_and_slide()
+
+func _movement_vertical(delta: float) -> void:
+    pass
