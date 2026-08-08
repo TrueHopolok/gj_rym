@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="7_acxp7"]
 [ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_components/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
 [ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="9_3ahxw"]
+[ext_resource type="PackedScene" uid="uid://dlrs4jnou0am" path="res://scenes/power_components/door/door.tscn" id="10_tob6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(312, 50)
@@ -66,9 +67,17 @@ timer_enable = true
 position = Vector2(442, 144)
 target = NodePath("../ArrowShooter")
 
+[node name="PressurePlate2" parent="." unique_id=667105008 node_paths=PackedStringArray("target") instance=ExtResource("8_acxp7")]
+position = Vector2(323, 192)
+target = NodePath("../Door")
+symbol = 1
+
 [node name="Altar" parent="." unique_id=1836274703 instance=ExtResource("9_3ahxw")]
 position = Vector2(384, 168)
 
 [node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("7_acxp7")]
 position = Vector2(576, 104)
 _next_lvl = "res://scenes/levels/level1.tscn"
+
+[node name="Door" parent="." unique_id=304512104 instance=ExtResource("10_tob6u")]
+position = Vector2(432, 288)
