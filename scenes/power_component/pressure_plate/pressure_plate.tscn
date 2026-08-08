@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bgvpulhqs7edf"]
+
+[ext_resource type="Script" uid="uid://c867t63op7bxe" path="res://scenes/power_component/pressure_plate/pressure_plate.gd" id="1_yvfbx"]
+
+[sub_resource type="Animation" id="Animation_yvfbx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_e5tmg"]
+resource_name = "idle"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_v65ry"]
+resource_name = "pressed"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v65ry"]
+_data = {
+&"RESET": SubResource("Animation_yvfbx"),
+&"idle": SubResource("Animation_e5tmg"),
+&"pressed": SubResource("Animation_v65ry")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7okr"]
+size = Vector2(18, 3)
+
+[node name="PressurePlate" type="Node2D" unique_id=1564805376]
+script = ExtResource("1_yvfbx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1986497256]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_v65ry")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=145456202]
+offset_left = 3.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = 1.0
+color = Color(0.49146068, 0.37131315, 0.2766732, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1330057523]
+offset_right = 24.0
+offset_bottom = 4.0
+color = Color(0.75387716, 0.61123705, 0.49893028, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1926744574]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1355475695]
+position = Vector2(12, -1.5)
+shape = SubResource("RectangleShape2D_q7okr")
