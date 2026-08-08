@@ -9,3 +9,9 @@ script = ExtResource("1_8afob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1761597414]
 shape = SubResource("CapsuleShape2D_jxfr3")
+
+[node name="BufferJump" type="Timer" parent="." unique_id=1877728417]
+one_shot = true
+
+[node name="BufferCoyote" type="Timer" parent="." unique_id=1479847424]
+one_shot = true
