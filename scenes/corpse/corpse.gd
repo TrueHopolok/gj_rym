@@ -6,13 +6,21 @@ extends CharacterBody2D
 @export var bounce_min_velocity: float = 150.0
 
 @export var x_decel: float = 50.0
-@export var slide_friction: float = 0.95
+@export var slide_friction: float = 0.5
+@export var drag: float = 10.0
 
 
 ## Public API used to knock the corpse around.
 ## [param vec] should not be multiplied by delta.
 func apply_impulse(vec: Vector2) -> void:
-	velocity += vec
+	if signf(velocity.x) == signf(vec.x):
+		velocity.x = signf(vec.x) * maxf(absf(vec.x), absf(velocity.x))
+	else:
+		velocity.x = vec.x
+	if signf(velocity.y) == signf(vec.y):
+		velocity.y = signf(vec.y) * maxf(absf(vec.y), absf(velocity.y))
+	else:
+		velocity.y = vec.y
 
 
 const MAX_SLIDES: int = 8
@@ -22,6 +30,8 @@ func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta
 
 	velocity.x = move_toward(velocity.x, 0, x_decel * delta)
+
+	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
 
 	for i: int in MAX_SLIDES:
 		if velocity.is_zero_approx():

@@ -23,10 +23,19 @@ const MAX_FALLING_SPEED: float = 500.0
 const BUFFER_JUMP_LENGTH: float = 0.05
 const BUFFER_COYOTE_LENGTH: float = 0.20
 
+const KICK_VELOCITY: Vector2 = Vector2(400, 300)
+
 @onready var _debug_state_label: Label = $DebugStateLabel
 @onready var _buffer_coyote: Timer = $BufferCoyote
 @onready var _buffer_jump: Timer = $BufferJump
+@onready var _kick_area: Area2D = %KickArea
+
 var state: int = PLAYER_STATES.IDLE
+
+
+func _ready() -> void:
+	_kick_area.body_entered.connect(_handle_kick)
+	_kick_area.area_entered.connect(_handle_kick)
 
 
 func _input(event: InputEvent) -> void:
@@ -47,6 +56,7 @@ func _physics_process(delta: float) -> void:
 	_update_state()
 	if OS.is_debug_build():
 		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
+
 	move_and_slide()
 
 
@@ -90,7 +100,20 @@ func _movement_vertical() -> void:
 func _update_state() -> void:
 	if !is_on_floor():
 		state = PLAYER_STATES.JUMP
-	elif abs(velocity.x):
+	elif not is_zero_approx(velocity.x):
 		state = PLAYER_STATES.MOVE
 	else:
 		state = PLAYER_STATES.IDLE
+
+
+func _handle_kick(col: Object) -> void:
+	var corpse: Corpse = col as Corpse
+	if not is_instance_valid(corpse):
+		return
+
+	var dir: float = signf(corpse.global_position.x - global_position.x)
+	var vel: Vector2 = KICK_VELOCITY * Vector2(dir, 1)
+	corpse.apply_impulse(vel)
+
+	add_collision_exception_with(corpse)
+	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))

@@ -3,12 +3,15 @@
 [ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="1_65iv0"]
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_l2n4a"]
 [ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="3_ye8wr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
-size = Vector2(672, 20)
+[ext_resource type="PackedScene" uid="uid://pi75mcoh6y61" path="res://scenes/corpse/corpse.tscn" id="4_l2n4a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(312, 50)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q7okr"]
+normal = Vector2(-0.8325765, -0.5539101)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l2n4a"]
 
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
@@ -26,12 +29,20 @@ position = Vector2(288, 240)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=427132199]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=49877365]
-position = Vector2(320, 264)
-shape = SubResource("RectangleShape2D_jxfr3")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D" unique_id=191104361]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D" unique_id=1804373689]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1804373689]
 position = Vector2(516, 193)
 shape = SubResource("RectangleShape2D_nd71p")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1164359430]
+position = Vector2(786.1889, 140.38638)
+shape = SubResource("WorldBoundaryShape2D_q7okr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1882478528]
+position = Vector2(315, 255)
+shape = SubResource("WorldBoundaryShape2D_l2n4a")
+
+[node name="Corpse" parent="." unique_id=735534107 instance=ExtResource("4_l2n4a")]
+position = Vector2(469, 78)
+
+[node name="Corpse2" parent="." unique_id=113922578 instance=ExtResource("4_l2n4a")]
+position = Vector2(-1088, -65)
