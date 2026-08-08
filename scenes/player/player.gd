@@ -17,23 +17,25 @@ const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
 	PLAYER_STATES.JUMP: "JUMP",
 }
 
+const KICK_FORCE: Vector2 = Vector2(400, 300)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
+const POGO_FORCE: float = 450.0
+const MEGA_FORCE: float = 500.0
 const MAX_RUNNING_SPEED: float = 250.0
 const MAX_FALLING_SPEED: float = 500.0
 const BUFFER_JUMP_LENGTH: float = 0.05
 const BUFFER_COYOTE_LENGTH: float = 0.20
+const BUFFER_MEGA_LENGTH: float = 0.10
 
-const KICK_VELOCITY: Vector2 = Vector2(400, 300)
 
-const CORPSE_POGO_VELOCITY: float = 450.0
-
-var _was_normal_jump: bool = false
+var _has_cancel: bool = false
 var state: PLAYER_STATES = PLAYER_STATES.IDLE
 
 @onready var _debug_state_label: Label = $DebugStateLabel
-@onready var _buffer_coyote: Timer = $BufferCoyote
 @onready var _buffer_jump: Timer = $BufferJump
+@onready var _buffer_mega: Timer = $BufferMega
+@onready var _buffer_coyote: Timer = $BufferCoyote
 @onready var _kick_area: Area2D = %KickArea
 
 
@@ -48,34 +50,22 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if state <= PLAYER_STATES.BUSY:
-		return
-	_resistance_horizontal()
-	_resistance_vertical(delta)
 	if state <= PLAYER_STATES.DIED:
-		move_and_slide()
 		return
-	_movement_horizontal(delta)
-	_movement_vertical()
-	_update_state()
-	if OS.is_debug_build() && get_tree().debug_collisions_hint:
-		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
-
-	move_and_slide()
-
-	for idx: int in get_slide_collision_count():
-		var col: KinematicCollision2D = get_slide_collision(idx)
-
+	for i: int in get_slide_collision_count():
+		var col: KinematicCollision2D = get_slide_collision(i)
 		if _is_spike_collision(col):
 			_spike_death()
 			break
-
-		var corpse: Corpse = col.get_collider() as Corpse
-		if not is_instance_valid(corpse):
-			continue
-
-		velocity.y = - CORPSE_POGO_VELOCITY
-		break
+	_resistance_horizontal()
+	_resistance_vertical(delta)
+	_movement_horizontal(delta)
+	_movement_pogo()
+	_movement_jump()
+	_update_state()
+	if OS.is_debug_build() && get_tree().debug_collisions_hint:
+		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
+	move_and_slide()
 
 
 func _resistance_horizontal() -> void:
@@ -96,27 +86,51 @@ func _movement_horizontal(delta: float) -> void:
 
 func _resistance_vertical(delta: float) -> void:
 	if is_on_floor():
-		_was_normal_jump = false
+		_has_cancel = false
 		_buffer_coyote.start(BUFFER_COYOTE_LENGTH)
 		return
 	velocity.y = minf(velocity.y + delta * get_gravity().y, MAX_FALLING_SPEED)
-	if velocity.y < 0.0 && _was_normal_jump && Input.is_action_just_released(&"jump"):
-		_was_normal_jump = false
+	if velocity.y < 0.0 && _has_cancel && Input.is_action_just_released(&"jump"):
+		_has_cancel = false
 		velocity.y *= 0.4
 	if velocity.y > 0.0:
-		_was_normal_jump = false
+		_has_cancel = false
 		velocity.y = minf(velocity.y + delta * get_gravity().y, MAX_FALLING_SPEED)
 
 
-func _movement_vertical() -> void:
+func _movement_pogo() -> void:
+	for i: int in get_slide_collision_count():
+		var corpse: Corpse = get_slide_collision(i).get_collider() as Corpse
+		if !is_instance_valid(corpse):
+			continue
+		# todo: check corpse being static
+		var force: float = POGO_FORCE
+		_buffer_coyote.stop()
+		if !_buffer_jump.is_stopped():
+			_buffer_jump.stop()
+			force = MEGA_FORCE
+			print("MEGA")
+		else:
+			_buffer_mega.start(BUFFER_MEGA_LENGTH)
+		velocity.y = - force
+
+
+func _movement_jump() -> void:
 	if _buffer_jump.is_stopped():
+		return
+	if !_buffer_mega.is_stopped():
+		_buffer_jump.stop()
+		_buffer_mega.stop()
+		_has_cancel = true
+		velocity.y = - MEGA_FORCE
+		print("MEGA")
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
 		return
 	_buffer_jump.stop()
 	_buffer_coyote.stop()
-	_was_normal_jump = true
-	velocity.y = - JUMP_FORCE
+	_has_cancel = true
+	velocity.y = - JUMP_FORCE # weak mega
 
 
 func _update_state() -> void:
@@ -134,7 +148,7 @@ func _handle_kick(col: Object) -> void:
 		return
 
 	var dir: float = signf(corpse.global_position.x - global_position.x)
-	var vel: Vector2 = KICK_VELOCITY * Vector2(dir, 1)
+	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1)
 	corpse.apply_impulse(vel)
 
 	add_collision_exception_with(corpse)
@@ -159,4 +173,4 @@ func _spike_death() -> void:
 
 
 func die() -> void:
-	print("OH NO, I DIED!")
+	print("OH NO, I DIED somehow!")
