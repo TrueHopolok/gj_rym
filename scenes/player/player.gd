@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 enum PLAYER_STATES {
-	BUSY = 10, # used for cutscenes / manual control
+	BUSY = 10,  # used for cutscenes / manual control
 	DIED = 20,
 	IDLE = 30,
 	MOVE = 40,
@@ -27,6 +27,9 @@ const BUFFER_COYOTE_LENGTH: float = 0.20
 const KICK_VELOCITY: Vector2 = Vector2(400, 300)
 
 const CORPSE_POGO_VELOCITY: float = 450.0
+
+const CORPSE_NORMAL: PackedScene = preload("res://scenes/corpse/corpse.tscn")
+const CORPSE_SPIKED: PackedScene = preload("res://scenes/corpse/corpse_spiked.tscn")
 
 var _was_normal_jump: bool = false
 var state: PLAYER_STATES = PLAYER_STATES.IDLE
@@ -74,7 +77,7 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(corpse):
 			continue
 
-		velocity.y = - CORPSE_POGO_VELOCITY
+		velocity.y = -CORPSE_POGO_VELOCITY
 		break
 
 
@@ -116,7 +119,7 @@ func _movement_vertical() -> void:
 	_buffer_jump.stop()
 	_buffer_coyote.stop()
 	_was_normal_jump = true
-	velocity.y = - JUMP_FORCE
+	velocity.y = -JUMP_FORCE
 
 
 func _update_state() -> void:
@@ -155,8 +158,17 @@ func _is_spike_collision(col: KinematicCollision2D) -> bool:
 
 
 func _spike_death() -> void:
-	print("OH NO, I DIED on a SPIKE!")
+	queue_free()
+	var inst: Node2D = CORPSE_SPIKED.instantiate()
+	get_parent().add_child(inst)
+
+	inst.global_position = global_position
 
 
 func die() -> void:
-	print("OH NO, I DIED!")
+	queue_free()
+	var inst: Corpse = CORPSE_NORMAL.instantiate()
+	get_parent().add_child(inst)
+
+	inst.global_position = global_position
+	inst.velocity = velocity
