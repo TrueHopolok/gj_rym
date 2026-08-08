@@ -12,6 +12,8 @@ extends CharacterBody2D
 
 ## Public API used to knock the corpse around.
 ## [param vec] should not be multiplied by delta.
+##
+## Velocity *may* be overridden. It is guaranteed that resulting velocity will be at least vec.
 func apply_impulse(vec: Vector2) -> void:
 	if signf(velocity.x) == signf(vec.x):
 		velocity.x = signf(vec.x) * maxf(absf(vec.x), absf(velocity.x))
@@ -32,14 +34,23 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, 0, x_decel * delta)
 
 	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
+	var time: float = delta
 
 	for i: int in MAX_SLIDES:
-		if velocity.is_zero_approx():
+		var travel: Vector2 = velocity * time
+		if travel.is_zero_approx():
 			break
 
-		var col: KinematicCollision2D = move_and_collide(velocity * delta)
+		var col: KinematicCollision2D = move_and_collide(travel)
 		if col == null:
 			break
+
+		time *= col.get_remainder().length() / travel.length()
+
+		if CorpseSpiked.is_spike_collision(col):
+			queue_free()
+			CorpseSpiked.spawn(get_parent(), col.get_normal(), col.get_position())
+			return
 
 		var normal: Vector2 = col.get_normal()
 		var projection: Vector2 = velocity.project(normal)

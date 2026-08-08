@@ -28,8 +28,7 @@ const BUFFER_JUMP_LENGTH: float = 0.05
 const BUFFER_COYOTE_LENGTH: float = 0.20
 const BUFFER_MEGA_LENGTH: float = 0.10
 
-const CORPSE_NORMAL: PackedScene = preload("res://scenes/corpse/corpse.tscn")
-const CORPSE_SPIKED: PackedScene = preload("res://scenes/corpse/corpse_spiked.tscn")
+const CORPSE: PackedScene = preload("res://scenes/corpse/corpse.tscn")
 const CORPSE_POGO_VELOCITY: float = 450.0
 
 var _has_cancel: bool = false
@@ -58,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
-		if _is_spike_collision(col):
+		if CorpseSpiked.is_spike_collision(col):
 			_spike_death(col.get_position(), col.get_normal())
 			break
 	_resistance_horizontal()
@@ -160,31 +159,15 @@ func _handle_kick(col: Object) -> void:
 	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
 
 
-func _is_spike_collision(col: KinematicCollision2D) -> bool:
-	if col.get_collider() is TileMapLayer:
-		var tm: TileMapLayer = col.get_collider() as TileMapLayer
-		var pos: Vector2i = tm.local_to_map(tm.to_local(col.get_position() - col.get_normal()))
-		var td: TileData = tm.get_cell_tile_data(pos)
-		return td != null and td.get_custom_data("is_spike")
-	elif col.get_collider() is Node:
-		var node: Node = col.get_collider()
-		return node.is_in_group(&"spike")
-
-	return false
-
-
 func _spike_death(pos: Vector2, normal: Vector2) -> void:
 	queue_free()
-	var inst: Node2D = CORPSE_SPIKED.instantiate()
-	get_parent().add_child(inst)
-
-	inst.global_position = pos
-	inst.global_rotation = normal.angle()
+	CorpseSpiked.spawn(get_parent(), normal, pos)
 
 
 func die() -> void:
 	queue_free()
-	var inst: Corpse = CORPSE_NORMAL.instantiate()
+
+	var inst: Corpse = CORPSE.instantiate()
 	get_parent().add_child(inst)
 
 	inst.global_position = global_position

@@ -13,3 +13,7 @@ script = ExtResource("1_uynht")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809128331]
 shape = SubResource("RectangleShape2D_x3ktp")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=545276636]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(-9, -2, 6, -2, 7, -4, 10, -1, 7, 1, 6, 0, -8, -1)
