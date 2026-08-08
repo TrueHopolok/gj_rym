@@ -13,7 +13,7 @@ var _was_pressed: bool = false
 
 
 func _physics_process(_delta: float) -> void:
-	if not is_instance_valid(target):
+	if not is_instance_valid(target) or Engine.is_editor_hint():
 		return
 
 	var pressed: bool = _area_2d.has_overlapping_areas() or _area_2d.has_overlapping_bodies()
@@ -28,4 +28,10 @@ func _physics_process(_delta: float) -> void:
 
 func _update_symbol(s: PowerComponent.Symbol) -> void:
 	symbol = s
-	_symbol_sprite.frame = int(s)
+
+	(
+		func () -> void:
+			if not _symbol_sprite.is_node_ready():
+				await _symbol_sprite.ready
+			_symbol_sprite.frame = int(s)
+	).call_deferred()
