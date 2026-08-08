@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://mlfopegdrvw6"]
 
+[ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="3_nd71p"]
 [ext_resource type="Script" uid="uid://cau4hs0c4s1p8" path="res://scenes/audio/ambient_audio_player/ambient_audio_player.gd" id="8_rnaij"]
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="9_h3xc6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
+size = Vector2(672, 20)
 
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
@@ -13,3 +17,12 @@ metadata/_custom_type_script = "uid://cau4hs0c4s1p8"
 
 [node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("9_h3xc6")]
 visible = false
+
+[node name="Player" parent="." unique_id=1054591316 instance=ExtResource("3_nd71p")]
+position = Vector2(208, 176)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=427132199]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=49877365]
+position = Vector2(320, 264)
+shape = SubResource("RectangleShape2D_jxfr3")
