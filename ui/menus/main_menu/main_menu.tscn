@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cvah0thg6gaj1" path="res://ui/menus/main_menu/reset_dialog.gd" id="5_j3h1s"]
 [ext_resource type="Script" uid="uid://bltl6imnc8x2t" path="res://ui/menus/main_menu/level_button.gd" id="5_m57jf"]
 [ext_resource type="PackedScene" uid="uid://bkv2wdfogpnnu" path="res://ui/menus/main_menu/level_selection.tscn" id="6_igis3"]
+[ext_resource type="Texture2D" uid="uid://broo2gpchkd1g" path="res://assets/art/main_menu.png" id="8_uni0y"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1082861136]
 script = ExtResource("1_m57jf")
@@ -68,3 +69,7 @@ offset_left = 417.0
 offset_top = 144.0
 offset_right = 512.0
 offset_bottom = 262.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808407029]
+position = Vector2(159, 90)
+texture = ExtResource("8_uni0y")
