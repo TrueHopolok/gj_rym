@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://41myr3r2dv6q" path="res://assets/art/default_tileset.png" id="1_tywei"]
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_tywei"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nlxlh"]
 resource_name = "default"
 texture = ExtResource("1_tywei")
@@ -190,3 +193,4 @@ terrain_set_0/terrain_0/color = Color(0.7915091, 0.6461218, 0, 1)
 custom_data_layer_0/name = "spike_type"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_nlxlh")
+pattern_0 = SubResource("TileMapPattern_tywei")
