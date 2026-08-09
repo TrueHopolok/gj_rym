@@ -15,6 +15,7 @@ metadata/_preview_in_3d_space_ = true
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_otg26"]
 width = 19
 height = 35
+generate_mipmaps = false
 noise = SubResource("FastNoiseLite_27bh7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7okr"]
