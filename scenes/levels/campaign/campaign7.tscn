@@ -23,46 +23,12 @@ _next_lvl = "res://scenes/levels/campaign/campaign8.tscn"
 [node name="Killzone" parent="." index="3" unique_id=1677750993]
 position = Vector2(40, 80)
 
-[node name="ArrowShooter" parent="." index="4" unique_id=381259425 instance=ExtResource("2_a2qq6")]
-position = Vector2(-228, -228)
-rotation = 1.5707964
-timer_enable = true
-timer_interval = 2.5
-
-[node name="ArrowShooter6" parent="." index="5" unique_id=1004497682 instance=ExtResource("2_a2qq6")]
-position = Vector2(-132, -252)
-rotation = 1.5707964
-timer_enable = true
-timer_interval = 2.5
-
-[node name="ArrowShooter3" parent="." index="6" unique_id=973484014 instance=ExtResource("2_a2qq6")]
-position = Vector2(444, -228)
-rotation = 1.5707964
-timer_enable = true
-timer_interval = 2.5
-
-[node name="ArrowShooter4" parent="." index="7" unique_id=854595029 instance=ExtResource("2_a2qq6")]
-position = Vector2(420, -228)
-rotation = 1.5707964
-timer_enable = true
-timer_interval = 2.5
-
-[node name="ArrowShooter7" parent="." index="8" unique_id=1706332922 instance=ExtResource("2_a2qq6")]
-position = Vector2(468, -228)
-rotation = 1.5707964
-timer_enable = true
-timer_interval = 2.5
-
-[node name="ArrowShooter5" parent="." index="9" unique_id=2027269158 instance=ExtResource("2_a2qq6")]
-position = Vector2(108, -300)
-rotation = 1.5707964
-
-[node name="PressurePlate" parent="." index="10" unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("3_7hlq7")]
+[node name="PressurePlate" parent="." index="4" unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("3_7hlq7")]
 position = Vector2(71, -96)
-target = NodePath("../ArrowShooter5")
+target = NodePath("")
 symbol = 2
 
-[node name="Label" type="Label" parent="." index="11" unique_id=1261519938]
+[node name="Label" type="Label" parent="." index="5" unique_id=1261519938]
 offset_left = 32.0
 offset_top = -200.0
 offset_right = 183.0
@@ -70,7 +36,7 @@ offset_bottom = -169.0
 text = "Do you know what MEGA is?
 Tutorial about MEGA POGO/JUMP"
 
-[node name="CameraTrigger" parent="." index="12" unique_id=73767758 instance=ExtResource("4_bfo2f")]
+[node name="CameraTrigger" parent="." index="6" unique_id=73767758 instance=ExtResource("4_bfo2f")]
 position = Vector2(109, -56)
 debug_draw = true
 zoom = Vector2(1.8, 1.8)
@@ -81,3 +47,39 @@ visible = false
 position = Vector2(-1, 32)
 shape = SubResource("RectangleShape2D_jxfr3")
 metadata/_edit_lock_ = true
+
+[node name="ArrowShooter2" parent="." index="7" unique_id=381259425 instance=ExtResource("2_a2qq6")]
+position = Vector2(420, -228)
+timer_enable = true
+timer_interval = 2.5
+direction = 2
+
+[node name="ArrowShooter3" parent="." index="8" unique_id=1942029840 instance=ExtResource("2_a2qq6")]
+position = Vector2(444, -228)
+timer_enable = true
+timer_interval = 2.5
+direction = 2
+
+[node name="ArrowShooter6" parent="." index="9" unique_id=1746079358 instance=ExtResource("2_a2qq6")]
+position = Vector2(-132, -252)
+timer_enable = true
+timer_interval = 2.5
+direction = 2
+
+[node name="ArrowShooter8" parent="." index="10" unique_id=2119581341 instance=ExtResource("2_a2qq6")]
+position = Vector2(108, -300)
+timer_enable = true
+timer_interval = 2.5
+direction = 2
+
+[node name="ArrowShooter7" parent="." index="11" unique_id=320766829 instance=ExtResource("2_a2qq6")]
+position = Vector2(-228, -228)
+timer_enable = true
+timer_interval = 2.5
+direction = 2
+
+[node name="ArrowShooter4" parent="." index="12" unique_id=1324323658 instance=ExtResource("2_a2qq6")]
+position = Vector2(468, -228)
+timer_enable = true
+timer_interval = 2.5
+direction = 2

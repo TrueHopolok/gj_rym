@@ -12,3 +12,4 @@ position = Vector2(10, 0)
 
 [node name="Arrowbox" type="Sprite2D" parent="." unique_id=1950867699]
 texture = ExtResource("2_blvlb")
+hframes = 4
