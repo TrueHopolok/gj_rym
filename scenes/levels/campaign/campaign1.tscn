@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ckf40nid8wkeu" path="res://scenes/levels/level.tscn" id="1_qsgll"]
 [ext_resource type="Script" uid="uid://b4212c1ss4ci3" path="res://scenes/levels/campaign/cutscene.gd" id="2_f2rgv"]
 [ext_resource type="PackedScene" uid="uid://g6vi5sm7srrm" path="res://scenes/background/lamp1.tscn" id="3_rujyp"]
+[ext_resource type="Texture2D" uid="uid://c157w83yxju1t" path="res://assets/art/tutor_a_d_space.png" id="4_34315"]
 
 [sub_resource type="Animation" id="Animation_f2rgv"]
 length = 0.001
@@ -61,7 +62,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(4.5666666, 5.96, 7.1766667, 8.656667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.555, 0.555, 1.0]
+"values": [0.0, 0.635, 0.635, 1.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -112,8 +113,9 @@ offset_top = -118.0
 offset_right = 253.0
 offset_bottom = -34.0
 bbcode_enabled = true
-text = "[font_size=12][shake]What?[/shake] I will miss my audience with [wave]Osiris[/wave].
-I neeed to return to my [shake]sarcophagus[/shake]!"
+text = "[font_size=12][shake]What?[/shake] Where am I?
+I will miss my audience with [wave][color=lime]Osiris[/color][/wave].
+I need to find to my [shake]sarcophagus[/shake]!"
 fit_content = true
 
 [node name="Exit" parent="." index="4" unique_id=1728432730]
@@ -129,7 +131,11 @@ autoplay = &"cutscene"
 script = ExtResource("2_f2rgv")
 
 [node name="Lamp1" parent="." index="8" unique_id=1713549925 instance=ExtResource("3_rujyp")]
-position = Vector2(-118, -48)
+position = Vector2(-169, -60)
 
 [node name="Lamp2" parent="." index="9" unique_id=418785110 instance=ExtResource("3_rujyp")]
 position = Vector2(483, -135)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="10" unique_id=328883079]
+position = Vector2(-118, -56)
+texture = ExtResource("4_34315")
