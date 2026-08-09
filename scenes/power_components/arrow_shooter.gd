@@ -15,7 +15,7 @@ const ARROW: PackedScene = preload("res://scenes/arrow/arrow.tscn")
 @export_tool_button("Rotate 90 degrees") var action_rotate: Callable = func() -> void: direction = (direction + 1) % 4
 
 @onready var _spawn_marker: Node2D = %SpawnMarker
-@onready var _sfx_arrow: AudioStreamPlayer2D = $SFXArrow
+@onready var _sfx_arrow: AudioStreamPlayer = $SFXArrow
 
 @export var arrow_velocity: float = 400.0
 

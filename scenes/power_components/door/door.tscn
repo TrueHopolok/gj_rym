@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5my3s417g8x4" path="res://scenes/power_components/door/door.gd" id="1_jowlq"]
 [ext_resource type="Texture2D" uid="uid://c7sp454hnc6lo" path="res://assets/art/door.png" id="2_l1mei"]
+[ext_resource type="AudioStream" uid="uid://n2cddcyfos1j" path="res://assets/audio/sfx/door_open.mp3" id="3_slv3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7okr"]
 size = Vector2(24, 96)
@@ -45,3 +46,9 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(12, -48)
 texture = SubResource("AtlasTexture_l1mei")
 hframes = 3
+
+[node name="SFXOpen" type="AudioStreamPlayer" parent="." unique_id=746665340]
+stream = ExtResource("3_slv3n")
+volume_db = -3.0
+pitch_scale = 0.75
+bus = &"SFX"

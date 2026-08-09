@@ -9,6 +9,7 @@ extends PowerComponent
 @onready var _animatable_body_2d: AnimatableBody2D = %Body
 @onready var _over: Sprite2D = %Over
 @onready var _under: Sprite2D = %Under
+@onready var _sfx_open: AudioStreamPlayer = $SFXOpen
 
 const H: float = 96 - 10
 
@@ -27,12 +28,13 @@ func _ready() -> void:
 func _on_powered_on() -> void:
 	var t: Tween = (
 		_animatable_body_2d
-		. create_tween()
-		. set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-		. set_trans(Tween.TRANS_CUBIC)
-		. set_ease(Tween.EASE_IN_OUT)
-		. set_parallel()
+		.create_tween()
+		.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		.set_trans(Tween.TRANS_CUBIC)
+		.set_ease(Tween.EASE_IN_OUT)
+		.set_parallel()
 	)
+	_sfx_open.play()
 	t.tween_property(_animatable_body_2d, "position:y", _initial_pos_y - H, 1.0)
 	t.tween_property(_over, "modulate:a", 1.0, 1.0)
 
@@ -40,11 +42,11 @@ func _on_powered_on() -> void:
 func _on_powered_off() -> void:
 	var t: Tween = (
 		_animatable_body_2d
-		. create_tween()
-		. set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-		. set_trans(Tween.TRANS_BOUNCE)
-		. set_ease(Tween.EASE_OUT)
-		. set_parallel()
+		.create_tween()
+		.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+		.set_trans(Tween.TRANS_BOUNCE)
+		.set_ease(Tween.EASE_OUT)
+		.set_parallel()
 	)
 	t.tween_property(_animatable_body_2d, "position:y", _initial_pos_y, 1.0)
 	t.tween_property(_over, "modulate:a", 0.0, 1.0)

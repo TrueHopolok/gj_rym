@@ -15,9 +15,7 @@ rotation = -1.5707964
 texture = ExtResource("2_blvlb")
 hframes = 4
 
-[node name="SFXArrow" type="AudioStreamPlayer2D" parent="." unique_id=1759707444]
+[node name="SFXArrow" type="AudioStreamPlayer" parent="." unique_id=712410139]
 stream = ExtResource("3_5fax7")
 volume_db = 3.0
-attenuation = 2.5491216
-panning_strength = 2.0
 bus = &"SFX"
