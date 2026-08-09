@@ -57,9 +57,14 @@ func _physics_process(delta: float) -> void:
 
 		time *= col.get_remainder().length() / travel.length()
 
-		if CorpseSpiked.is_spike_collision(col):
+		var st := CorpseSpiked.get_spike_collision_type(col)
+		if st != CorpseSpiked.SpikeType.NONE:
 			queue_free()
-			CorpseSpiked.spawn(get_parent(), col.get_normal(), col.get_position())
+			match st:
+				CorpseSpiked.SpikeType.NORMAL:
+					CorpseSpiked.spawn(get_parent(), col.get_normal(), col.get_position())
+				CorpseSpiked.SpikeType.CURSED:
+					print("corpse hit cursed spike")
 			return
 
 		var normal: Vector2 = col.get_normal()
