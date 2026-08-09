@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b00l5rnxas7d4" path="res://assets/art/button_anim.png" id="2_12lk6"]
 [ext_resource type="Texture2D" uid="uid://cld2vkuq2ampf" path="res://assets/art/button_back.png" id="2_kwdrc"]
 [ext_resource type="Texture2D" uid="uid://c4w0i8g8xylvt" path="res://assets/art/button_symbols.png" id="3_13r4a"]
+[ext_resource type="AudioStream" uid="uid://b7wgwhbiaw5sn" path="res://assets/audio/sfx/power.mp3" id="5_5673f"]
 
 [sub_resource type="Animation" id="Animation_13r4a"]
 length = 0.001
@@ -217,3 +218,9 @@ monitorable = false
 visible = false
 position = Vector2(37, -5.25)
 shape = SubResource("RectangleShape2D_q7okr")
+
+[node name="SFXPower" type="AudioStreamPlayer" parent="." unique_id=377809826]
+stream = ExtResource("5_5673f")
+volume_db = -18.0
+pitch_scale = 2.0
+bus = &"SFX"

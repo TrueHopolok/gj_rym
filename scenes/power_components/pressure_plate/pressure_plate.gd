@@ -14,6 +14,7 @@ var _was_pressed: bool = false
 @onready var _area_2d: Area2D = %Area2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _symbol_sprite: Sprite2D = %Symbol
+@onready var _sfx_power: AudioStreamPlayer = $SFXPower
 
 
 func _ready() -> void:
@@ -27,8 +28,12 @@ func _physics_process(_delta: float) -> void:
 	var pressed: bool = _area_2d.has_overlapping_areas() or _area_2d.has_overlapping_bodies()
 
 	if _was_pressed != pressed:
-		var anim: StringName = &"down" if pressed else &"up"
-		_animation_player.play(anim)
+		if pressed:
+			_animation_player.play(&"down")
+			_sfx_power.play()
+		else:
+			_animation_player.play(&"up")
+			_sfx_power.stop()
 
 	_was_pressed = pressed
 	target.set_powered(pressed)
