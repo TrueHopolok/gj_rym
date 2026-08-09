@@ -24,12 +24,6 @@ func _update_pos() -> void:
 		global_position = _current_trigger.global_position
 	elif _current_player != null:
 		global_position = _current_player.global_position
-	else:
-		var altar: Node2D = get_tree().get_first_node_in_group(&"altar") as Node2D
-		if altar != null:
-			global_position = altar.global_position
-		else:
-			push_error("camera: no player / altar / trigger found")
 
 	for node: Node2D in get_tree().get_nodes_in_group(&"killzone"):
 		global_position.y = minf(global_position.y, node.global_position.y - VIEWPORT_SIZE.y * 0.5 + 12)

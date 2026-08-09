@@ -15,11 +15,11 @@ tile_set = ExtResource("1_b2cq8")
 [node name="Altar" parent="." unique_id=1836274703 instance=ExtResource("2_xb4v1")]
 position = Vector2(-16, 0)
 
+[node name="CustomCamera" parent="Altar" unique_id=523911849 instance=ExtResource("5_urvlt")]
+metadata/_edit_lock_ = true
+
 [node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("3_urvlt")]
 position = Vector2(96, -16)
 
 [node name="Killzone" parent="." unique_id=1677750993 instance=ExtResource("4_xb4v1")]
 position = Vector2(24, 64)
-
-[node name="CustomCamera" parent="." unique_id=523911849 instance=ExtResource("5_urvlt")]
-metadata/_edit_lock_ = true
