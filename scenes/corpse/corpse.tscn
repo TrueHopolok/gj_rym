@@ -4,6 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_03kni"]
 [ext_resource type="Texture2D" uid="uid://c36fkk0kqig4m" path="res://assets/art/deadass_jump.png" id="2_m6d0l"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m6d0l"]
+friction = 0.16
+bounce = 0.4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6d0l"]
+atlas = ExtResource("2_m6d0l")
+region = Rect2(0, 0, 38, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sni7f"]
+atlas = ExtResource("2_m6d0l")
+region = Rect2(38, 0, 38, 22)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqksd"]
 atlas = ExtResource("2_m6d0l")
 region = Rect2(0, 0, 38, 22)
@@ -22,6 +34,17 @@ region = Rect2(38, 0, 38, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q7okr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6d0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sni7f")
+}],
+"loop": 0,
+"name": &"bounce",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gqksd")
@@ -54,14 +77,20 @@ animations = [{
 radius = 6.0
 height = 38.0
 
-[node name="Corpse" type="CharacterBody2D" unique_id=735534107]
+[node name="Corpse" type="RigidBody2D" unique_id=550011391]
 collision_layer = 4
 collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_m6d0l")
+gravity_scale = 0.744
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 4
 script = ExtResource("1_03kni")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1878045622]
 sprite_frames = SubResource("SpriteFrames_q7okr")
-animation = &"idle"
+animation = &"bounce"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=255411056]
