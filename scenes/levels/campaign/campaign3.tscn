@@ -40,6 +40,7 @@ text = "Here text can be added
 Saying that R is full full restart"
 
 [node name="Exit" parent="." index="5" unique_id=1728432730]
+z_index = 0
 position = Vector2(830, 48)
 _next_lvl = "res://scenes/levels/campaign/campaign4.tscn"
 

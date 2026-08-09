@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgt125d5wu5bp" path="res://scenes/exit/exit.gd" id="1_ymjir"]
 [ext_resource type="Texture2D" uid="uid://df4gikcsppsho" path="res://assets/art/exit.png" id="2_wmb3t"]
+[ext_resource type="AudioStream" uid="uid://n2cddcyfos1j" path="res://assets/audio/sfx/door.mp3" id="3_tv5rl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
 size = Vector2(30, 7)
@@ -56,3 +57,7 @@ centered = false
 [node name="ExitPosition" type="Marker2D" parent="." unique_id=662855467]
 unique_name_in_owner = true
 position = Vector2(48, -17)
+
+[node name="SFXDoor" type="AudioStreamPlayer" parent="." unique_id=1627009910]
+stream = ExtResource("3_tv5rl")
+pitch_scale = 0.6
