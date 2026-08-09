@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://beqoaw684pnm6"]
+
+[ext_resource type="Texture2D" uid="uid://bw2s7mpakh5ny" path="res://assets/art/background_stuff.png" id="1_68cd5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koymv"]
+atlas = ExtResource("1_68cd5")
+region = Rect2(116, 18, 27, 39)
+
+[node name="Skely" type="Sprite2D" unique_id=1713549925]
+texture = SubResource("AtlasTexture_koymv")

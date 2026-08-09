@@ -34,7 +34,6 @@ func _exited() -> void:
 
 
 func _do_exit_sequence(player: Player) -> void:
-	print("exit seq")
 	player.state = Player.PLAYER_STATES.BUSY
 
 	_sfx_door.play()
