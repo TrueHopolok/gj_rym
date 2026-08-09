@@ -359,4 +359,5 @@ color_initial_ramp = SubResource("Gradient_2cv6y")
 
 [node name="SFXAltar" type="AudioStreamPlayer" parent="." unique_id=670475177]
 stream = ExtResource("6_4soti")
+volume_db = -6.0
 bus = &"SFX"
