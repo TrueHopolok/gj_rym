@@ -52,11 +52,11 @@ func _do_exit_sequence_door(player: Player) -> void:
 	t.chain().tween_callback(_sfx_door.play)
 	(
 		t
-		.chain()
-		.tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
-		.as_relative()
-		.set_trans(Tween.TRANS_QUAD)
-		.set_ease(Tween.EASE_IN)
+		. chain()
+		. tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
+		. as_relative()
+		. set_trans(Tween.TRANS_QUAD)
+		. set_ease(Tween.EASE_IN)
 	)
 
 	t.tween_callback(_exited)
@@ -71,13 +71,16 @@ func _do_exit_sequence_ded(player: Player) -> void:
 
 	var t: Tween = create_tween().chain()
 	t.tween_property(player, "global_position", _exit_position.global_position, 0.5)
-	t.tween_callback(func() -> void:
-		player.hide()
-		base.frame += 1
+	t.tween_callback(
+		func() -> void:
+			player.hide()
+			base.frame += 1
 	)
 	t.tween_interval(2.0)
 	t.tween_callback(_sfx_door.play)
-	t.tween_property(lid, "global_position", base.global_position, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(lid, "global_position", base.global_position, 1.5).set_trans(Tween.TRANS_SINE).set_ease(
+		Tween.EASE_IN_OUT
+	)
 	t.tween_property(text, "visible_ratio", 0.74, 1)
 	t.tween_interval(1.0)
 	t.tween_property(text, "visible_ratio", 1, 1)
