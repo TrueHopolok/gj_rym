@@ -30,10 +30,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ReturnButton" type="Button" parent="." unique_id=775973039]
-offset_left = 268.0
-offset_top = 332.0
-offset_right = 372.0
-offset_bottom = 354.0
+offset_left = 254.0
+offset_top = 322.0
+offset_right = 386.0
+offset_bottom = 348.0
 text = "Return to main menu"
 script = ExtResource("1_3q3b5")
 metadata/_custom_type_script = "uid://2htt7bkeytt7"

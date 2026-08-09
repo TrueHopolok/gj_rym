@@ -65,7 +65,7 @@ volume_db = -15.0
 _loop = ExtResource("8_0rrps")
 
 [node name="LevelSelection" parent="." unique_id=248725737 instance=ExtResource("10_gpubi")]
-offset_left = 272.0
-offset_top = 228.0
-offset_right = 368.0
-offset_bottom = 314.0
+offset_left = 192.0
+offset_top = 212.0
+offset_right = 192.0
+offset_bottom = 212.0

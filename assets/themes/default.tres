@@ -8,21 +8,29 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m57jf"]
 texture = ExtResource("1_0ecif")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(19, 6, 28, 5)
+texture_margin_left = 19.0
+texture_margin_top = 6.0
+texture_margin_right = 19.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 66, 17)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ecif"]
 texture = ExtResource("2_hvkdh")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(19, 6, 28, 5)
+texture_margin_left = 19.0
+texture_margin_top = 6.0
+texture_margin_right = 19.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 66, 17)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvkdh"]
 texture = ExtResource("3_qyfqg")
+texture_margin_left = 19.0
+texture_margin_top = 6.0
+texture_margin_right = 19.0
+texture_margin_bottom = 6.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-region_rect = Rect2(19, 6, 28, 5)
+region_rect = Rect2(0, 0, 66, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oa4jb"]
 atlas = ExtResource("1_oa4jb")
