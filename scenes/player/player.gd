@@ -5,8 +5,8 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	SKIP = 10,  # used for cutscenes / manual control
-	BUSY = 20,  # same but has gravitation
+	SKIP = 10, # used for cutscenes / manual control
+	BUSY = 20, # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
@@ -25,8 +25,8 @@ const SpikeType = CorpseSpiked.SpikeType
 const KICK_FORCE: Vector2 = Vector2(200, -250)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
-const POGO_FORCE: float = 450.0  # tmp solution, pls find what eats regular pogo
-const MEGA_FORCE: float = 500.0
+const POGO_FORCE: float = 425.0
+const MEGA_FORCE: float = 475.0
 const MAX_RUNNING_SPEED: float = 250.0
 const MAX_FALLING_SPEED: float = 500.0
 const BUFFER_JUMP_LENGTH: float = 0.05
@@ -165,8 +165,8 @@ func _movement_pogo() -> void:
 			_sfx_mega.play()
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
-		velocity.y = -force
-		corpse.apply_central_impulse(Vector2.DOWN * 100)  # questionable
+		velocity.y = - force
+		corpse.apply_central_impulse.call_deferred(Vector2.DOWN * 75)
 		add_collision_exception_with(corpse)
 		get_tree().create_timer(0.2).timeout.connect(remove_collision_exception_with.bind(corpse))
 		corpse.play_bounce()
@@ -179,7 +179,7 @@ func _movement_jump() -> void:
 		_buffer_jump.stop()
 		_buffer_mega.stop()
 		_has_cancel = true
-		velocity.y = -MEGA_FORCE
+		velocity.y = - MEGA_FORCE
 		_sfx_mega.play()
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
@@ -188,7 +188,7 @@ func _movement_jump() -> void:
 	_buffer_coyote.stop()
 
 	_has_cancel = true
-	velocity.y = -JUMP_FORCE
+	velocity.y = - JUMP_FORCE
 	_sfx_jumping.play()
 
 
@@ -206,7 +206,7 @@ func _update_animations() -> void:
 		_flipper.scale.x = signf(velocity.x)
 
 	if _sprite.animation == &"kick":
-		return  # let it play out
+		return # let it play out
 
 	match state:
 		PLAYER_STATES.IDLE, PLAYER_STATES.BUSY, PLAYER_STATES.SKIP:
