@@ -23,9 +23,14 @@ func _ready() -> void:
 
 
 func _animation() -> void:
-	var t: Tween = create_tween()
-
 	var m: ShaderMaterial = material
+
+	var param: Variant = m.get_shader_parameter(&"noise")
+	assert(param is NoiseTexture2D, "expected noise")
+	var noise: NoiseTexture2D = param
+	(noise.noise as FastNoiseLite).seed = randi()
+
+	var t: Tween = create_tween()
 	t.tween_method(func(v: float) -> void: m.set_shader_parameter(&"progress", v), 1.0, -0.5, 1.5)
 	t.parallel().tween_property(self, "damp", 0.0, 1.5)
 	t.chain().tween_callback(queue_free)
