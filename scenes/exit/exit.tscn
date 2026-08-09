@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c2iawpi0rhu1r"]
 
 [ext_resource type="Script" uid="uid://bgt125d5wu5bp" path="res://scenes/exit/exit.gd" id="1_ymjir"]
+[ext_resource type="Texture2D" uid="uid://ceq50hxspvktk" path="res://assets/art/door_behind.png" id="2_73are"]
 [ext_resource type="Texture2D" uid="uid://df4gikcsppsho" path="res://assets/art/exit.png" id="2_wmb3t"]
 [ext_resource type="AudioStream" uid="uid://n2cddcyfos1j" path="res://assets/audio/sfx/door.mp3" id="3_tv5rl"]
 
@@ -29,6 +30,12 @@ script = ExtResource("1_ymjir")
 position = Vector2(48, -3.5)
 shape = SubResource("RectangleShape2D_jxfr3")
 debug_color = Color(1.0107458e-06, 0.64258057, 0.3206096, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1079935196]
+z_index = -1
+position = Vector2(31, -72)
+texture = ExtResource("2_73are")
+centered = false
 
 [node name="DoorMask" type="Sprite2D" parent="." unique_id=86769507]
 clip_children = 1
