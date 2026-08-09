@@ -20,30 +20,31 @@ _next_lvl = "res://scenes/levels/campaign/campaign9.tscn"
 [node name="Killzone" parent="." index="3" unique_id=1677750993]
 position = Vector2(72, 48)
 
-[node name="Door" parent="." index="5" unique_id=304512104 instance=ExtResource("2_m3nq0")]
+[node name="Door" parent="." index="4" unique_id=304512104 instance=ExtResource("2_m3nq0")]
 position = Vector2(-336, 0)
 
-[node name="Door2" parent="." index="6" unique_id=1949539245 instance=ExtResource("2_m3nq0")]
+[node name="Door2" parent="." index="5" unique_id=1949539245 instance=ExtResource("2_m3nq0")]
 position = Vector2(-296, 0)
 
-[node name="Door3" parent="." index="7" unique_id=981980506 instance=ExtResource("2_m3nq0")]
+[node name="Door3" parent="." index="6" unique_id=981980506 instance=ExtResource("2_m3nq0")]
 position = Vector2(-256, 0)
 
-[node name="PressurePlate" parent="." index="8" unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("3_47pjb")]
+[node name="PressurePlate" parent="." index="7" unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("3_47pjb")]
 position = Vector2(-208, 0)
 target = NodePath("../Door3")
 
-[node name="PressurePlate2" parent="." index="9" unique_id=1804901403 node_paths=PackedStringArray("target") instance=ExtResource("3_47pjb")]
+[node name="PressurePlate2" parent="." index="8" unique_id=1804901403 node_paths=PackedStringArray("target") instance=ExtResource("3_47pjb")]
 position = Vector2(-121, -216)
 target = NodePath("../Door2")
 symbol = 1
 
-[node name="PressurePlate3" parent="." index="10" unique_id=1501318311 node_paths=PackedStringArray("target") instance=ExtResource("3_47pjb")]
+[node name="PressurePlate3" parent="." index="9" unique_id=1501318311 node_paths=PackedStringArray("target") instance=ExtResource("3_47pjb")]
 position = Vector2(-392, -193)
 target = NodePath("../Door")
 symbol = 2
 
-[node name="ArrowShooter" parent="." index="11" unique_id=381259425 instance=ExtResource("4_cds7w")]
+[node name="ArrowShooter" parent="." index="10" unique_id=381259425 instance=ExtResource("4_cds7w")]
 position = Vector2(-420, -228)
 timer_enable = true
 timer_interval = 3.0
+direction = 1

@@ -59,8 +59,8 @@ target = NodePath("../Door")
 
 [node name="ArrowShooter" parent="." index="8" unique_id=381259425 instance=ExtResource("5_y3o8u")]
 position = Vector2(540, 228)
-rotation = 1.5707964
 timer_enable = true
+direction = 2
 
 [node name="PressurePlate2" parent="." index="9" unique_id=1742478245 node_paths=PackedStringArray("target") instance=ExtResource("4_1ujep")]
 position = Vector2(-80, 312)
@@ -71,6 +71,7 @@ symbol = 2
 position = Vector2(180, 132)
 timer_enable = true
 timer_interval = 1.0
+direction = 1
 
 [node name="Door2" parent="." index="11" unique_id=282470991 instance=ExtResource("2_3e3rg")]
 position = Vector2(408, 168)
