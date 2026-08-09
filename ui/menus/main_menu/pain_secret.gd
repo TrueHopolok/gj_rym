@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-
 var _cur: Array[int] = [0, 0, 0, 0]
 var _goal: Array[int] = [KEY_P, KEY_A, KEY_I, KEY_N]
 

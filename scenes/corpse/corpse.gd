@@ -30,7 +30,7 @@ func _sq(f: float) -> float:
 
 
 func _update_animations() -> void:
-	if _sprite.animation == &"bounce":
+	if _sprite.animation in [&"bounce", &"intro"]:
 		return
 
 	const MIN_VELOCITY: float = 100.0

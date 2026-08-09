@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_03kni"]
 [ext_resource type="Texture2D" uid="uid://c36fkk0kqig4m" path="res://assets/art/deadass_jump.png" id="2_m6d0l"]
 [ext_resource type="AudioStream" uid="uid://cgn8rw4srbin8" path="res://assets/audio/sfx/player/player_death.mp3" id="4_gqksd"]
+[ext_resource type="Texture2D" uid="uid://bsa0wissjkweq" path="res://assets/art/anim_death.png" id="4_h720y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m6d0l"]
 friction = 0.16
@@ -24,6 +25,30 @@ region = Rect2(0, 0, 38, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h720y"]
 atlas = ExtResource("2_03kni")
 region = Rect2(0, 0, 34, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u76hd"]
+atlas = ExtResource("4_h720y")
+region = Rect2(0, 0, 80, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nitf0"]
+atlas = ExtResource("4_h720y")
+region = Rect2(80, 0, 80, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5m8n"]
+atlas = ExtResource("4_h720y")
+region = Rect2(160, 0, 80, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8cks"]
+atlas = ExtResource("4_h720y")
+region = Rect2(240, 0, 80, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tysi7"]
+atlas = ExtResource("4_h720y")
+region = Rect2(320, 0, 80, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x61c1"]
+atlas = ExtResource("4_h720y")
+region = Rect2(400, 0, 80, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fnw1"]
 atlas = ExtResource("2_m6d0l")
@@ -64,6 +89,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_u76hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nitf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5m8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8cks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tysi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x61c1")
+}],
+"loop": 0,
+"name": &"intro",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2fnw1")
 }, {
 "duration": 1.0,
@@ -90,8 +138,10 @@ script = ExtResource("1_03kni")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1878045622]
 sprite_frames = SubResource("SpriteFrames_q7okr")
-animation = &"bounce"
-autoplay = "idle"
+animation = &"intro"
+autoplay = "intro"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=255411056]
 rotation = -1.5707964

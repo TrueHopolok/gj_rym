@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_l2n4a"]
 [ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="5_ye8wr"]
 [ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="7_acxp7"]
+[ext_resource type="PackedScene" uid="uid://cdaej1boel371" path="res://scenes/arrow/arrow.tscn" id="8_3ahxw"]
 [ext_resource type="PackedScene" uid="uid://pi75mcoh6y61" path="res://scenes/corpse/corpse.tscn" id="8_acxp7"]
 [ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="9_3ahxw"]
 [ext_resource type="PackedScene" uid="uid://iu685desgkk6" path="res://scenes/killzone/killzone.tscn" id="11_26oro"]
@@ -31,3 +32,6 @@ position = Vector2(-164, 329)
 
 [node name="Corpse3" parent="." unique_id=1680679829 instance=ExtResource("8_acxp7")]
 position = Vector2(-147, 172)
+
+[node name="Arrow" parent="." unique_id=1084523612 instance=ExtResource("8_3ahxw")]
+position = Vector2(106.34294, 91.866264)
