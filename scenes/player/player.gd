@@ -22,7 +22,7 @@ const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
 
 const SpikeType = CorpseSpiked.SpikeType
 
-const KICK_FORCE: Vector2 = Vector2(300, -250)
+const KICK_FORCE: Vector2 = Vector2(200, -250)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
 const POGO_FORCE: float = 450.0
