@@ -12,8 +12,7 @@ const ARROW: PackedScene = preload("res://scenes/arrow/arrow.tscn")
 	set(v):
 		direction = v
 		_update_direction()
-@export_tool_button("Rotate 90 degrees") var action_rotate: Callable = func () -> void:
-	direction = (direction + 1) % 4
+@export_tool_button("Rotate 90 degrees") var action_rotate: Callable = func() -> void: direction = (direction + 1) % 4
 
 @onready var _spawn_marker: Node2D = %SpawnMarker
 
