@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://c3kdhco0ibbsu" path="res://ui/menus/main_menu/reset_button.gd" id="4_txwgg"]
 [ext_resource type="Script" uid="uid://cvah0thg6gaj1" path="res://ui/menus/main_menu/reset_dialog.gd" id="5_j3h1s"]
 [ext_resource type="Script" uid="uid://bltl6imnc8x2t" path="res://ui/menus/main_menu/level_button.gd" id="5_m57jf"]
+[ext_resource type="AudioStream" uid="uid://d3a1wq6oldeq2" path="res://assets/audio/music/menu.wav" id="8_0rrps"]
+[ext_resource type="PackedScene" uid="uid://ihes6falfv6r" path="res://scenes/audio/looping_music/looping_music.tscn" id="8_gpubi"]
 [ext_resource type="Texture2D" uid="uid://broo2gpchkd1g" path="res://assets/art/main_menu.png" id="8_uni0y"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1082861136]
@@ -164,3 +166,8 @@ text = "10"
 script = ExtResource("5_m57jf")
 _lvl_num = 10
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LoopingMusic" parent="." unique_id=1912382015 instance=ExtResource("8_gpubi")]
+stream = ExtResource("8_0rrps")
+volume_db = -15.0
+_loop = ExtResource("8_0rrps")

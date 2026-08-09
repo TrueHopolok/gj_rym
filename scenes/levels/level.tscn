@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://0800oexb67mb" path="res://scenes/custom_camera/custom_camera.tscn" id="5_urvlt"]
 [ext_resource type="Texture2D" uid="uid://bqj2carhffos5" path="res://assets/art/wall3.png" id="7_mbbpy"]
 [ext_resource type="PackedScene" uid="uid://ihes6falfv6r" path="res://scenes/audio/looping_music/looping_music.tscn" id="8_ouxo3"]
+[ext_resource type="AudioStream" uid="uid://d3undur33dryh" path="res://assets/audio/music/intro.mp3" id="9_rmjfq"]
+[ext_resource type="AudioStream" uid="uid://bjrvx7o2luf7a" path="res://assets/audio/music/loop.mp3" id="10_7pb6i"]
 
 [node name="Level" type="Node2D" unique_id=588267695]
 
@@ -44,3 +46,6 @@ texture = ExtResource("7_mbbpy")
 centered = false
 
 [node name="LoopingMusic" parent="." unique_id=1912382015 instance=ExtResource("8_ouxo3")]
+stream = ExtResource("9_rmjfq")
+volume_db = -15.0
+_loop = ExtResource("10_7pb6i")
