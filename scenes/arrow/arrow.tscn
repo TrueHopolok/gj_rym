@@ -9,7 +9,7 @@ height = 14.0
 
 [node name="Arrow" type="CharacterBody2D" unique_id=1084523612]
 collision_layer = 0
-collision_mask = 14
+collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_uynht")
 
