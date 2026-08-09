@@ -5,8 +5,8 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	SKIP = 10,  # used for cutscenes / manual control
-	BUSY = 20,  # same but has gravitation
+	SKIP = 10, # used for cutscenes / manual control
+	BUSY = 20, # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
@@ -32,6 +32,9 @@ const MAX_FALLING_SPEED: float = 500.0
 const BUFFER_JUMP_LENGTH: float = 0.05
 const BUFFER_COYOTE_LENGTH: float = 0.20
 const BUFFER_MEGA_LENGTH: float = 0.10
+
+const INSTA_STOP: bool = true
+const SLOW_FORCE: float = RUN_FORCE * 3.0
 
 const CORPSE: PackedScene = preload("res://scenes/corpse/corpse.tscn")
 const CORPSE_POGO_VELOCITY: float = 450.0
@@ -73,7 +76,7 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if state <= PLAYER_STATES.SKIP:
 		return
-	_resistance_horizontal()
+	_resistance_horizontal(delta)
 	_resistance_vertical(delta)
 	if state <= PLAYER_STATES.BUSY:
 		return
@@ -93,11 +96,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _resistance_horizontal() -> void:
+func _resistance_horizontal(delta: float) -> void:
 	var input_dir: float = Input.get_axis(&"left", &"right")
 	if input_dir != 0:
 		return
-	velocity.x = 0.0
+	if INSTA_STOP:
+		velocity.x = 0.0
+	else:
+		var cur_dir: float = signf(velocity.x)
+		velocity.x = velocity.x - cur_dir * delta * SLOW_FORCE
+		if signf(velocity.x) != cur_dir || is_zero_approx(velocity.x):
+			velocity.x = 0.0
 
 
 func _movement_horizontal(delta: float) -> void:
@@ -136,7 +145,7 @@ func _movement_pogo() -> void:
 			print("MEGA")
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
-		velocity.y = -force
+		velocity.y = - force
 
 
 func _movement_jump() -> void:
@@ -146,7 +155,7 @@ func _movement_jump() -> void:
 		_buffer_jump.stop()
 		_buffer_mega.stop()
 		_has_cancel = true
-		velocity.y = -MEGA_FORCE
+		velocity.y = - MEGA_FORCE
 		print("MEGA")
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
@@ -155,7 +164,7 @@ func _movement_jump() -> void:
 	_buffer_coyote.stop()
 
 	_has_cancel = true
-	velocity.y = -JUMP_FORCE  # weak mega
+	velocity.y = - JUMP_FORCE # weak mega
 
 
 func _update_state() -> void:
@@ -172,7 +181,7 @@ func _update_animations() -> void:
 		_flipper.scale.x = signf(velocity.x)
 
 	if _sprite.animation == &"kick":
-		return  # let it play out
+		return # let it play out
 
 	match state:
 		PLAYER_STATES.IDLE:
