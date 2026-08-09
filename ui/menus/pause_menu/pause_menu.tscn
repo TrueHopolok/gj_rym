@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.27450982)
+color = Color(0, 0, 0, 0.5019608)
 metadata/_edit_lock_ = true
 
 [node name="Title" type="Label" parent="." unique_id=1397348034]

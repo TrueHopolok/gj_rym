@@ -1,12 +1,15 @@
 [gd_scene format=4 uid="uid://ckf40nid8wkeu"]
 
 [ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="1_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://cav0jmryusucx" path="res://ui/menus/pause_menu/pause_menu.tscn" id="1_d4w6o"]
 [ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="2_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="3_urvlt"]
 [ext_resource type="PackedScene" uid="uid://iu685desgkk6" path="res://scenes/killzone/killzone.tscn" id="4_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://0800oexb67mb" path="res://scenes/custom_camera/custom_camera.tscn" id="5_urvlt"]
 
 [node name="Level" type="Node2D" unique_id=588267695]
+
+[node name="PauseMenu" parent="." unique_id=840180984 instance=ExtResource("1_d4w6o")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=660253215]
 tile_map_data = PackedByteArray("AAADAAEAAAABAAIAAAACAAEAAAABAAIAAAABAAEAAAABAAIAAAAAAAEAAAABAAIAAAD//wEAAAABAAIAAAD+/wEAAAABAAIAAAADAAAAAAABAAAAAAACAAAAAAABAAAAAAABAAAAAAABAAAAAAAAAAAAAAABAAAAAAD//wAAAAABAAAAAAD+/wAAAAABAAAAAAAFAP7/AAAAAAEAAAAFAP//AAAAAAEAAAAFAAAAAAADAAAAAAAFAAEAAAABAAIAAAAEAAEAAAABAAIAAAD9/wAAAAAEAAAAAAD9////AAACAAEAAAD9//7/AAACAAEAAAD9//3/AAACAAEAAAD9//z/AAAEAAEAAAD9//v/AAABAAAAAAD8//v/AAAAAAAAAAD8//z/AAAAAAEAAAD8//3/AAAAAAEAAAD8//7/AAAAAAEAAAD8////AAAAAAEAAAD8/wAAAAAAAAEAAAD8/wEAAAAAAAIAAAD9/wEAAAABAAIAAAAFAP3/AAAAAAEAAAAFAPz/AAADAAEAAAAFAPv/AAABAAAAAAAEAPv/AAABAAAAAAADAPv/AAABAAAAAAACAPv/AAABAAAAAAABAPv/AAABAAAAAAAAAPv/AAABAAAAAAD///v/AAABAAAAAAD+//v/AAABAAAAAAD+//z/AAABAAIAAAD///z/AAABAAIAAAAAAPz/AAABAAIAAAABAPz/AAABAAIAAAACAPz/AAABAAIAAAADAPz/AAABAAIAAAAGAAEAAAACAAIAAAAGAAAAAAACAAEAAAAGAP//AAACAAEAAAAGAP7/AAACAAEAAAAGAP3/AAACAAEAAAAGAPz/AAACAAEAAAAGAPv/AAACAAAAAAAEAPz/AAABAAIAAAAEAAAAAAABAAAAAAA=")
