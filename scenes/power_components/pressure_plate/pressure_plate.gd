@@ -16,7 +16,6 @@ var _was_pressed: bool = false
 @onready var _symbol_sprite: Sprite2D = %Symbol
 
 
-
 func _ready() -> void:
 	_update_symbol.call_deferred()
 
