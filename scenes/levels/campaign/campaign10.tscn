@@ -20,3 +20,10 @@ _next_lvl = "res://ui/menus/gg_menu/gg_menu.tscn"
 
 [node name="Killzone" parent="." index="5" unique_id=1677750993]
 position = Vector2(488, 48)
+
+[node name="Label" type="Label" parent="." index="7" unique_id=1606726941]
+offset_left = 1603.0
+offset_top = -503.0
+offset_right = 1662.0
+offset_bottom = -489.0
+text = "Sarcafacus"

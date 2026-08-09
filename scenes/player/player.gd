@@ -85,6 +85,7 @@ func _physics_process(delta: float) -> void:
 	_resistance_horizontal(delta)
 	_resistance_vertical(delta)
 	if state <= PLAYER_STATES.BUSY:
+		_update_animations()
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)

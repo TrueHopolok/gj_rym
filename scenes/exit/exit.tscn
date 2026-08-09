@@ -1,14 +1,58 @@
 [gd_scene format=3 uid="uid://c2iawpi0rhu1r"]
 
 [ext_resource type="Script" uid="uid://bgt125d5wu5bp" path="res://scenes/exit/exit.gd" id="1_ymjir"]
+[ext_resource type="Texture2D" uid="uid://df4gikcsppsho" path="res://assets/art/exit.png" id="2_wmb3t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
+size = Vector2(30, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv5rl"]
+atlas = ExtResource("2_wmb3t")
+region = Rect2(198, 0, 32, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7okr"]
+atlas = ExtResource("2_wmb3t")
+region = Rect2(0, 0, 96, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmb3t"]
+atlas = ExtResource("2_wmb3t")
+region = Rect2(100, 0, 96, 120)
 
 [node name="Exit" type="Area2D" unique_id=1728432730]
+z_index = 1
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ymjir")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1932077198]
+position = Vector2(48, -3.5)
 shape = SubResource("RectangleShape2D_jxfr3")
 debug_color = Color(1.0107458e-06, 0.64258057, 0.3206096, 0.41960785)
+
+[node name="DoorMask" type="Sprite2D" parent="." unique_id=86769507]
+clip_children = 1
+position = Vector2(32, -72)
+texture = SubResource("AtlasTexture_tv5rl")
+centered = false
+
+[node name="Door" type="Sprite2D" parent="DoorMask" unique_id=737439288]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_tv5rl")
+centered = false
+
+[node name="Base" type="Sprite2D" parent="." unique_id=1572727720]
+unique_name_in_owner = true
+position = Vector2(0, -119)
+texture = SubResource("AtlasTexture_q7okr")
+centered = false
+
+[node name="Light" type="Sprite2D" parent="." unique_id=369430856]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -119)
+texture = SubResource("AtlasTexture_wmb3t")
+centered = false
+
+[node name="ExitPosition" type="Marker2D" parent="." unique_id=662855467]
+unique_name_in_owner = true
+position = Vector2(48, -17)
