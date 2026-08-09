@@ -68,11 +68,14 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.31126666),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.31126666, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"emit_particles"
+}, {
+"args": [],
+"method": &"_spawn_player"
 }]
 }
 tracks/2/type = "value"
@@ -143,6 +146,7 @@ region = Rect2(22, 4, 3, 6)
 
 [node name="Altar" type="Node2D" unique_id=1836274703 groups=["altar"]]
 script = ExtResource("1_gldhy")
+initial_modulate = Color(1, 0.827451, 0, 0)
 _player = ExtResource("2_wmmw7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1230258709]
