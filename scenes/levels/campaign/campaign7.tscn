@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ct571njlwt3uj" path="res://scenes/background/lamp2.tscn" id="6_ksr2q"]
 [ext_resource type="PackedScene" uid="uid://beqoaw684pnm6" path="res://scenes/background/skely.tscn" id="7_yiak2"]
 [ext_resource type="PackedScene" uid="uid://canerscui0lhl" path="res://scenes/background/sphinx.tscn" id="8_ksr2q"]
+[ext_resource type="Texture2D" uid="uid://cget8yi7j3oir" path="res://assets/art/BARABAN.png" id="9_yiak2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
 size = Vector2(363, 180)
@@ -122,3 +123,7 @@ position = Vector2(-250, -198)
 [node name="Sphinx" parent="." index="25" unique_id=15671823 instance=ExtResource("8_ksr2q")]
 position = Vector2(-62, -155)
 flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="26" unique_id=611011231]
+position = Vector2(91, -629)
+texture = ExtResource("9_yiak2")
