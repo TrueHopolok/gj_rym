@@ -9,7 +9,7 @@ extends PowerComponent
 @onready var _animatable_body_2d: AnimatableBody2D = %Body
 @onready var _over: Sprite2D = %Over
 @onready var _under: Sprite2D = %Under
-@onready var _sfx_open: AudioStreamPlayer = $SFXOpen
+@onready var _sfx_door: AudioStreamPlayer = $SFXDoor
 
 const H: float = 96 - 10
 
@@ -34,7 +34,7 @@ func _on_powered_on() -> void:
 		.set_ease(Tween.EASE_IN_OUT)
 		.set_parallel()
 	)
-	_sfx_open.play()
+	_sfx_door.play()
 	t.tween_property(_animatable_body_2d, "position:y", _initial_pos_y - H, 1.0)
 	t.tween_property(_over, "modulate:a", 1.0, 1.0)
 
@@ -48,6 +48,7 @@ func _on_powered_off() -> void:
 		.set_ease(Tween.EASE_OUT)
 		.set_parallel()
 	)
+	_sfx_door.play()
 	t.tween_property(_animatable_body_2d, "position:y", _initial_pos_y, 1.0)
 	t.tween_property(_over, "modulate:a", 0.0, 1.0)
 
