@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 				CorpseSpiked.SpikeType.NORMAL:
 					CorpseSpiked.spawn(get_parent(), col.get_normal(), col.get_position())
 				CorpseSpiked.SpikeType.CURSED:
-					print("corpse hit cursed spike")
+					CorpseCursed.spawn(get_parent(), global_position, _safe_bounce(velocity, col.get_normal()))
 			return
 
 		var normal: Vector2 = col.get_normal()
@@ -96,3 +96,9 @@ func _update_animations() -> void:
 			_sprite.play("jump")
 	else:
 		_sprite.play(&"idle")
+
+
+func _safe_bounce(vel: Vector2, n: Vector2) -> Vector2:
+	if vel.dot(n) > 0:
+		return vel
+	return vel.bounce(n)

@@ -17,5 +17,6 @@ void fragment() {
 	vec4 col_image = texture(TEXTURE, UV);
 	vec4 col1 = mix(col_image, col_border, smoothstep(progress, progress+transition, p));
 	vec4 col2 = mix(col1, vec4(0), smoothstep(progress+band_color, progress+band_color+transition, p));
-	COLOR = col2;
+	COLOR.rgb = col2.rgb;
+	COLOR.a = col2.a * col_image.a;
 }

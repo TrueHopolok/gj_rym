@@ -211,7 +211,8 @@ func _spike_death(spike_type: SpikeType, pos: Vector2, normal: Vector2) -> void:
 		SpikeType.NORMAL:
 			CorpseSpiked.spawn(get_parent(), normal, pos)
 		SpikeType.CURSED:
-			print("Curse spike animation...")
+			var vel: Vector2 = get_position_delta() / get_physics_process_delta_time()
+			CorpseCursed.spawn(get_parent(), global_position, _safe_bounce(vel, normal))
 	_die()
 
 
@@ -230,3 +231,9 @@ func permadeath() -> void:
 func exit() -> void:
 	state = PLAYER_STATES.SKIP
 	exited.emit()
+
+
+func _safe_bounce(vel: Vector2, n: Vector2) -> Vector2:
+	if vel.dot(n) > 0:
+		return vel
+	return vel.bounce(n)
