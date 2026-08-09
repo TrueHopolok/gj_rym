@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://00jelo8kidpe" path="res://scenes/camera_trigger/camera_trigger.tscn" id="5_g543f"]
 [ext_resource type="Texture2D" uid="uid://ca2vm6r0cvq5p" path="res://assets/art/tutor.png" id="6_2pbmc"]
 [ext_resource type="PackedScene" uid="uid://beqoaw684pnm6" path="res://scenes/background/skely.tscn" id="7_nf0f6"]
+[ext_resource type="Texture2D" uid="uid://6lh8aogwjuf0" path="res://assets/art/all_enemies.png" id="8_qbvgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
 size = Vector2(424, 336)
@@ -63,3 +64,8 @@ flip_h = true
 
 [node name="Skely2" parent="." index="13" unique_id=1261610597 instance=ExtResource("7_nf0f6")]
 position = Vector2(241.03925, 17.305069)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="14" unique_id=218482214]
+position = Vector2(-290, -330)
+texture = ExtResource("8_qbvgc")
+flip_h = true
