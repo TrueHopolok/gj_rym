@@ -1,6 +1,5 @@
 extends BetterButton
 
-
 const CAMPAIGN_PATH: String = "res://scenes/levels/campaign/campaign%d.tscn"
 
 @onready var _lvl_num: int = clampi(Persistence.unlocked_level, 1, 10)

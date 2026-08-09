@@ -1,27 +1,128 @@
 [gd_scene format=4 uid="uid://bbahswailovpw"]
 
 [ext_resource type="PackedScene" uid="uid://ckf40nid8wkeu" path="res://scenes/levels/level.tscn" id="1_qsgll"]
+[ext_resource type="Script" uid="uid://b4212c1ss4ci3" path="res://scenes/levels/campaign/cutscene.gd" id="2_f2rgv"]
+
+[sub_resource type="Animation" id="Animation_f2rgv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qsgll"]
+resource_name = "cutscene"
+length = 12.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Altar")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.0333333, 11.533334),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"spawn"
+}, {
+"args": [&"spawn_player_state", 30],
+"method": &"set"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.5666666, 5.9566665, 7.1766667, 8.656667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.147, 0.147, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(11.062379, 11.458533),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(11.583333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"wake_player"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2rgv"]
+_data = {
+&"RESET": SubResource("Animation_f2rgv"),
+&"cutscene": SubResource("Animation_qsgll")
+}
 
 [node name="Level" unique_id=588267695 instance=ExtResource("1_qsgll")]
 
-[node name="TileMapLayer" parent="." index="0" unique_id=660253215]
+[node name="TileMapLayer" parent="." index="1" unique_id=660253215]
 tile_map_data = PackedByteArray("AAADAAEAAAABAAIAAAACAAEAAAABAAIAAAABAAEAAAABAAIAAAAAAAEAAAABAAIAAAD//wEAAAABAAIAAAD+/wEAAAABAAIAAAADAAAAAAADAAAAAAACAAAAAAABAAAAAAABAAAAAAABAAAAAAAAAAAAAAABAAAAAAD//wAAAAABAAAAAAD+/wAAAAABAAAAAAAFAAAAAAABAAAAAAAFAAEAAAABAAIAAAAEAAEAAAABAAIAAAD9/wAAAAAEAAAAAAD9////AAACAAEAAAD9//7/AAACAAEAAAD9//3/AAACAAEAAAD9//z/AAACAAEAAAD9//v/AAACAAEAAAD8//v/AAAAAAEAAAD8//z/AAAAAAEAAAD8//3/AAAAAAEAAAD8//7/AAAAAAEAAAD8////AAAAAAEAAAD8/wAAAAAAAAEAAAD8/wEAAAAAAAIAAAD9/wEAAAABAAIAAAAGAAEAAAABAAIAAAAGAAAAAAABAAAAAAAEAAAAAAAEAAAAAAD9//r/AAACAAEAAAD8//r/AAAAAAEAAAD9//n/AAACAAEAAAD8//j/AAAAAAEAAAD8//n/AAAAAAEAAAD9//j/AAAEAAEAAAD9//f/AAABAAAAAAD8//f/AAAAAAAAAAD+//f/AAABAAAAAAD///f/AAABAAAAAAAAAPf/AAABAAAAAAABAPf/AAABAAAAAAACAPf/AAABAAAAAAADAPf/AAABAAAAAAAEAPf/AAABAAAAAAAFAPf/AAABAAAAAAAGAPf/AAABAAAAAAAHAPf/AAABAAAAAAAIAPf/AAABAAAAAAAJAPf/AAABAAAAAAAJAPj/AAABAAIAAAAIAPj/AAABAAIAAAAHAPj/AAABAAIAAAAGAPj/AAABAAIAAAAFAPj/AAABAAIAAAAEAPj/AAABAAIAAAADAPj/AAABAAIAAAACAPj/AAABAAIAAAABAPj/AAABAAIAAAAAAPj/AAABAAIAAAD///j/AAABAAIAAAD+//j/AAABAAIAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAJAAEAAAABAAIAAAAIAAEAAAABAAIAAAAHAAEAAAABAAIAAAAKAP//AAAAAAEAAAAKAP7/AAAAAAEAAAAKAP3/AAAAAAAAAAALAP3/AAABAAAAAAALAP7/AAAFAAAAAAALAP//AAAFAAAAAAALAAAAAAAFAAAAAAAKAAAAAAADAAAAAAAKAAEAAAABAAIAAAALAAEAAAABAAIAAAAKAPf/AAABAAAAAAALAPf/AAABAAAAAAALAPj/AAABAAIAAAAMAPj/AAADAAEAAAAKAPj/AAABAAIAAAAMAPf/AAABAAAAAAANAPf/AAACAAAAAAANAPj/AAACAAEAAAANAPn/AAACAAEAAAANAPr/AAACAAEAAAANAPv/AAACAAEAAAANAPz/AAACAAEAAAANAP3/AAACAAEAAAAMAP3/AAADAAAAAAAMAPz/AAAAAAEAAAAMAPv/AAAAAAEAAAAMAPr/AAAAAAEAAAAMAPn/AAAAAAEAAAANAP7/AAACAAEAAAAMAP//AAAFAAAAAAAMAAAAAAAFAAAAAAAMAP7/AAAFAAAAAAAMAAEAAAABAAIAAAANAAAAAAACAAEAAAANAP//AAACAAEAAAANAAEAAAACAAIAAAADAP//AAAAAAAAAAAEAP//AAACAAAAAAA=")
 
-[node name="Altar" parent="." index="1" unique_id=1836274703]
+[node name="Altar" parent="." index="2" unique_id=1836274703]
 position = Vector2(0, 0)
+spawn_on_ready = false
+spawn_player_state = 20
 
-[node name="Exit" parent="." index="2" unique_id=1728432730]
+[node name="Label" type="RichTextLabel" parent="." index="3" unique_id=656517332]
+offset_left = -36.0
+offset_top = -118.0
+offset_right = 253.0
+offset_bottom = -34.0
+bbcode_enabled = true
+text = "[font_size=12][shake]What?[/shake]
+I neeed to return to my [shake][color=red]sarcophagus[/color][/shake]!"
+fit_content = true
+
+[node name="Exit" parent="." index="4" unique_id=1728432730]
 position = Vector2(264, -88)
 _next_lvl = "res://scenes/levels/campaign/campaign2.tscn"
 
-[node name="Label" type="Label" parent="." index="3" unique_id=674110438]
-offset_top = -128.0
-offset_right = 192.0
-offset_bottom = -63.0
-text = "Here shown keybinds on BG
-Before player can move
-Player has text above the head
-\"I need to go back to саркафаг\""
-
-[node name="Killzone" parent="." index="4" unique_id=1677750993]
+[node name="Killzone" parent="." index="5" unique_id=1677750993]
 position = Vector2(96, 32)
+
+[node name="Cutscene" type="AnimationPlayer" parent="." index="7" unique_id=628329008]
+libraries/ = SubResource("AnimationLibrary_f2rgv")
+autoplay = &"cutscene"
+script = ExtResource("2_f2rgv")

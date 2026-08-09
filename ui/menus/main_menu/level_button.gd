@@ -1,6 +1,5 @@
 extends BetterButton
 
-
 const CAMPAIGN_PATH: String = "res://scenes/levels/campaign/campaign%d.tscn"
 
 @export_range(1, 10, 1) var _lvl_num: int = 1
