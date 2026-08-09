@@ -48,6 +48,7 @@ var state: PLAYER_STATES = PLAYER_STATES.IDLE
 @onready var _sfx_landing: AudioStreamPlayer = $SFXLanding
 @onready var _sfx_pogo: AudioStreamPlayer = $SFXPogo
 @onready var _sfx_mega: AudioStreamPlayer = $SFXMega
+@onready var _sfx_kick: AudioStreamPlayer = $SFXKick
 @onready var _debug_state_label: Label = $DebugStateLabel
 @onready var _buffer_jump: Timer = $BufferJump
 @onready var _buffer_mega: Timer = $BufferMega
@@ -216,6 +217,7 @@ func _handle_kick(col: Object) -> void:
 	if not is_instance_valid(corpse):
 		return
 
+	_sfx_kick.play()
 	_sprite.play(&"kick")
 
 	var dir: float = signf(corpse.global_position.x - global_position.x)
