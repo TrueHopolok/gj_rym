@@ -20,6 +20,8 @@ const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
 	PLAYER_STATES.JUMP: "JUMP",
 }
 
+const SpikeType = CorpseSpiked.SpikeType
+
 const KICK_FORCE: Vector2 = Vector2(400, 300)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
@@ -64,6 +66,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"jump"):
 		_buffer_jump.start(BUFFER_JUMP_LENGTH)
+	elif event.is_action_pressed(&"restart"):
+		Transition.reload_scene()
 
 
 func _physics_process(delta: float) -> void:
@@ -75,8 +79,9 @@ func _physics_process(delta: float) -> void:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
-		if CorpseSpiked.is_spike_collision(col):
-			_spike_death(col.get_position(), col.get_normal())
+		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col)
+		if st != CorpseSpiked.SpikeType.NONE:
+			_spike_death(st, col.get_position(), col.get_normal())
 			break
 	_movement_horizontal(delta)
 	_movement_pogo()
@@ -196,19 +201,30 @@ func _handle_kick(col: Object) -> void:
 	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
 
 
-func _spike_death(pos: Vector2, normal: Vector2) -> void:
+func _die() -> void:
 	queue_free()
-	CorpseSpiked.spawn(get_parent(), normal, pos)
 	died.emit()
 
 
+func _spike_death(spike_type: SpikeType, pos: Vector2, normal: Vector2) -> void:
+	match spike_type:
+		SpikeType.NORMAL:
+			CorpseSpiked.spawn(get_parent(), normal, pos)
+		SpikeType.CURSED:
+			print("Curse spike animation...")
+	_die()
+
+
 func die() -> void:
-	queue_free()
 	var inst: Corpse = CORPSE.instantiate()
 	get_parent().add_child(inst)
 	inst.global_position = global_position
 	inst.velocity = velocity
-	died.emit()
+	_die()
+
+
+func permadeath() -> void:
+	_die()
 
 
 func exit() -> void:

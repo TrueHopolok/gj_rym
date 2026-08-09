@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://blmnw83pchkbb"]
 
 [ext_resource type="Script" uid="uid://djdsde080hg80" path="res://scenes/power_components/arrow_shooter.gd" id="1_gluw2"]
+[ext_resource type="Texture2D" uid="uid://cgyr6yoqgwrva" path="res://assets/art/arrowbox.png" id="2_blvlb"]
 
 [node name="ArrowShooter" type="Node2D" unique_id=381259425]
 script = ExtResource("1_gluw2")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1468715790]
-polygon = PackedVector2Array(-8, -7, -9, 6, 8, 6, 8, 1, 4, 0, 7, -3, 7, -9)
-
 [node name="SpawnMarker" type="Marker2D" parent="." unique_id=1093115628]
 unique_name_in_owner = true
-position = Vector2(4, 0)
+position = Vector2(10, 0)
+
+[node name="Arrowbox" type="Sprite2D" parent="." unique_id=1950867699]
+texture = ExtResource("2_blvlb")

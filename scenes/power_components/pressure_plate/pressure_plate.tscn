@@ -1,84 +1,211 @@
 [gd_scene format=3 uid="uid://bgvpulhqs7edf"]
 
 [ext_resource type="Script" uid="uid://c867t63op7bxe" path="res://scenes/power_components/pressure_plate/pressure_plate.gd" id="1_yvfbx"]
+[ext_resource type="Texture2D" uid="uid://b00l5rnxas7d4" path="res://assets/art/button_anim.png" id="2_12lk6"]
+[ext_resource type="Texture2D" uid="uid://cld2vkuq2ampf" path="res://assets/art/button_back.png" id="2_kwdrc"]
+[ext_resource type="Texture2D" uid="uid://c4w0i8g8xylvt" path="res://assets/art/button_symbols.png" id="3_13r4a"]
 
-[sub_resource type="Animation" id="Animation_yvfbx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3, -3)]
-}
-
-[sub_resource type="Animation" id="Animation_e5tmg"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_13r4a"]
 length = 0.001
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
+tracks/0/path = NodePath("BackboardLight:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, -3)]
+"values": [Color(0.8, 0.74509805, 0.41960785, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SymbolLight:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.34901962, 0.22745098, 0.09019608, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Plate:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_v65ry"]
-resource_name = "pressed"
-length = 0.001
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_5673f"]
+resource_name = "down"
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
+tracks/0/path = NodePath("BackboardLight:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(3, -1)]
+"values": [Color(0.8, 0.74509805, 0.41960785, 0), Color(0.8, 0.74509805, 0.41960785, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SymbolLight:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.34901962, 0.22745098, 0.09019608, 1), Color(0.8235294, 0.77254903, 0.48235294, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Plate:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v65ry"]
+[sub_resource type="Animation" id="Animation_wvm6y"]
+resource_name = "up"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackboardLight:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.8, 0.74509805, 0.41960785, 1), Color(0.8, 0.74509805, 0.41960785, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SymbolLight:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.8235294, 0.77254903, 0.48235294, 1), Color(0.34901962, 0.22745098, 0.09019608, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Plate:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrqof"]
 _data = {
-&"RESET": SubResource("Animation_yvfbx"),
-&"idle": SubResource("Animation_e5tmg"),
-&"pressed": SubResource("Animation_v65ry")
+&"RESET": SubResource("Animation_13r4a"),
+&"down": SubResource("Animation_5673f"),
+&"up": SubResource("Animation_wvm6y")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwdrc"]
+atlas = ExtResource("2_12lk6")
+region = Rect2(1, 0, 74, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13r4a"]
+atlas = ExtResource("2_12lk6")
+region = Rect2(75, 0, 74, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5673f"]
+atlas = ExtResource("2_12lk6")
+region = Rect2(149, 0, 74, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7okr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwdrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13r4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5673f")
+}],
+"loop": 0,
+"name": &"down",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7okr"]
-size = Vector2(18, 3)
+size = Vector2(56, 6.5)
 
 [node name="PressurePlate" type="Node2D" unique_id=1564805376]
 script = ExtResource("1_yvfbx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1986497256]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1988956890]
 unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_v65ry")
+libraries/ = SubResource("AnimationLibrary_xrqof")
+autoplay = &"RESET"
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=145456202]
-offset_left = 3.0
-offset_top = -3.0
-offset_right = 21.0
-offset_bottom = 1.0
-color = Color(0.49146068, 0.37131315, 0.2766732, 1)
+[node name="Backboard" type="Sprite2D" parent="." unique_id=1309212758]
+position = Vector2(-5, -54)
+texture = ExtResource("2_kwdrc")
+centered = false
+hframes = 2
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1330057523]
-offset_right = 24.0
-offset_bottom = 4.0
-color = Color(0.75387716, 0.61123705, 0.49893028, 1)
+[node name="BackboardLight" type="Sprite2D" parent="." unique_id=1120490710]
+modulate = Color(0.8, 0.74509805, 0.41960785, 0)
+position = Vector2(-5, -54)
+texture = ExtResource("2_kwdrc")
+centered = false
+hframes = 2
+frame = 1
+
+[node name="SymbolLight" type="ColorRect" parent="." unique_id=2084178524]
+offset_left = 28.0
+offset_top = -27.0
+offset_right = 47.0
+offset_bottom = -9.0
+color = Color(0.34901962, 0.22745098, 0.09019608, 1)
+
+[node name="Symbol" type="Sprite2D" parent="." unique_id=1628883191]
+unique_name_in_owner = true
+position = Vector2(37, -20)
+texture = ExtResource("3_13r4a")
+hframes = 3
+
+[node name="Plate" type="AnimatedSprite2D" parent="." unique_id=1027208226]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_q7okr")
+animation = &"down"
+autoplay = "down"
+speed_scale = 0.0
+centered = false
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1926744574]
 unique_name_in_owner = true
@@ -87,5 +214,6 @@ collision_mask = 6
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1355475695]
-position = Vector2(12, -1.5)
+visible = false
+position = Vector2(37, -5.25)
 shape = SubResource("RectangleShape2D_q7okr")

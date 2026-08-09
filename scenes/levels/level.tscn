@@ -3,6 +3,8 @@
 [ext_resource type="TileSet" uid="uid://cdiuvfr8mt68m" path="res://assets/resources/default_tileset.tres" id="1_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="2_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="3_urvlt"]
+[ext_resource type="PackedScene" uid="uid://iu685desgkk6" path="res://scenes/killzone/killzone.tscn" id="4_xb4v1"]
+[ext_resource type="PackedScene" uid="uid://0800oexb67mb" path="res://scenes/custom_camera/custom_camera.tscn" id="5_urvlt"]
 
 [node name="Level" type="Node2D" unique_id=588267695]
 
@@ -15,3 +17,8 @@ position = Vector2(-16, 0)
 
 [node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("3_urvlt")]
 position = Vector2(96, -16)
+
+[node name="Killzone" parent="." unique_id=1677750993 instance=ExtResource("4_xb4v1")]
+position = Vector2(24, 64)
+
+[node name="CustomCamera" parent="." unique_id=523911849 instance=ExtResource("5_urvlt")]

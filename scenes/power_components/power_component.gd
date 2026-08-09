@@ -1,6 +1,12 @@
 class_name PowerComponent
 extends Node2D
 
+enum Symbol {
+	IOI_GATE,
+	EYE_OF_HORUS,
+	SCARAB_BEETLE,
+}
+
 signal power_state_changed(is_powered: bool)
 signal on_powered_on
 signal on_powered_off

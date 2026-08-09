@@ -3,6 +3,13 @@ extends StaticBody2D
 
 const SCENE: PackedScene = preload("res://scenes/corpse/corpse_spiked.tscn")
 
+## Types of spikes. Must correspond to tilemap custom data &"spike_type"
+enum SpikeType {
+	NONE = 0,
+	NORMAL = 1,
+	CURSED = 2,
+}
+
 @onready var sprite: Sprite2D = $Sprite2D
 
 
@@ -20,14 +27,16 @@ static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> Co
 	return inst
 
 
-static func is_spike_collision(col: KinematicCollision2D) -> bool:
+static func get_spike_collision_type(col: KinematicCollision2D) -> SpikeType:
 	if col.get_collider() is TileMapLayer:
 		var tm: TileMapLayer = col.get_collider() as TileMapLayer
 		var pos: Vector2i = tm.local_to_map(tm.to_local(col.get_position() - col.get_normal()))
 		var td: TileData = tm.get_cell_tile_data(pos)
-		return td != null and td.get_custom_data("is_spike")
-	elif col.get_collider() is Node:
-		var node: Node = col.get_collider()
-		return node.is_in_group(&"spike")
+		if td == null:
+			return SpikeType.NONE
+		var t: Variant = td.get_custom_data("spike_type")
+		if t is not int:
+			return SpikeType.NONE
+		return t
 
-	return false
+	return SpikeType.NONE

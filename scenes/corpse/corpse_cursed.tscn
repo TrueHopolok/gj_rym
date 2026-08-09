@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b3vh8kf3urss3"]
+
+[ext_resource type="Shader" uid="uid://dmkccuwn3fdos" path="res://scenes/corpse/corpse_cursed.gdshader" id="1_otg26"]
+[ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_27bh7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_27bh7"]
+frequency = 0.0592
+fractal_type = 2
+domain_warp_enabled = true
+domain_warp_frequency = 0.042
+domain_warp_fractal_octaves = 1
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_otg26"]
+width = 34
+height = 11
+noise = SubResource("FastNoiseLite_27bh7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7okr"]
+shader = ExtResource("1_otg26")
+shader_parameter/progress = 1.0
+shader_parameter/size_pixels = Vector2(34, 11)
+shader_parameter/col_border = Color(0.14117648, 0.03529412, 0.02745098, 1)
+shader_parameter/transition = 0.099
+shader_parameter/band_color = 0.102
+shader_parameter/noise = SubResource("NoiseTexture2D_otg26")
+
+[node name="CorpseCursed" type="Node2D" unique_id=811410551]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1996631421]
+material = SubResource("ShaderMaterial_q7okr")
+rotation = 1.5707964
+texture = ExtResource("2_27bh7")

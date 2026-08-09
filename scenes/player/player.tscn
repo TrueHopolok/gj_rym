@@ -169,7 +169,7 @@ animations = [{
 size = Vector2(30, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=1054591316 groups=["player"]]
-collision_layer = 3
+collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_8afob")
 
@@ -214,6 +214,3 @@ position = Vector2(-6.5168274e-07, -3.9999995)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_dovo2")
 debug_color = Color(0.9600126, 1.0588765e-06, 0.5211233, 0.41960785)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2023437890]
-position_smoothing_enabled = true
