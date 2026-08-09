@@ -3,7 +3,6 @@ extends Area2D
 @export_file_path("*.tscn") var _next_lvl: String
 
 @onready var _door: Sprite2D = %Door
-@onready var _base: Sprite2D = %Base
 @onready var _light: Sprite2D = %Light
 @onready var _exit_position: Marker2D = %ExitPosition
 
