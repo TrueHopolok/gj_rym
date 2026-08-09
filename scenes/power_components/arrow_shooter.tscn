@@ -2,13 +2,22 @@
 
 [ext_resource type="Script" uid="uid://djdsde080hg80" path="res://scenes/power_components/arrow_shooter.gd" id="1_gluw2"]
 [ext_resource type="Texture2D" uid="uid://cgyr6yoqgwrva" path="res://assets/art/arrowbox.png" id="2_blvlb"]
+[ext_resource type="AudioStream" uid="uid://w2s6ro6kkcpe" path="res://assets/audio/sfx/arrow.mp3" id="3_5fax7"]
 
 [node name="ArrowShooter" type="Node2D" unique_id=381259425]
 script = ExtResource("1_gluw2")
 
 [node name="SpawnMarker" type="Marker2D" parent="." unique_id=1093115628]
 unique_name_in_owner = true
+rotation = -1.5707964
 
 [node name="Arrowbox" type="Sprite2D" parent="." unique_id=1950867699]
 texture = ExtResource("2_blvlb")
 hframes = 4
+
+[node name="SFXArrow" type="AudioStreamPlayer2D" parent="." unique_id=1759707444]
+stream = ExtResource("3_5fax7")
+volume_db = 3.0
+attenuation = 2.5491216
+panning_strength = 2.0
+bus = &"SFX"
