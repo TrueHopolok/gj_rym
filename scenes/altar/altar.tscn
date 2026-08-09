@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bcdqbiuyn3xgq" path="res://assets/art/respawn.png" id="3_t0cd1"]
 [ext_resource type="Texture2D" uid="uid://dacei1s2jqqf1" path="res://assets/art/glow_line.png" id="4_qccu5"]
 [ext_resource type="Texture2D" uid="uid://bdbuasahi46wc" path="res://assets/art/Unkh.png" id="5_tivqg"]
+[ext_resource type="AudioStream" uid="uid://v0xr68dfknhe" path="res://assets/audio/sfx/altar.mp3" id="6_4soti"]
 
 [sub_resource type="Animation" id="Animation_tivqg"]
 length = 0.001
@@ -355,3 +356,7 @@ damping_max = 18.473
 color = Color(1, 1, 1, 0.6862745)
 color_ramp = SubResource("Gradient_t3dsr")
 color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="SFXAltar" type="AudioStreamPlayer" parent="." unique_id=670475177]
+stream = ExtResource("6_4soti")
+bus = &"SFX"
