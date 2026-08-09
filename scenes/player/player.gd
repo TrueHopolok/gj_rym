@@ -84,6 +84,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_queued_for_deletion():
+		return
 	if state <= PLAYER_STATES.SKIP:
 		return
 	_resistance_horizontal(delta)
