@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://di1woenaxyse0"]
 
 [ext_resource type="Script" uid="uid://bgt125d5wu5bp" path="res://scenes/exit/exit.gd" id="1_ynmh0"]
+[ext_resource type="AudioStream" uid="uid://n2cddcyfos1j" path="res://assets/audio/sfx/door.mp3" id="2_4de3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
 
@@ -12,3 +13,7 @@ script = ExtResource("1_ynmh0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1932077198]
 shape = SubResource("RectangleShape2D_jxfr3")
 debug_color = Color(1.0107458e-06, 0.64258057, 0.3206096, 0.41960785)
+
+[node name="SFXDoor" type="AudioStreamPlayer" parent="." unique_id=2064916643]
+stream = ExtResource("2_4de3r")
+pitch_scale = 0.6
