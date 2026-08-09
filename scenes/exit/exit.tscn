@@ -68,3 +68,4 @@ position = Vector2(48, -17)
 [node name="SFXDoor" type="AudioStreamPlayer" parent="." unique_id=1627009910]
 stream = ExtResource("3_tv5rl")
 pitch_scale = 0.6
+bus = &"SFX"

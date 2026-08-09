@@ -20,5 +20,6 @@ func _set_sfx() -> void:
 	var press_sfx_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	press_sfx_player.volume_db = _volume_db
 	press_sfx_player.stream = _press_sfx
+	press_sfx_player.bus = &"SFX"
 	pressed.connect(press_sfx_player.play)
 	add_child(press_sfx_player)

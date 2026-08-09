@@ -29,6 +29,7 @@ debug_color = Color(1.0107458e-06, 0.64258057, 0.3206096, 0.41960785)
 [node name="SFXDoor" type="AudioStreamPlayer" parent="." unique_id=2064916643]
 stream = ExtResource("2_4de3r")
 pitch_scale = 0.6
+bus = &"SFX"
 
 [node name="Base" type="Sprite2D" parent="." unique_id=1893562233]
 unique_name_in_owner = true
