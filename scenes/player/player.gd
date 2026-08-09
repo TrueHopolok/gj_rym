@@ -25,7 +25,7 @@ const SpikeType = CorpseSpiked.SpikeType
 const KICK_FORCE: Vector2 = Vector2(200, -250)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
-const POGO_FORCE: float = 500.0 # tmp solution, pls find what eats regular pogo
+const POGO_FORCE: float = 450.0 # tmp solution, pls find what eats regular pogo
 const MEGA_FORCE: float = 500.0
 const MAX_RUNNING_SPEED: float = 250.0
 const MAX_FALLING_SPEED: float = 500.0
@@ -67,9 +67,6 @@ func _ready() -> void:
 			if _sprite.animation == &"kick":
 				_sprite.play("idle")
 	)
-	print("SPAWN ANIMTATION START, STATE SKIP")
-	print("SPAWN ANIM FINISH => CHANGE STATE TO IDLE")
-	print("EXIT ANIM FINISH => EMIT EXITED")
 
 
 func _input(event: InputEvent) -> void:
@@ -163,12 +160,13 @@ func _movement_pogo() -> void:
 		_sfx_pogo.play()
 		if !_buffer_jump.is_stopped():
 			_buffer_jump.stop()
+			_has_cancel = true
 			force = MEGA_FORCE
 			_sfx_mega.play()
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
 		velocity.y = - force
-		corpse.apply_central_impulse(Vector2.DOWN * 100)
+		corpse.apply_central_impulse(Vector2.DOWN * 100) # questionable
 		add_collision_exception_with(corpse)
 		get_tree().create_timer(0.2).timeout.connect(remove_collision_exception_with.bind(corpse))
 		corpse.play_bounce()
