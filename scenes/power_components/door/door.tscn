@@ -6,6 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7okr"]
 size = Vector2(24, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7okr"]
+atlas = ExtResource("2_l1mei")
+region = Rect2(0, 0, 72, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1mei"]
+atlas = ExtResource("2_l1mei")
+region = Rect2(0, 96, 72, 96)
+
 [node name="Door" type="Node2D" unique_id=304512104]
 script = ExtResource("1_jowlq")
 
@@ -20,11 +28,20 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Mask/Body" unique_id=647724508]
-position = Vector2(0, -96)
-texture = ExtResource("2_l1mei")
-centered = false
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mask/Body" unique_id=1057937192]
 position = Vector2(12, -48)
 shape = SubResource("RectangleShape2D_q7okr")
+
+[node name="Under" type="Sprite2D" parent="Mask/Body" unique_id=647724508]
+unique_name_in_owner = true
+position = Vector2(0, -96)
+texture = SubResource("AtlasTexture_q7okr")
+centered = false
+hframes = 3
+
+[node name="Over" type="Sprite2D" parent="Mask/Body" unique_id=313729188]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(12, -48)
+texture = SubResource("AtlasTexture_l1mei")
+hframes = 3
