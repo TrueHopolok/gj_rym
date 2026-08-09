@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="RYM"
 run/main_scene="uid://dh808cqj70n3l"
 config/features=PackedStringArray("4.7", "Forward Plus")
-boot_splash/bg_color=Color(0.58431375, 0.49019608, 0.25882354, 1)
+boot_splash/bg_color=Color(0.23921569, 0.23529412, 0.40392157, 1)
 boot_splash/image="uid://haijhjiol360"
 config/icon="uid://bwj5t763ptopi"
 
