@@ -9,7 +9,7 @@ height = 14.0
 
 [node name="Arrow" type="CharacterBody2D" unique_id=1084523612]
 collision_layer = 0
-collision_mask = 15
+collision_mask = 14
 motion_mode = 1
 script = ExtResource("1_uynht")
 
@@ -19,3 +19,7 @@ shape = SubResource("CapsuleShape2D_q7okr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1149715154]
 texture = ExtResource("2_8e2im")
+
+[node name="AntiTimer" type="Timer" parent="." unique_id=1385770699]
+wait_time = 0.2
+one_shot = true

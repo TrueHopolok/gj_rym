@@ -2,16 +2,11 @@ class_name Arrow
 extends CharacterBody2D
 
 
-var _first: bool = true
-
-
 func _physics_process(_delta: float) -> void:
 	if move_and_slide():
 		for i: int in get_slide_collision_count():
-			var pl: Player = get_slide_collision(i).get_collider() as Player
+			var body: Node2D = get_slide_collision(i).get_collider()
+			var pl: Player = body as Player
 			if is_instance_valid(pl):
 				pl.die()
-			elif _first:
-				_first = false
-				continue
 		queue_free()
