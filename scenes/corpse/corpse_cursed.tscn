@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://dmkccuwn3fdos" path="res://scenes/corpse/corpse_cursed.gdshader" id="1_otg26"]
 [ext_resource type="Texture2D" uid="uid://c748uwwxqhddr" path="res://assets/art/AAah.png" id="2_otg26"]
 [ext_resource type="Script" uid="uid://tb3j7shwkgjv" path="res://scenes/corpse/corpse_cursed.gd" id="3_27bh7"]
+[ext_resource type="AudioStream" uid="uid://cgn8rw4srbin8" path="res://assets/audio/sfx/player/player_death.mp3" id="4_k8v8d"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_27bh7"]
 frequency = 0.0592
@@ -20,7 +21,6 @@ noise = SubResource("FastNoiseLite_27bh7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7okr"]
 shader = ExtResource("1_otg26")
-shader_parameter/progress = 1.0
 shader_parameter/size_pixels = Vector2(19, 35)
 shader_parameter/col_border = Color(0.39607844, 0.3137255, 0.8627451, 1)
 shader_parameter/transition = 0.099
@@ -31,3 +31,9 @@ shader_parameter/noise = SubResource("NoiseTexture2D_otg26")
 material = SubResource("ShaderMaterial_q7okr")
 texture = ExtResource("2_otg26")
 script = ExtResource("3_27bh7")
+
+[node name="SFXDeath" type="AudioStreamPlayer" parent="." unique_id=2092012951]
+stream = ExtResource("4_k8v8d")
+volume_db = -3.0
+mix_target = 2
+bus = &"SFX"

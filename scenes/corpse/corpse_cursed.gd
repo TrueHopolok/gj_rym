@@ -6,6 +6,8 @@ const SCENE: PackedScene = preload("res://scenes/corpse/corpse_cursed.tscn")
 var velocity: Vector2
 var damp: float = 1.0
 
+@onready var _sfx_death: AudioStreamPlayer = $SFXDeath
+
 
 static func spawn(parent: Node, pos: Vector2, vel: Vector2) -> void:
 	var inst: CorpseCursed = SCENE.instantiate()
@@ -20,6 +22,7 @@ static func spawn(parent: Node, pos: Vector2, vel: Vector2) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_animation.call_deferred()
+	_sfx_death.play()
 
 
 func _animation() -> void:
@@ -31,7 +34,7 @@ func _animation() -> void:
 	(noise.noise as FastNoiseLite).seed = randi()
 
 	var t: Tween = create_tween()
-	t.tween_method(func(v: float) -> void: set_instance_shader_parameter(&"progress", v) , 1.0, -0.5, 1.5)
+	t.tween_method(func(v: float) -> void: set_instance_shader_parameter(&"progress", v), 1.0, -0.5, 1.5)
 	t.parallel().tween_property(self, "damp", 0.0, 1.5)
 	t.chain().tween_callback(queue_free)
 

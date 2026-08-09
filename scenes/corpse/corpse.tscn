@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dh0lf2as3iqtn" path="res://scenes/corpse/corpse.gd" id="1_03kni"]
 [ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_03kni"]
 [ext_resource type="Texture2D" uid="uid://c36fkk0kqig4m" path="res://assets/art/deadass_jump.png" id="2_m6d0l"]
+[ext_resource type="AudioStream" uid="uid://cgn8rw4srbin8" path="res://assets/audio/sfx/player/player_death.mp3" id="4_gqksd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m6d0l"]
 friction = 0.16
@@ -96,3 +97,9 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=255411056]
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_q7okr")
+
+[node name="SFXDeath" type="AudioStreamPlayer" parent="." unique_id=1774740902]
+stream = ExtResource("4_gqksd")
+volume_db = -3.0
+mix_target = 2
+bus = &"SFX"

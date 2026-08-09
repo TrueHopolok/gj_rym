@@ -12,11 +12,13 @@ const MAX_SLIDES: int = 8
 @export var drag: float = 10.0
 
 @onready var _sprite: AnimatedSprite2D = $Sprite2D
+@onready var _sfx_death: AudioStreamPlayer = $SFXDeath
 
 
 func _ready() -> void:
 	_sprite.flip_h = randi() % 2 == 0
 	_sprite.animation_finished.connect(_sprite.play.bind(&"idle"))
+	_sfx_death.play()
 
 
 func _physics_process(_delta: float) -> void:

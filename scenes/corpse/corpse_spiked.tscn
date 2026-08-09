@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsgd620v4sbxi" path="res://scenes/corpse/corpse_spiked.gd" id="1_sa436"]
 [ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_sa436"]
+[ext_resource type="AudioStream" uid="uid://cgn8rw4srbin8" path="res://assets/audio/sfx/player/player_death.mp3" id="3_yn5n3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sa436"]
 radius = 6.0
@@ -25,3 +26,9 @@ color = Color(0.49019608, 0.047058824, 0.23529412, 0.6117647)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536082948]
 shape = SubResource("CapsuleShape2D_sa436")
+
+[node name="SFXDeath" type="AudioStreamPlayer" parent="." unique_id=1855171024]
+stream = ExtResource("3_yn5n3")
+volume_db = -3.0
+mix_target = 2
+bus = &"SFX"

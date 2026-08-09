@@ -10,16 +10,21 @@ enum SpikeType {
 	CURSED = 2,
 }
 
+@onready var _sfx_death: AudioStreamPlayer = $SFXDeath
 @onready var sprite: Sprite2D = $Sprite2D
+
+
+func _ready() -> void:
+	_sfx_death.play()
 
 
 static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> CorpseSpiked:
 	var should_flip: bool = spike_normal.x < 0 or (is_zero_approx(spike_normal.x) and randi() % 2 == 0)
 	if should_flip:
-		spike_normal = -spike_normal
+		spike_normal = - spike_normal
 
 	var inst: CorpseSpiked = SCENE.instantiate()
-	(func () -> void:
+	(func() -> void:
 		parent.add_child(inst)
 		inst.global_position = spike_pos
 		inst.global_rotation = spike_normal.angle()
