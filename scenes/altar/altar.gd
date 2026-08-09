@@ -19,6 +19,11 @@ func _ready() -> void:
 
 	assert(is_instance_valid(_player), "WTH man, who do I spawn")
 
+	_animation_player.animation_finished.connect(func (_anim: StringName) -> void:
+		if get_tree().get_node_count_in_group(&"player") == 0:
+			spawn.call_deferred()
+	)
+
 	if spawn_on_ready:
 		spawn()
 
