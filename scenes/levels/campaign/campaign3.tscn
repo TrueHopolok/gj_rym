@@ -51,4 +51,4 @@ text = "Here text can be added
 Saying that R is full full restart"
 
 [node name="Killzone" parent="." index="6" unique_id=1677750993]
-position = Vector2(440, 256)
+position = Vector2(440, 224)

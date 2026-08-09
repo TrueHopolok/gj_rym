@@ -24,3 +24,6 @@ text = "Here I would place a trigger that activate
 If player dies
 It lingers on a Corpse with a text
 \"REUSE IT\""
+
+[node name="Killzone" parent="." index="4" unique_id=1677750993]
+position = Vector2(152, 32)

@@ -4,6 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://blmnw83pchkbb" path="res://scenes/power_components/arrow_shooter.tscn" id="2_2e2wf"]
 [ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_components/pressure_plate/pressure_plate.tscn" id="3_jkbtk"]
 [ext_resource type="PackedScene" uid="uid://dlrs4jnou0am" path="res://scenes/power_components/door/door.tscn" id="4_24kkr"]
+[ext_resource type="PackedScene" uid="uid://00jelo8kidpe" path="res://scenes/camera_trigger/camera_trigger.tscn" id="5_24kkr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
+size = Vector2(776, 304)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3jhv"]
+size = Vector2(728, 440)
 
 [node name="Level" unique_id=588267695 instance=ExtResource("1_gsug6")]
 
@@ -32,4 +39,17 @@ symbol = 1
 position = Vector2(-552, 24)
 
 [node name="Killzone" parent="." index="6" unique_id=1677750993]
-position = Vector2(264, 280)
+position = Vector2(264, 264)
+
+[node name="CameraTrigger" parent="." index="8" unique_id=73767758 instance=ExtResource("5_24kkr")]
+position = Vector2(-168, 8)
+debug_draw = true
+zoom = Vector2(0.8, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTrigger" index="0" unique_id=1389028828]
+position = Vector2(-12, 64)
+shape = SubResource("RectangleShape2D_jxfr3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraTrigger" index="1" unique_id=2048606082]
+position = Vector2(-36, -4)
+shape = SubResource("RectangleShape2D_h3jhv")

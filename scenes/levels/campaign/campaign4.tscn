@@ -40,7 +40,7 @@ symbol = 2
 position = Vector2(-348, -12)
 
 [node name="Killzone" parent="." index="7" unique_id=1677750993]
-position = Vector2(0, 168)
+position = Vector2(0, 152)
 
 [node name="CameraTrigger" parent="." index="9" unique_id=73767758 instance=ExtResource("5_qo8d7")]
 position = Vector2(264, -61)

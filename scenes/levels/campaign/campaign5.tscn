@@ -54,7 +54,7 @@ offset_bottom = -26.0
 text = "TODO: fix canons"
 
 [node name="Killzone" parent="." index="9" unique_id=1677750993]
-position = Vector2(32, 184)
+position = Vector2(24, 168)
 
 [node name="CameraTrigger" parent="." index="11" unique_id=73767758 instance=ExtResource("5_g543f")]
 position = Vector2(104, -128)
