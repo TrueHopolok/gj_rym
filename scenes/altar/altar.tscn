@@ -2,14 +2,356 @@
 
 [ext_resource type="Script" uid="uid://okhvly55masn" path="res://scenes/altar/altar.gd" id="1_gldhy"]
 [ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="2_wmmw7"]
+[ext_resource type="Texture2D" uid="uid://bcdqbiuyn3xgq" path="res://assets/art/respawn.png" id="3_t0cd1"]
+[ext_resource type="Texture2D" uid="uid://dacei1s2jqqf1" path="res://assets/art/glow_line.png" id="4_qccu5"]
+[ext_resource type="Texture2D" uid="uid://bdbuasahi46wc" path="res://assets/art/Unkh.png" id="5_tivqg"]
+
+[sub_resource type="Animation" id="Animation_tivqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Line2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4soti"]
+resource_name = "revive"
+length = 1.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 1.2666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.31126666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_particles"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glow:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6447666, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Line2D:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6447666, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v38dv"]
+_data = {
+&"RESET": SubResource("Animation_tivqg"),
+&"revive": SubResource("Animation_4soti")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7okr"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(0, 0, 6, 10)
+
+[sub_resource type="Gradient" id="Gradient_t3dsr"]
+offsets = PackedFloat32Array(0.7604167, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2cv6y"]
+colors = PackedColorArray(0.87088245, 0.758312, 0.19209188, 1, 0.96247095, 0.88908416, 0.5446539, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tivqg"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(8, 3, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4soti"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(8, 3, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v38dv"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(15, 4, 5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8818"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(15, 4, 5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cldo"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(22, 4, 3, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw31r"]
+atlas = ExtResource("5_tivqg")
+region = Rect2(22, 4, 3, 6)
 
 [node name="Altar" type="Node2D" unique_id=1836274703 groups=["altar"]]
 script = ExtResource("1_gldhy")
 _player = ExtResource("2_wmmw7")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1038238090]
-z_index = -1
-offset_left = -16.0
-offset_top = -2.0
-offset_right = 16.0
-offset_bottom = 2.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1230258709]
+libraries/ = SubResource("AnimationLibrary_v38dv")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1505311805]
+modulate = Color(1, 1, 1, 0)
+points = PackedVector2Array(0, -25, 0, -1419)
+width = 0.0
+texture = ExtResource("4_qccu5")
+texture_mode = 2
+
+[node name="Base" type="Sprite2D" parent="." unique_id=1118681716]
+position = Vector2(-36, -31)
+texture = ExtResource("3_t0cd1")
+centered = false
+hframes = 2
+
+[node name="Glow" type="Sprite2D" parent="." unique_id=211489371]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-36, -31)
+texture = ExtResource("3_t0cd1")
+centered = false
+hframes = 2
+frame = 1
+
+[node name="BigR" type="CPUParticles2D" parent="." unique_id=73231468]
+position = Vector2(0, -217)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_q7okr")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5, 200)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="BigL" type="CPUParticles2D" parent="." unique_id=2101189347]
+position = Vector2(0, -217)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_q7okr")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5.237, 200)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="Small1L" type="CPUParticles2D" parent="." unique_id=2118027971]
+position = Vector2(0, -217)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_tivqg")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5, 200)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="Small1R" type="CPUParticles2D" parent="." unique_id=464876291]
+position = Vector2(0, -217)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_4soti")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5.237, 200)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="Small2L" type="CPUParticles2D" parent="." unique_id=1895929175]
+position = Vector2(0, -217)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_v38dv")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5, 200)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="Small2R" type="CPUParticles2D" parent="." unique_id=1596891631]
+position = Vector2(0, -217)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_s8818")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5.237, 200)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="Small3L" type="CPUParticles2D" parent="." unique_id=150222041]
+position = Vector2(0, -217)
+emitting = false
+amount = 40
+texture = SubResource("AtlasTexture_3cldo")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5, 200)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
+
+[node name="Small3R" type="CPUParticles2D" parent="." unique_id=1221582145]
+position = Vector2(0, -217)
+emitting = false
+amount = 40
+texture = SubResource("AtlasTexture_aw31r")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5.237, 200)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -2.0
+damping_min = 2.564
+damping_max = 18.473
+color = Color(1, 1, 1, 0.6862745)
+color_ramp = SubResource("Gradient_t3dsr")
+color_initial_ramp = SubResource("Gradient_2cv6y")
