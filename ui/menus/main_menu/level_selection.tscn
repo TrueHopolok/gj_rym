@@ -4,7 +4,7 @@
 
 [node name="LevelSelection" type="VBoxContainer" unique_id=248725737]
 offset_right = 95.0
-offset_bottom = 118.0
+offset_bottom = 86.0
 
 [node name="Label" type="Label" parent="." unique_id=1264004986]
 layout_mode = 2
