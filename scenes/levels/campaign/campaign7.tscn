@@ -18,6 +18,7 @@ position = Vector2(10, 0)
 
 [node name="Exit" parent="." index="2" unique_id=1728432730]
 position = Vector2(203, -16)
+_next_lvl = "res://scenes/levels/campaign/campaign8.tscn"
 
 [node name="Killzone" parent="." index="3" unique_id=1677750993]
 position = Vector2(40, 80)

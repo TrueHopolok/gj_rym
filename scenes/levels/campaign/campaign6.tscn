@@ -22,7 +22,7 @@ position = Vector2(32, 0)
 
 [node name="Exit" parent="." index="2" unique_id=1728432730]
 position = Vector2(456, -112)
-_next_lvl = "res://scenes/levels/path_of_pain.tscn"
+_next_lvl = "res://scenes/levels/campaign/campaign7.tscn"
 
 [node name="ArrowShooter" parent="." index="3" unique_id=381259425 instance=ExtResource("2_2e2wf")]
 position = Vector2(-564, -12)
