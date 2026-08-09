@@ -7,4 +7,5 @@ atlas = ExtResource("1_68cd5")
 region = Rect2(116, 18, 27, 39)
 
 [node name="Skely" type="Sprite2D" unique_id=1713549925]
+z_index = 1
 texture = SubResource("AtlasTexture_koymv")

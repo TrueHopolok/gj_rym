@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://w2s6ro6kkcpe" path="res://assets/audio/sfx/arrow.mp3" id="3_5fax7"]
 
 [node name="ArrowShooter" type="Node2D" unique_id=381259425]
+z_index = 1
 script = ExtResource("1_gluw2")
 
 [node name="SpawnMarker" type="Marker2D" parent="." unique_id=1093115628]
