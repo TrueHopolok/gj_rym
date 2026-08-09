@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bgvpulhqs7edf" path="res://scenes/power_components/pressure_plate/pressure_plate.tscn" id="8_acxp7"]
 [ext_resource type="PackedScene" uid="uid://cy5746601f6jb" path="res://scenes/altar/altar.tscn" id="9_3ahxw"]
 [ext_resource type="PackedScene" uid="uid://dlrs4jnou0am" path="res://scenes/power_components/door/door.tscn" id="10_tob6u"]
+[ext_resource type="PackedScene" uid="uid://iu685desgkk6" path="res://scenes/killzone/killzone.tscn" id="11_26oro"]
+[ext_resource type="PackedScene" uid="uid://0800oexb67mb" path="res://scenes/custom_camera/custom_camera.tscn" id="12_dasqb"]
+[ext_resource type="PackedScene" uid="uid://00jelo8kidpe" path="res://scenes/camera_trigger/camera_trigger.tscn" id="13_dasqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(312, 50)
@@ -18,6 +21,9 @@ size = Vector2(312, 50)
 normal = Vector2(-0.8325765, -0.5539101)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l2n4a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7okr"]
+radius = 59.134903
 
 [node name="TestScene" type="Node2D" unique_id=988521978]
 
@@ -81,3 +87,16 @@ _next_lvl = "res://scenes/levels/level1.tscn"
 
 [node name="Door" parent="." unique_id=304512104 instance=ExtResource("10_tob6u")]
 position = Vector2(432, 288)
+
+[node name="Killzone" parent="." unique_id=1677750993 instance=ExtResource("11_26oro")]
+position = Vector2(-164, 329)
+
+[node name="CustomCamera" parent="." unique_id=523911849 instance=ExtResource("12_dasqb")]
+
+[node name="CameraTrigger" parent="." unique_id=73767758 instance=ExtResource("13_dasqb")]
+position = Vector2(291, 45)
+zoom = Vector2(0.442, 0.442)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTrigger" unique_id=1835957315]
+position = Vector2(-319, 42)
+shape = SubResource("CircleShape2D_q7okr")
