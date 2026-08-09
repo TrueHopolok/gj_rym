@@ -21,7 +21,7 @@ func _ready() -> void:
 static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> CorpseSpiked:
 	var should_flip: bool = spike_normal.x < 0 or (is_zero_approx(spike_normal.x) and randi() % 2 == 0)
 	if should_flip:
-		spike_normal = - spike_normal
+		spike_normal = -spike_normal
 
 	var inst: CorpseSpiked = SCENE.instantiate()
 	(
@@ -30,7 +30,7 @@ static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> Co
 			inst.global_position = spike_pos
 			inst.global_rotation = spike_normal.angle()
 			inst.sprite.flip_v = should_flip)
-		.call_deferred()
+		. call_deferred()
 	)
 
 	return inst

@@ -39,13 +39,20 @@ func _do_exit_sequence(player: Player) -> void:
 	_sfx_door.play()
 	var t: Tween = create_tween().chain()
 	t.tween_property(player, "global_position", _exit_position.global_position, 0.5)
-	t.tween_property(_door, "position", Vector2.UP * 64, 0.9).as_relative().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	t.parallel().tween_property(_light, "modulate:a", 1.0, 1)
-	t.chain().tween_callback(func() -> void:
-		player.z_index -= 1
+	t.tween_property(_door, "position", Vector2.UP * 64, 0.9).as_relative().set_trans(Tween.TRANS_CUBIC).set_ease(
+		Tween.EASE_IN
 	)
+	t.parallel().tween_property(_light, "modulate:a", 1.0, 1)
+	t.chain().tween_callback(func() -> void: player.z_index -= 1)
 	t.chain().tween_interval(1.0)
 	t.chain().tween_callback(_sfx_door.play)
-	t.chain().tween_property(_door, "position", Vector2.DOWN * 64, 0.9).as_relative().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	(
+		t
+		. chain()
+		. tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
+		. as_relative()
+		. set_trans(Tween.TRANS_QUAD)
+		. set_ease(Tween.EASE_IN)
+	)
 
 	t.tween_callback(_exited)

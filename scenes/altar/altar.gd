@@ -29,7 +29,7 @@ func spawn() -> void:
 	await get_tree().create_timer(0.5).timeout
 	var inst: Player = _player.instantiate() as Player
 	inst.global_position = global_position
-	inst.global_position.y -= 16 # yes, magic constant, but idc
+	inst.global_position.y -= 16  # yes, magic constant, but idc
 	inst.died.connect(spawn, CONNECT_ONE_SHOT)
 	inst.state = spawn_player_state
 	get_parent().add_child.call_deferred(inst)
