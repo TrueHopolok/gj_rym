@@ -1,7 +1,59 @@
 [gd_resource type="Theme" format=3 uid="uid://b8ecc687tvf12"]
 
 [ext_resource type="FontFile" uid="uid://b72dpbyv1r7a0" path="res://assets/fonts/Minecraftia-Regular.ttf" id="1_6tjce"]
+[ext_resource type="Texture2D" uid="uid://docvwv12761uj" path="res://assets/art/audio_line.png" id="1_oa4jb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa4jb"]
+atlas = ExtResource("1_oa4jb")
+region = Rect2(9, 31, 7, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oa4jb"]
+load_path = "res://.godot/imported/audio_line.png-ab8ab05205771ba95df2d79aedf8a666.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyfqg"]
+atlas = SubResource("CompressedTexture2D_oa4jb")
+region = Rect2(27, 32, 7, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvkdh"]
+atlas = ExtResource("1_oa4jb")
+region = Rect2(35, 3, 16, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ecif"]
+texture = SubResource("AtlasTexture_hvkdh")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 16, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ecif"]
+atlas = ExtResource("1_oa4jb")
+region = Rect2(35, 10, 16, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa4jb"]
+texture = SubResource("AtlasTexture_0ecif")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8818"]
+atlas = ExtResource("1_oa4jb")
+region = Rect2(16, 3, 16, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v38dv"]
+texture = SubResource("AtlasTexture_s8818")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 1.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 16, 4)
 
 [resource]
 default_font = ExtResource("1_6tjce")
 default_font_size = 8
+HSlider/icons/grabber = SubResource("AtlasTexture_oa4jb")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_qyfqg")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_0ecif")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_oa4jb")
+HSlider/styles/slider = SubResource("StyleBoxTexture_v38dv")
