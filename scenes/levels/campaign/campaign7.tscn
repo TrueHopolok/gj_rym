@@ -25,7 +25,7 @@ position = Vector2(40, 80)
 
 [node name="PressurePlate" parent="." index="4" unique_id=1564805376 node_paths=PackedStringArray("target") instance=ExtResource("3_7hlq7")]
 position = Vector2(71, -96)
-target = NodePath("")
+target = NodePath("../ArrowShooter8")
 symbol = 2
 
 [node name="Label" type="Label" parent="." index="5" unique_id=1261519938]
@@ -68,7 +68,6 @@ direction = 2
 
 [node name="ArrowShooter8" parent="." index="10" unique_id=2119581341 instance=ExtResource("2_a2qq6")]
 position = Vector2(108, -300)
-timer_enable = true
 timer_interval = 2.5
 direction = 2
 
