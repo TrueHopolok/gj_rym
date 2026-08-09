@@ -84,6 +84,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_queued_for_deletion():
+		return
 	if state <= PLAYER_STATES.SKIP:
 		return
 	_resistance_horizontal(delta)
@@ -250,6 +252,8 @@ func _spike_death(spike_type: SpikeType, pos: Vector2, normal: Vector2) -> void:
 
 
 func die() -> void:
+	if is_queued_for_deletion():
+		return
 	var inst: Corpse = CORPSE.instantiate()
 	get_parent().add_child(inst)
 	inst.global_position = global_position
