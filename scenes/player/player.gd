@@ -33,7 +33,7 @@ const BUFFER_JUMP_LENGTH: float = 0.05
 const BUFFER_COYOTE_LENGTH: float = 0.20
 const BUFFER_MEGA_LENGTH: float = 0.10
 
-const INSTA_STOP: bool = true
+const INSTA_STOP: bool = false
 const SLOW_FORCE: float = RUN_FORCE * 3.0
 
 const CORPSE: PackedScene = preload("res://scenes/corpse/corpse.tscn")
