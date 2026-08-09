@@ -74,9 +74,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q7okr"]
-radius = 6.0
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfo2f"]
+size = Vector2(12, 36)
 
 [node name="Corpse" type="RigidBody2D" unique_id=550011391]
 collision_layer = 4
@@ -96,7 +95,7 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=255411056]
 rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_q7okr")
+shape = SubResource("RectangleShape2D_bfo2f")
 
 [node name="SFXDeath" type="AudioStreamPlayer" parent="." unique_id=1774740902]
 stream = ExtResource("4_gqksd")

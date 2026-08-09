@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dmwgxsiq61e25" path="res://assets/art/deadass.png" id="2_sa436"]
 [ext_resource type="AudioStream" uid="uid://cgn8rw4srbin8" path="res://assets/audio/sfx/player/player_death.mp3" id="3_yn5n3"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sa436"]
-radius = 6.0
-height = 36.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yn5n3"]
+size = Vector2(36, 12)
 
 [node name="CorpseSpiked" type="StaticBody2D" unique_id=1406346243]
 collision_mask = 0
@@ -24,8 +23,9 @@ offset_right = 30.0
 offset_bottom = 13.0
 color = Color(0.13425502, 0.039979212, 0.04702673, 0.89411765)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1536082948]
-shape = SubResource("CapsuleShape2D_sa436")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=261627248]
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_yn5n3")
 
 [node name="SFXDeath" type="AudioStreamPlayer" parent="." unique_id=1855171024]
 stream = ExtResource("3_yn5n3")
