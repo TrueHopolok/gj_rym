@@ -22,3 +22,10 @@ trrigger that slows game down while switches camera to entire room
 Slow down should happen only once, camera switch on each entry
 
 Would be cool to have music switch here, but we have no music"
+
+[node name="Label2" type="Label" parent="." index="4" unique_id=1937176330]
+offset_top = -112.0
+offset_right = 150.0
+offset_bottom = -81.0
+text = "Here text can be added
+Saying that R is full full restart"
