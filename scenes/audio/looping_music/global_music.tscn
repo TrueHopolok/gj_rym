@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dnvprfi6p3poo"]
+
+[ext_resource type="Script" uid="uid://bxw5rtkyk2iso" path="res://scenes/audio/looping_music/global_music.gd" id="1_vjfu3"]
+[ext_resource type="AudioStream" uid="uid://d3undur33dryh" path="res://assets/audio/music/intro.mp3" id="2_sou84"]
+[ext_resource type="AudioStream" uid="uid://bjrvx7o2luf7a" path="res://assets/audio/music/loop.mp3" id="3_ll4a5"]
+
+[node name="GlobalMusic" type="AudioStreamPlayer" unique_id=344409773]
+process_mode = 3
+volume_db = -15.0
+bus = &"Music"
+script = ExtResource("1_vjfu3")
+_intro = ExtResource("2_sou84")
+_loop = ExtResource("3_ll4a5")

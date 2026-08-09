@@ -19,34 +19,12 @@ func fade_out() -> void:
 	bg.hide()
 
 
-## Changes to given packed scene.
-func change_scene_packed(scene: PackedScene) -> void:
-	await fade_in()
-	get_tree().change_scene_to_packed(scene)
-	get_tree().paused = false
-	await fade_out()
-
-
 ## Changes to scene by given path.
-func change_scene_path(path: String) -> void:
+func change_scene_path(path: String, stop_global_music: bool = false) -> void:
 	await fade_in()
+	if stop_global_music: (GlobalMusic as AudioStreamPlayer).stop()
+	else: (GlobalMusic as StrongerAudioPlayer).try_to_play()
 	get_tree().change_scene_to_file(path)
-	get_tree().paused = false
-	await fade_out()
-
-
-## Changes to given scene instance.
-## Useful if scene require some prior setup e.g. gameover menu having stats from gamemanager.
-##
-## Example:
-##	func gameover() -> void:
-##		var scene: Node = load('scenes/gameover/gameover.tscn').instantiate()
-##		Transition.change_scene_instance(scene)
-func change_scene_instance(scene: Node) -> void:
-	await fade_in()
-	get_tree().root.add_child(scene)
-	get_tree().current_scene.queue_free()
-	get_tree().current_scene = scene
 	get_tree().paused = false
 	await fade_out()
 
