@@ -1,16 +1,16 @@
 extends Node
 
-const SAVE_PATH: String = "user://bestscore.bin"
+const SAVE_PATH: String = "user://progression.bin"
 
-var best_score: int = 0
-var current_score: int = 0
+var unlocked_level: int = 1
+var current_level: int = 1
 
 
 func _init() -> void:
 	_load()
 
 
-## Loads score or set to default
+## Loads unlocked level or set to default
 func _load() -> void:
 	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if not file:
@@ -19,32 +19,32 @@ func _load() -> void:
 			printerr("[Persistence]: loading error:", FileAccess.get_open_error())
 		return
 	# NOTE: data = JSON.parse_string(file.get_as_text())
-	best_score = file.get_32()
+	unlocked_level = file.get_32()
 	file.close()
 
 
-## Saves best score from memory to file
+## Saves unlocked level from memory to file
 func _save() -> void:
 	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if not file:
 		push_error("[Persistence]: saving error:", FileAccess.get_open_error())
 		return
 	# NOTE: file.store_string(JSON.stringify(data))
-	if not file.store_32(best_score):
+	if not file.store_32(unlocked_level):
 		push_error("[Persistence]: saving error:", FileAccess.get_open_error())
 	file.close()
 
 
-## Updates best score if was beaten and saves  into file if it was
+## Updates unlocked level if it was beaten and saves into file if it was
 func submit() -> void:
-	if current_score <= best_score:
+	if current_level <= unlocked_level:
 		return
-	best_score = current_score
+	unlocked_level = current_level
 	_save()
 
 
-## Resets best score back to 0 both in memory and in file
+## Resets unlocked level back to 1 both in memory and in file
 func reset() -> void:
-	best_score = -1
-	current_score = 0
+	unlocked_level = 0
+	current_level = 1
 	submit()

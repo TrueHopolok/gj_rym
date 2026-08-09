@@ -16,6 +16,8 @@ func _exit(body: PhysicsBody2D) -> void:
 	player.global_position = global_position
 	player.exited.connect(_exited)
 	player.exit()
+	Persistence.current_level += 1
+	Persistence.submit()
 
 
 func _exited() -> void:

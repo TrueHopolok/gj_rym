@@ -20,7 +20,7 @@ position = Vector2(132, -180)
 [node name="Killzone" parent="." index="3" unique_id=1677750993]
 position = Vector2(136, 112)
 
-[node name="CameraTrigger" parent="." index="5" unique_id=73767758 instance=ExtResource("2_f3sey")]
+[node name="CameraTrigger" parent="." index="4" unique_id=73767758 instance=ExtResource("2_f3sey")]
 position = Vector2(216, -112)
 debug_draw = true
 zoom = Vector2(0.8, 0.8)
