@@ -2,13 +2,24 @@
 
 [ext_resource type="Script" uid="uid://bgt125d5wu5bp" path="res://scenes/exit/exit.gd" id="1_ynmh0"]
 [ext_resource type="AudioStream" uid="uid://n2cddcyfos1j" path="res://assets/audio/sfx/door.mp3" id="2_4de3r"]
+[ext_resource type="Texture2D" uid="uid://cl680fb1qjc02" path="res://assets/art/sarcophagus_open.png" id="3_h1l50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxfr3"]
+size = Vector2(60, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7okr"]
+atlas = ExtResource("3_h1l50")
+region = Rect2(15, 0, 34, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cv6y"]
+atlas = ExtResource("3_h1l50")
+region = Rect2(0, 0, 13, 37)
 
 [node name="Sarcafac" type="Area2D" unique_id=1728432730]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ynmh0")
+is_sarco = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1932077198]
 shape = SubResource("RectangleShape2D_jxfr3")
@@ -17,3 +28,42 @@ debug_color = Color(1.0107458e-06, 0.64258057, 0.3206096, 0.41960785)
 [node name="SFXDoor" type="AudioStreamPlayer" parent="." unique_id=2064916643]
 stream = ExtResource("2_4de3r")
 pitch_scale = 0.6
+
+[node name="Base" type="Sprite2D" parent="." unique_id=1893562233]
+unique_name_in_owner = true
+position = Vector2(6, 0)
+texture = SubResource("AtlasTexture_q7okr")
+hframes = 2
+
+[node name="Lid" type="Sprite2D" parent="." unique_id=187446526]
+unique_name_in_owner = true
+position = Vector2(-10, 0)
+texture = SubResource("AtlasTexture_2cv6y")
+offset = Vector2(-2, 0)
+
+[node name="Door" type="Sprite2D" parent="." unique_id=949172366]
+unique_name_in_owner = true
+visible = false
+
+[node name="Light" type="Sprite2D" parent="." unique_id=1548569561]
+unique_name_in_owner = true
+visible = false
+
+[node name="ExitPosition" type="Marker2D" parent="." unique_id=1252888618]
+unique_name_in_owner = true
+position = Vector2(4, 0)
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1212992594]
+unique_name_in_owner = true
+offset_left = -53.0
+offset_top = -51.0
+offset_right = 52.0
+offset_bottom = -23.0
+bbcode_enabled = true
+text = "Hey [wave]Osiris[/wave], I'm here!
+[shake]Osiris?[/shake]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
