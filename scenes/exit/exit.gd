@@ -33,7 +33,6 @@ func _exited() -> void:
 
 
 func _do_exit_sequence(player: Player) -> void:
-	print("exit seq")
 	player.state = Player.PLAYER_STATES.BUSY
 
 	var t: Tween = create_tween().chain()

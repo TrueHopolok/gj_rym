@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://canerscui0lhl"]
+
+[ext_resource type="Texture2D" uid="uid://bw2s7mpakh5ny" path="res://assets/art/background_stuff.png" id="1_1bwft"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koymv"]
+atlas = ExtResource("1_1bwft")
+region = Rect2(0, 0, 73, 70)
+
+[node name="Sphinx" type="Sprite2D" unique_id=1713549925]
+texture = SubResource("AtlasTexture_koymv")
