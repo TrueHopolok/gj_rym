@@ -6,6 +6,7 @@ signal player_spawned(p: Player)
 
 @export var spawn_on_ready: bool = true
 @export var spawn_player_state: Player.PLAYER_STATES = Player.PLAYER_STATES.IDLE
+@export var initial_modulate: Color = Color(Color.YELLOW, 0.0)
 
 @export var _player: PackedScene
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
@@ -26,13 +27,19 @@ func spawn() -> void:
 	_animation_player.play(&"revive")
 	_sfx_altar.play()
 
-	await get_tree().create_timer(0.5).timeout
+
+func _spawn_player() -> void:
 	var inst: Player = _player.instantiate() as Player
 	inst.global_position = global_position
 	inst.global_position.y -= 16  # yes, magic constant, but idc
 	inst.died.connect(spawn, CONNECT_ONE_SHOT)
 	inst.state = spawn_player_state
+
+	inst.modulate = initial_modulate
+
 	get_parent().add_child.call_deferred(inst)
+
+	inst.create_tween().tween_property(inst, "modulate", Color.WHITE, 0.5)
 
 	player_spawned.emit(inst)
 
