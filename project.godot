@@ -85,6 +85,9 @@ folder_colors={
 
 settings_audio=""
 player="Player yopta"
+killzone=""
+custom_camera=""
+altar=""
 
 [gui]
 

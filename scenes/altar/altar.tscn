@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://okhvly55masn" path="res://scenes/altar/altar.gd" id="1_gldhy"]
 [ext_resource type="PackedScene" uid="uid://mqufp14bsu2u" path="res://scenes/player/player.tscn" id="2_wmmw7"]
 
-[node name="Altar" type="Node2D" unique_id=1836274703]
+[node name="Altar" type="Node2D" unique_id=1836274703 groups=["altar"]]
 script = ExtResource("1_gldhy")
 _player = ExtResource("2_wmmw7")
 

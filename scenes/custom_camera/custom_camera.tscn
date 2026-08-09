@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://0800oexb67mb"]
+
+[ext_resource type="Script" uid="uid://cuybo6fypbahs" path="res://scenes/custom_camera/custom_camera.gd" id="1_6pibe"]
+
+[node name="CustomCamera" type="Camera2D" unique_id=523911849 groups=["custom_camera"]]
+position_smoothing_enabled = true
+script = ExtResource("1_6pibe")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://00jelo8kidpe"]
+
+[ext_resource type="Script" uid="uid://b65hmuu116a6t" path="res://scenes/camera_trigger/camera_trigger.gd" id="1_cft8m"]
+
+[node name="CameraTrigger" type="Area2D" unique_id=73767758]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_cft8m")
