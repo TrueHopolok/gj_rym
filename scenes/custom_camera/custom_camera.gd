@@ -3,6 +3,8 @@ extends Camera2D
 
 const VIEWPORT_SIZE: Vector2 = Vector2(640, 360)
 
+var _external_control: bool = false
+
 var _current_player: Player
 var _current_trigger: CameraTrigger
 
@@ -20,6 +22,9 @@ func _update_pos() -> void:
 	if not is_instance_valid(_current_player):
 		_current_player = get_tree().get_first_node_in_group(&"player")
 
+	if _external_control:
+		return
+
 	if _current_trigger != null:
 		global_position = _current_trigger.global_position
 	elif _current_player != null:
@@ -30,6 +35,8 @@ func _update_pos() -> void:
 
 
 func _animate_zoom(to: Vector2) -> void:
+	if _external_control:
+		return
 	create_tween().tween_property(self, "zoom", to, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
@@ -43,3 +50,18 @@ func trigger_off(ct: CameraTrigger) -> void:
 	assert(_current_trigger == ct)
 	_current_trigger = null
 	_animate_zoom(Vector2.ONE)
+
+
+func take_control() -> void:
+	assert(not _external_control)
+	_external_control = true
+
+
+func release_control() -> void:
+	assert(_external_control)
+	_external_control = false
+
+	if _current_trigger != null:
+		_animate_zoom(_current_trigger.zoom)
+	else:
+		_animate_zoom(Vector2.ONE)

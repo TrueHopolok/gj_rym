@@ -24,12 +24,14 @@ static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> Co
 		spike_normal = - spike_normal
 
 	var inst: CorpseSpiked = SCENE.instantiate()
-	(func() -> void:
-		parent.add_child(inst)
-		inst.global_position = spike_pos
-		inst.global_rotation = spike_normal.angle()
-		inst.sprite.flip_v = should_flip
-	).call_deferred()
+	(
+		(func() -> void:
+			parent.add_child(inst)
+			inst.global_position = spike_pos
+			inst.global_rotation = spike_normal.angle()
+			inst.sprite.flip_v = should_flip)
+		.call_deferred()
+	)
 
 	return inst
 

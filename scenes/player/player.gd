@@ -88,7 +88,9 @@ func _physics_process(delta: float) -> void:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
-		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col.get_collider(), col.get_position(), col.get_normal())
+		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(
+			col.get_collider(), col.get_position(), col.get_normal()
+		)
 		if st != CorpseSpiked.SpikeType.NONE:
 			_spike_death(st, col.get_position(), col.get_normal())
 			return
@@ -201,7 +203,7 @@ func _update_animations() -> void:
 		return # let it play out
 
 	match state:
-		PLAYER_STATES.IDLE:
+		PLAYER_STATES.IDLE, PLAYER_STATES.BUSY, PLAYER_STATES.SKIP:
 			_sprite.play(&"idle")
 		PLAYER_STATES.MOVE:
 			_sprite.play(&"run")
@@ -264,3 +266,7 @@ func _safe_bounce(vel: Vector2, n: Vector2) -> Vector2:
 	if vel.dot(n) > 0:
 		return vel
 	return vel.bounce(n)
+
+
+func set_state(s: PLAYER_STATES) -> void:
+	state = s
