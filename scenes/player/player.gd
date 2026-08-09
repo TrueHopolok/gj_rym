@@ -198,19 +198,26 @@ func _handle_kick(col: Object) -> void:
 	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
 
 
-func _spike_death(pos: Vector2, normal: Vector2) -> void:
+func _die() -> void:
 	queue_free()
-	CorpseSpiked.spawn(get_parent(), normal, pos)
 	died.emit()
 
 
+func _spike_death(pos: Vector2, normal: Vector2) -> void:
+	CorpseSpiked.spawn(get_parent(), normal, pos)
+	_die()
+
+
 func die() -> void:
-	queue_free()
 	var inst: Corpse = CORPSE.instantiate()
 	get_parent().add_child(inst)
 	inst.global_position = global_position
 	inst.velocity = velocity
-	died.emit()
+	_die()
+
+
+func permadeath() -> void:
+	_die()
 
 
 func exit() -> void:

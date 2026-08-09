@@ -30,3 +30,6 @@ symbol = 1
 
 [node name="Door" parent="." index="5" unique_id=304512104 instance=ExtResource("4_24kkr")]
 position = Vector2(-552, 24)
+
+[node name="Killzone" parent="." index="6" unique_id=1677750993]
+position = Vector2(264, 280)
