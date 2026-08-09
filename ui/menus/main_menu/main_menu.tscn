@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dh808cqj70n3l"]
 
 [ext_resource type="PackedScene" uid="uid://i0n7cjiw24yl" path="res://ui/settings/audio_settings/audio_settings.tscn" id="2_6s8a2"]
+[ext_resource type="Script" uid="uid://dw5l7aatufnl8" path="res://ui/menus/main_menu/continue_button.gd" id="3_igis3"]
 [ext_resource type="Script" uid="uid://c3kdhco0ibbsu" path="res://ui/menus/main_menu/reset_button.gd" id="4_txwgg"]
-[ext_resource type="Script" uid="uid://2htt7bkeytt7" path="res://ui/better_button/better_button.gd" id="5_igis3"]
 [ext_resource type="Script" uid="uid://cvah0thg6gaj1" path="res://ui/menus/main_menu/reset_dialog.gd" id="5_j3h1s"]
 [ext_resource type="Script" uid="uid://bltl6imnc8x2t" path="res://ui/menus/main_menu/level_button.gd" id="5_m57jf"]
 [ext_resource type="PackedScene" uid="uid://bkv2wdfogpnnu" path="res://ui/menus/main_menu/level_selection.tscn" id="6_igis3"]
@@ -43,7 +43,7 @@ offset_top = 186.0
 offset_right = 217.0
 offset_bottom = 222.0
 text = "Continue"
-script = ExtResource("5_igis3")
+script = ExtResource("3_igis3")
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
 
 [node name="ResetButton" type="Button" parent="." unique_id=266406353]
