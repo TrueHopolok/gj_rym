@@ -18,7 +18,7 @@ offset_right = 396.0
 offset_bottom = 270.0
 text = "Game by HOPOLOK, wailer, Echo_55"
 
-[node name="Credits2" type="RichTextLabel" parent="." unique_id=1037371060]
+[node name="Pain" type="RichTextLabel" parent="." unique_id=1037371060]
 offset_left = 214.0
 offset_top = 260.0
 offset_right = 427.0
