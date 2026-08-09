@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://iu685desgkk6"]
 
 [ext_resource type="Script" uid="uid://dsjxqk1bkdfjo" path="res://scenes/killzone/killzone.gd" id="1_6ib8s"]
+[ext_resource type="AudioStream" uid="uid://bvkmmtukkd48e" path="res://assets/audio/sfx/player/player_fall.mp3" id="2_i77c3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jxfr3"]
 
@@ -13,3 +14,9 @@ script = ExtResource("1_6ib8s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=738484811]
 shape = SubResource("WorldBoundaryShape2D_jxfr3")
 debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="SFXDeath" type="AudioStreamPlayer" parent="." unique_id=631887203]
+stream = ExtResource("2_i77c3")
+volume_db = -12.0
+mix_target = 2
+bus = &"SFX_fall"

@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://dmkccuwn3fdos" path="res://scenes/corpse/corpse_cursed.gdshader" id="1_otg26"]
 [ext_resource type="Texture2D" uid="uid://c748uwwxqhddr" path="res://assets/art/AAah.png" id="2_otg26"]
 [ext_resource type="Script" uid="uid://tb3j7shwkgjv" path="res://scenes/corpse/corpse_cursed.gd" id="3_27bh7"]
-[ext_resource type="AudioStream" uid="uid://cgn8rw4srbin8" path="res://assets/audio/sfx/player/player_death.mp3" id="4_k8v8d"]
+[ext_resource type="AudioStream" uid="uid://cyj86fkqq2so0" path="res://assets/audio/sfx/player/player_cursed.mp3" id="4_k8v8d"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_27bh7"]
 frequency = 0.0592
