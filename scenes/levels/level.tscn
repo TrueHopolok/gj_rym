@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://iu685desgkk6" path="res://scenes/killzone/killzone.tscn" id="4_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://0800oexb67mb" path="res://scenes/custom_camera/custom_camera.tscn" id="5_urvlt"]
 [ext_resource type="Texture2D" uid="uid://bqj2carhffos5" path="res://assets/art/wall3.png" id="7_mbbpy"]
+[ext_resource type="PackedScene" uid="uid://ihes6falfv6r" path="res://scenes/audio/looping_music/looping_music.tscn" id="8_ouxo3"]
 
 [node name="Level" type="Node2D" unique_id=588267695]
 
@@ -41,3 +42,5 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=827770931]
 texture = ExtResource("7_mbbpy")
 centered = false
+
+[node name="LoopingMusic" parent="." unique_id=1912382015 instance=ExtResource("8_ouxo3")]
