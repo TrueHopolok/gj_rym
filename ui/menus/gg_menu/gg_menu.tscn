@@ -12,11 +12,22 @@ texture = ExtResource("1_bhd2p")
 metadata/_edit_lock_ = true
 
 [node name="Credits" type="Label" parent="." unique_id=1480535202]
-offset_left = 248.0
-offset_top = 270.0
-offset_right = 397.0
-offset_bottom = 284.0
-text = "Game by HOPOLOK, Wailer, Pasha"
+offset_left = 244.0
+offset_top = 256.0
+offset_right = 396.0
+offset_bottom = 270.0
+text = "Game by HOPOLOK, wailer, Echo_55"
+
+[node name="Credits2" type="RichTextLabel" parent="." unique_id=1037371060]
+offset_left = 214.0
+offset_top = 260.0
+offset_right = 427.0
+offset_bottom = 295.0
+theme_override_font_sizes/normal_font_size = 4
+bbcode_enabled = true
+text = "Type [color=blue]PAIN[/color] in main menu for extra [color=darkred]challenge[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ReturnButton" type="Button" parent="." unique_id=775973039]
 offset_left = 268.0
