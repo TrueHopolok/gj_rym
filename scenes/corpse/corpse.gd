@@ -1,5 +1,5 @@
 class_name Corpse
-extends CharacterBody2D
+extends RigidBody2D
 
 const MAX_SLIDES: int = 8
 
@@ -11,75 +11,15 @@ const MAX_SLIDES: int = 8
 @export var slide_friction: float = 0.5
 @export var drag: float = 10.0
 
-var _last_normal: Vector2 = Vector2.ONE * NAN
-
 @onready var _sprite: AnimatedSprite2D = $Sprite2D
-
-
-## Public API used to knock the corpse around.
-## [param vec] should not be multiplied by delta.
-##
-## Velocity *may* be overridden. It is guaranteed that resulting velocity will be at least vec.
-func apply_impulse(vec: Vector2) -> void:
-	if signf(velocity.x) == signf(vec.x):
-		velocity.x = signf(vec.x) * maxf(absf(vec.x), absf(velocity.x))
-	else:
-		velocity.x = vec.x
-	if signf(velocity.y) == signf(vec.y):
-		velocity.y = signf(vec.y) * maxf(absf(vec.y), absf(velocity.y))
-	else:
-		velocity.y = vec.y
 
 
 func _ready() -> void:
 	_sprite.flip_h = randi() % 2 == 0
+	_sprite.animation_finished.connect(_sprite.play.bind(&"idle"))
 
 
-func _physics_process(delta: float) -> void:
-	velocity += get_gravity() * delta
-
-	velocity.x = move_toward(velocity.x, 0, x_decel * delta)
-
-	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
-	var time: float = delta
-
-	_last_normal = Vector2.ONE * NAN
-	for i: int in MAX_SLIDES:
-		var travel: Vector2 = velocity * time
-		if travel.is_zero_approx():
-			break
-
-		var col: KinematicCollision2D = move_and_collide(travel)
-		if col == null:
-			break
-
-		_last_normal = col.get_normal()
-
-		time *= col.get_remainder().length() / travel.length()
-
-		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col)
-		if st != CorpseSpiked.SpikeType.NONE:
-			queue_free()
-			match st:
-				CorpseSpiked.SpikeType.NORMAL:
-					CorpseSpiked.spawn(get_parent(), col.get_normal(), col.get_position())
-				CorpseSpiked.SpikeType.CURSED:
-					CorpseCursed.spawn(get_parent(), global_position, _safe_bounce(velocity, col.get_normal()))
-			return
-
-		var normal: Vector2 = col.get_normal()
-		var projection: Vector2 = velocity.project(normal)
-
-		if projection.length_squared() <= _sq(bounce_min_velocity):
-			# eat this bounce
-			velocity -= projection
-			continue
-
-		var bounce: Vector2 = -velocity.project(normal) * bounce_factor
-		var slide: Vector2 = velocity.slide(normal) * slide_friction
-
-		velocity = bounce + slide
-
+func _physics_process(_delta: float) -> void:
 	_update_animations()
 
 
@@ -88,17 +28,45 @@ func _sq(f: float) -> float:
 
 
 func _update_animations() -> void:
-	if not _last_normal.is_finite() or absf(_last_normal.angle_to(Vector2.UP)) > PI * 0.25:
-		# airborne / wall collision
-		if velocity.y > 0:
-			_sprite.play("fall")
-		else:
-			_sprite.play("jump")
-	else:
+	if _sprite.animation == &"bounce":
+		return
+
+	const MIN_VELOCITY: float = 100.0
+	var velocity: Vector2 = linear_velocity
+	if velocity.length_squared() < MIN_VELOCITY * MIN_VELOCITY:
 		_sprite.play(&"idle")
+	elif velocity.y > 0:
+		_sprite.play("fall")
+	else:
+		_sprite.play("jump")
 
 
 func _safe_bounce(vel: Vector2, n: Vector2) -> Vector2:
 	if vel.dot(n) > 0:
 		return vel
 	return vel.bounce(n)
+
+
+func play_bounce() -> void:
+	_sprite.play("bounce")
+
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	for idx: int in state.get_contact_count():
+		var normal: Vector2 = state.get_contact_local_normal(idx)
+		var collider: Object = state.get_contact_collider_object(idx)
+		var pos: Vector2 = state.get_contact_collider_position(idx)
+		var t: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(collider, pos, normal)
+		match t:
+			CorpseSpiked.SpikeType.NONE:
+				pass
+			CorpseSpiked.SpikeType.NORMAL:
+				state.apply_impulse(state.get_contact_impulse(idx))
+				queue_free()
+				CorpseSpiked.spawn(get_parent(), normal, pos)
+				return
+			CorpseSpiked.SpikeType.CURSED:
+				state.apply_impulse(state.get_contact_impulse(idx))
+				queue_free()
+				CorpseCursed.spawn(get_parent(), pos, state.linear_velocity)
+				return

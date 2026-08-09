@@ -19,18 +19,20 @@ static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> Co
 		spike_normal = -spike_normal
 
 	var inst: CorpseSpiked = SCENE.instantiate()
-	parent.add_child(inst)
-	inst.global_position = spike_pos
-	inst.global_rotation = spike_normal.angle()
-	inst.sprite.flip_v = should_flip
+	(func () -> void:
+		parent.add_child(inst)
+		inst.global_position = spike_pos
+		inst.global_rotation = spike_normal.angle()
+		inst.sprite.flip_v = should_flip
+	).call_deferred()
 
 	return inst
 
 
-static func get_spike_collision_type(col: KinematicCollision2D) -> SpikeType:
-	if col.get_collider() is TileMapLayer:
-		var tm: TileMapLayer = col.get_collider() as TileMapLayer
-		var pos: Vector2i = tm.local_to_map(tm.to_local(col.get_position() - col.get_normal()))
+static func get_spike_collision_type(collider: Object, posi: Vector2, normal: Vector2) -> SpikeType:
+	if collider is TileMapLayer:
+		var tm: TileMapLayer = collider as TileMapLayer
+		var pos: Vector2i = tm.local_to_map(tm.to_local(posi - normal))
 		var td: TileData = tm.get_cell_tile_data(pos)
 		if td == null:
 			return SpikeType.NONE

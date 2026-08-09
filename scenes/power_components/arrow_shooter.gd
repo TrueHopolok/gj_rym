@@ -48,4 +48,4 @@ func _on_powered_on() -> void:
 
 func _update_direction() -> void:
 	($Arrowbox as Sprite2D).frame = direction
-	(%SpawnMarker as Node2D).global_rotation = remap(direction, 0, 1, -PI*0.5, 0)
+	(%SpawnMarker as Node2D).global_rotation = remap(direction, 0, 1, -PI * 0.5, 0)
