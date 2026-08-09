@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float progress = 0.0;
+instance uniform float progress = 0.0;
 
 uniform vec2 size_pixels;
 uniform vec4 col_border: source_color;

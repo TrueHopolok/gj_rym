@@ -22,7 +22,7 @@ const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
 
 const SpikeType = CorpseSpiked.SpikeType
 
-const KICK_FORCE: Vector2 = Vector2(400, 300)
+const KICK_FORCE: Vector2 = Vector2(300, -250)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
 const POGO_FORCE: float = 450.0
@@ -82,10 +82,10 @@ func _physics_process(delta: float) -> void:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
-		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col)
+		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col.get_collider(), col.get_position(), col.get_normal())
 		if st != CorpseSpiked.SpikeType.NONE:
 			_spike_death(st, col.get_position(), col.get_normal())
-			break
+			return
 	_movement_horizontal(delta)
 	_movement_pogo()
 	_movement_jump()
@@ -146,6 +146,10 @@ func _movement_pogo() -> void:
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
 		velocity.y = -force
+		corpse.apply_central_impulse(Vector2.DOWN * 100)
+		add_collision_exception_with(corpse)
+		get_tree().create_timer(0.2).timeout.connect(remove_collision_exception_with.bind(corpse))
+		corpse.play_bounce()
 
 
 func _movement_jump() -> void:
@@ -203,8 +207,8 @@ func _handle_kick(col: Object) -> void:
 	_sprite.play(&"kick")
 
 	var dir: float = signf(corpse.global_position.x - global_position.x)
-	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1)
-	corpse.apply_impulse(vel)
+	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1) - corpse.linear_velocity
+	corpse.apply_central_impulse(vel)
 
 	add_collision_exception_with(corpse)
 	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
@@ -229,7 +233,7 @@ func die() -> void:
 	var inst: Corpse = CORPSE.instantiate()
 	get_parent().add_child(inst)
 	inst.global_position = global_position
-	inst.velocity = velocity
+	inst.linear_velocity = velocity
 	_die()
 
 
