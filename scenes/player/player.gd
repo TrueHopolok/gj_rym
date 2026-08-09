@@ -5,8 +5,8 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	SKIP = 10, # used for cutscenes / manual control
-	BUSY = 20, # same but has gravitation
+	SKIP = 10,  # used for cutscenes / manual control
+	BUSY = 20,  # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
@@ -145,7 +145,7 @@ func _movement_pogo() -> void:
 			print("MEGA")
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
-		velocity.y = - force
+		velocity.y = -force
 
 
 func _movement_jump() -> void:
@@ -155,7 +155,7 @@ func _movement_jump() -> void:
 		_buffer_jump.stop()
 		_buffer_mega.stop()
 		_has_cancel = true
-		velocity.y = - MEGA_FORCE
+		velocity.y = -MEGA_FORCE
 		print("MEGA")
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
@@ -164,7 +164,7 @@ func _movement_jump() -> void:
 	_buffer_coyote.stop()
 
 	_has_cancel = true
-	velocity.y = - JUMP_FORCE # weak mega
+	velocity.y = -JUMP_FORCE  # weak mega
 
 
 func _update_state() -> void:
@@ -181,7 +181,7 @@ func _update_animations() -> void:
 		_flipper.scale.x = signf(velocity.x)
 
 	if _sprite.animation == &"kick":
-		return # let it play out
+		return  # let it play out
 
 	match state:
 		PLAYER_STATES.IDLE:
