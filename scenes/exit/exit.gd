@@ -81,4 +81,4 @@ func _do_exit_sequence_ded(player: Player) -> void:
 	t.tween_property(text, "visible_ratio", 0.74, 1)
 	t.tween_interval(1.0)
 	t.tween_property(text, "visible_ratio", 1, 1)
-	t.tween_callback(_exited).set_delay(2.0)
+	t.tween_callback(_exited).set_delay(3.0)
