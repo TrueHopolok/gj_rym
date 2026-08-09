@@ -5,8 +5,8 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	SKIP = 10, # used for cutscenes / manual control
-	BUSY = 20, # same but has gravitation
+	SKIP = 10,  # used for cutscenes / manual control
+	BUSY = 20,  # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
@@ -19,6 +19,8 @@ const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
 	PLAYER_STATES.MOVE: "MOVE",
 	PLAYER_STATES.JUMP: "JUMP",
 }
+
+const SpikeType = CorpseSpiked.SpikeType
 
 const KICK_FORCE: Vector2 = Vector2(400, 300)
 const RUN_FORCE: float = 900.0
@@ -77,8 +79,9 @@ func _physics_process(delta: float) -> void:
 		return
 	for i: int in get_slide_collision_count():
 		var col: KinematicCollision2D = get_slide_collision(i)
-		if CorpseSpiked.is_spike_collision(col):
-			_spike_death(col.get_position(), col.get_normal())
+		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col)
+		if st != CorpseSpiked.SpikeType.NONE:
+			_spike_death(st, col.get_position(), col.get_normal())
 			break
 	_movement_horizontal(delta)
 	_movement_pogo()
@@ -133,7 +136,7 @@ func _movement_pogo() -> void:
 			print("MEGA")
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
-		velocity.y = - force
+		velocity.y = -force
 
 
 func _movement_jump() -> void:
@@ -143,7 +146,7 @@ func _movement_jump() -> void:
 		_buffer_jump.stop()
 		_buffer_mega.stop()
 		_has_cancel = true
-		velocity.y = - MEGA_FORCE
+		velocity.y = -MEGA_FORCE
 		print("MEGA")
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
@@ -152,7 +155,7 @@ func _movement_jump() -> void:
 	_buffer_coyote.stop()
 
 	_has_cancel = true
-	velocity.y = - JUMP_FORCE # weak mega
+	velocity.y = -JUMP_FORCE  # weak mega
 
 
 func _update_state() -> void:
@@ -169,7 +172,7 @@ func _update_animations() -> void:
 		_flipper.scale.x = signf(velocity.x)
 
 	if _sprite.animation == &"kick":
-		return # let it play out
+		return  # let it play out
 
 	match state:
 		PLAYER_STATES.IDLE:
@@ -203,8 +206,12 @@ func _die() -> void:
 	died.emit()
 
 
-func _spike_death(pos: Vector2, normal: Vector2) -> void:
-	CorpseSpiked.spawn(get_parent(), normal, pos)
+func _spike_death(spike_type: SpikeType, pos: Vector2, normal: Vector2) -> void:
+	match spike_type:
+		SpikeType.NORMAL:
+			CorpseSpiked.spawn(get_parent(), normal, pos)
+		SpikeType.CURSED:
+			print("Curse spike animation...")
 	_die()
 
 
