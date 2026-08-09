@@ -5,8 +5,8 @@ signal died
 signal exited
 
 enum PLAYER_STATES {
-	SKIP = 10,  # used for cutscenes / manual control
-	BUSY = 20,  # same but has gravitation
+	SKIP = 10, # used for cutscenes / manual control
+	BUSY = 20, # same but has gravitation
 	IDLE = 30,
 	MOVE = 40,
 	JUMP = 50,
@@ -39,10 +39,15 @@ const SLOW_FORCE: float = RUN_FORCE * 3.0
 const CORPSE: PackedScene = preload("res://scenes/corpse/corpse.tscn")
 const CORPSE_POGO_VELOCITY: float = 450.0
 
+var _was_in_air: bool = false
 var _has_cancel: bool = false
 
 var state: PLAYER_STATES = PLAYER_STATES.IDLE
 
+@onready var _sfx_jumping: AudioStreamPlayer = $SFXJumping
+@onready var _sfx_landing: AudioStreamPlayer = $SFXLanding
+@onready var _sfx_pogo: AudioStreamPlayer = $SFXPogo
+@onready var _sfx_mega: AudioStreamPlayer = $SFXMega
 @onready var _debug_state_label: Label = $DebugStateLabel
 @onready var _buffer_jump: Timer = $BufferJump
 @onready var _buffer_mega: Timer = $BufferMega
@@ -120,9 +125,13 @@ func _movement_horizontal(delta: float) -> void:
 
 func _resistance_vertical(delta: float) -> void:
 	if is_on_floor():
+		if _was_in_air:
+			_sfx_landing.play()
+		_was_in_air = false
 		_has_cancel = false
 		_buffer_coyote.start(BUFFER_COYOTE_LENGTH)
 		return
+	_was_in_air = true
 	velocity.y = minf(velocity.y + delta * get_gravity().y, MAX_FALLING_SPEED)
 	if velocity.y < 0.0 && _has_cancel && Input.is_action_just_released(&"jump"):
 		_has_cancel = false
@@ -139,13 +148,15 @@ func _movement_pogo() -> void:
 			continue
 		var force: float = POGO_FORCE
 		_buffer_coyote.stop()
+		_sfx_landing.stop()
+		_sfx_pogo.play()
 		if !_buffer_jump.is_stopped():
 			_buffer_jump.stop()
 			force = MEGA_FORCE
-			print("MEGA")
+			_sfx_mega.play()
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
-		velocity.y = -force
+		velocity.y = - force
 		corpse.apply_central_impulse(Vector2.DOWN * 100)
 		add_collision_exception_with(corpse)
 		get_tree().create_timer(0.2).timeout.connect(remove_collision_exception_with.bind(corpse))
@@ -159,8 +170,8 @@ func _movement_jump() -> void:
 		_buffer_jump.stop()
 		_buffer_mega.stop()
 		_has_cancel = true
-		velocity.y = -MEGA_FORCE
-		print("MEGA")
+		velocity.y = - MEGA_FORCE
+		_sfx_mega.play()
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
 		return
@@ -168,7 +179,8 @@ func _movement_jump() -> void:
 	_buffer_coyote.stop()
 
 	_has_cancel = true
-	velocity.y = -JUMP_FORCE  # weak mega
+	velocity.y = - JUMP_FORCE
+	_sfx_jumping.play()
 
 
 func _update_state() -> void:
@@ -185,7 +197,7 @@ func _update_animations() -> void:
 		_flipper.scale.x = signf(velocity.x)
 
 	if _sprite.animation == &"kick":
-		return  # let it play out
+		return # let it play out
 
 	match state:
 		PLAYER_STATES.IDLE:

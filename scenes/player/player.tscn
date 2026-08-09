@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://mqufp14bsu2u"]
 
 [ext_resource type="Script" uid="uid://dqa7i1mbuww54" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="AudioStream" uid="uid://csvvmwmtwt3t4" path="res://assets/audio/sfx/player/jumping/player_jumping.mp3" id="2_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://bcpvweib8xpvr" path="res://assets/art/anim_idle.png" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://qad1ixts4fvp" path="res://assets/art/anim_jump.png" id="2_lvxji"]
+[ext_resource type="AudioStream" uid="uid://tft0gjiqg0uu" path="res://assets/audio/sfx/player/jumping/player_landing.mp3" id="3_h17s1"]
 [ext_resource type="Texture2D" uid="uid://c73cp3koa0e0m" path="res://assets/art/kick.png" id="4_75vfm"]
+[ext_resource type="AudioStream" uid="uid://dkukkeuqc52ca" path="res://assets/audio/sfx/player/jumping/player_pogo.mp3" id="4_je7p5"]
 [ext_resource type="Texture2D" uid="uid://bf646gywfh16k" path="res://assets/art/anim_run.png" id="4_p47bc"]
+[ext_resource type="AudioStream" uid="uid://cwa8ilm5ad5i3" path="res://assets/audio/sfx/player/jumping/player_mega.wav" id="5_fm80t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0owmy"]
 atlas = ExtResource("2_lvxji")
@@ -214,3 +218,27 @@ position = Vector2(-6.5168274e-07, -3.9999995)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_dovo2")
 debug_color = Color(0.9600126, 1.0588765e-06, 0.5211233, 0.41960785)
+
+[node name="SFXJumping" type="AudioStreamPlayer" parent="." unique_id=10224603]
+stream = ExtResource("2_5gtgg")
+volume_db = -3.0
+mix_target = 2
+bus = &"SFX"
+
+[node name="SFXLanding" type="AudioStreamPlayer" parent="." unique_id=556000593]
+stream = ExtResource("3_h17s1")
+volume_db = -3.0
+mix_target = 2
+bus = &"SFX_landing"
+
+[node name="SFXPogo" type="AudioStreamPlayer" parent="." unique_id=1452323404]
+stream = ExtResource("4_je7p5")
+volume_db = -6.0
+mix_target = 2
+bus = &"SFX"
+
+[node name="SFXMega" type="AudioStreamPlayer" parent="." unique_id=1780970729]
+stream = ExtResource("5_fm80t")
+volume_db = -12.0
+mix_target = 2
+bus = &"SFX_mega"
