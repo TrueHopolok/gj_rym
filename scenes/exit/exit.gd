@@ -72,13 +72,16 @@ func _do_exit_sequence_ded(player: Player) -> void:
 	_sfx_door.play()
 	var t: Tween = create_tween().chain()
 	t.tween_property(player, "global_position", _exit_position.global_position, 0.5)
-	t.tween_callback(func () -> void:
-		player.hide()
-		base.frame += 1
+	t.tween_callback(
+		func() -> void:
+			player.hide()
+			base.frame += 1
 	)
 	t.tween_interval(2.0)
-	t.tween_property(lid, "global_position", base.global_position, 2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(lid, "global_position", base.global_position, 2.0).set_trans(Tween.TRANS_SINE).set_ease(
+		Tween.EASE_IN_OUT
+	)
 	t.tween_property(text, "visible_ratio", 0.74, 1)
 	t.tween_interval(1.0)
 	t.tween_property(text, "visible_ratio", 1, 1)
-	t.tween_callback(_exited).set_delay(2.0)
+	t.tween_callback(_exited).set_delay(3.0)
