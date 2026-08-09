@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 
 		time *= col.get_remainder().length() / travel.length()
 
-		var st := CorpseSpiked.get_spike_collision_type(col)
+		var st: CorpseSpiked.SpikeType = CorpseSpiked.get_spike_collision_type(col)
 		if st != CorpseSpiked.SpikeType.NONE:
 			queue_free()
 			match st:
