@@ -25,10 +25,10 @@ tile_map_data = PackedByteArray("AADp/wgAAAABAAAAAADv/wkAAAAFAAAAAADu/wkAAAAFAAA
 tile_set = ExtResource("5_ye8wr")
 
 [node name="Altar" parent="." unique_id=1836274703 instance=ExtResource("9_3ahxw")]
-position = Vector2(384, 168)
+position = Vector2(378, 192)
 
 [node name="Exit" parent="." unique_id=1728432730 instance=ExtResource("7_acxp7")]
-position = Vector2(576, 104)
+position = Vector2(880, 156)
 _next_lvl = "res://scenes/levels/level1.tscn"
 
 [node name="Killzone" parent="." unique_id=1677750993 instance=ExtResource("11_26oro")]
@@ -37,3 +37,7 @@ position = Vector2(-164, 329)
 [node name="CustomCamera" parent="." unique_id=523911849 instance=ExtResource("12_dasqb")]
 
 [node name="ArrowShooter" parent="." unique_id=381259425 instance=ExtResource("6_acxp7")]
+position = Vector2(583, 80)
+timer_enable = true
+timer_interval = 0.2
+direction = 2

@@ -20,7 +20,7 @@ const ARROW: PackedScene = preload("res://scenes/arrow/arrow.tscn")
 
 
 func _ready() -> void:
-	_update_direction()
+	_update_direction.call_deferred()
 
 	if Engine.is_editor_hint():
 		return
@@ -43,8 +43,9 @@ func _on_powered_on() -> void:
 
 	arrow.global_position = _spawn_marker.global_position
 	arrow.global_rotation = _spawn_marker.global_rotation
-	arrow.velocity = Vector2.from_angle(global_rotation) * arrow_velocity
+	arrow.velocity = Vector2.from_angle(_spawn_marker.global_rotation) * arrow_velocity
 
 
 func _update_direction() -> void:
 	($Arrowbox as Sprite2D).frame = direction
+	(%SpawnMarker as Node2D).global_rotation = remap(direction, 0, 1, -PI*0.5, 0)
