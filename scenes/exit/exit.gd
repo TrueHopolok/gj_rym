@@ -31,10 +31,7 @@ func _exit(body: PhysicsBody2D) -> void:
 
 
 func _exited() -> void:
-	if !FileAccess.file_exists(_next_lvl):
-		Transition.reload_scene()
-	else:
-		Transition.change_scene_path(_next_lvl)
+	Transition.change_scene_path(_next_lvl)
 
 
 func _do_exit_sequence_door(player: Player) -> void:
@@ -52,11 +49,11 @@ func _do_exit_sequence_door(player: Player) -> void:
 	t.chain().tween_callback(_sfx_door.play)
 	(
 		t
-		. chain()
-		. tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
-		. as_relative()
-		. set_trans(Tween.TRANS_QUAD)
-		. set_ease(Tween.EASE_IN)
+		.chain()
+		.tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
+		.as_relative()
+		.set_trans(Tween.TRANS_QUAD)
+		.set_ease(Tween.EASE_IN)
 	)
 
 	t.tween_callback(_exited)
