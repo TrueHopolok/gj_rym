@@ -23,7 +23,7 @@ func setup() -> void:
 	l.global_position = pos + Vector2.UP * 48 + Vector2.LEFT * label_size.x * 0.5
 	l.visible_ratio = 0
 
-	a.spawn_player_state = Player.PLAYER_STATES.BUSY
+	a.spawn_player_state = Player.PlayerStates.BUSY
 
 	# I heard you liked magic numbers?
 	var t: Tween = create_tween()
@@ -42,6 +42,6 @@ func setup() -> void:
 
 	await t.finished
 
-	get_tree().call_group(&"player", "set_state", Player.PLAYER_STATES.IDLE)
-	a.spawn_player_state = Player.PLAYER_STATES.IDLE
+	get_tree().call_group(&"player", "set_state", Player.PlayerStates.IDLE)
+	a.spawn_player_state = Player.PlayerStates.IDLE
 	c.release_control()

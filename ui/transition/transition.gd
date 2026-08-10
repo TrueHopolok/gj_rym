@@ -22,8 +22,10 @@ func fade_out() -> void:
 ## Changes to scene by given path.
 func change_scene_path(path: String, stop_global_music: bool = false) -> void:
 	await fade_in()
-	if stop_global_music: (GlobalMusic as AudioStreamPlayer).stop()
-	else: (GlobalMusic as StrongerAudioPlayer).try_to_play()
+	if stop_global_music:
+		(GlobalMusic as AudioStreamPlayer).stop()
+	else:
+		(GlobalMusic as StrongerAudioPlayer).try_to_play()
 	get_tree().change_scene_to_file(path)
 	get_tree().paused = false
 	await fade_out()

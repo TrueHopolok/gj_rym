@@ -1,7 +1,6 @@
 class_name StrongerAudioPlayer
 extends AudioStreamPlayer
 
-
 @export var _intro: AudioStream
 @export var _loop: AudioStream
 

@@ -2,18 +2,19 @@
 class_name Door
 extends PowerComponent
 
+const H: float = 96 - 10
+
 @export var symbol: Symbol = Symbol.IOI_GATE:
 	set(v):
 		symbol = v
 		_update_symbol()
+
+var _initial_pos_y: float
+
 @onready var _animatable_body_2d: AnimatableBody2D = %Body
 @onready var _over: Sprite2D = %Over
 @onready var _under: Sprite2D = %Under
 @onready var _sfx_door: AudioStreamPlayer = $SFXDoor
-
-const H: float = 96 - 10
-
-var _initial_pos_y: float
 
 
 func _ready() -> void:

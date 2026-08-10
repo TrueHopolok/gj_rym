@@ -35,13 +35,17 @@ func _exited() -> void:
 
 
 func _do_exit_sequence_door(player: Player) -> void:
-	player.state = Player.PLAYER_STATES.BUSY
+	player.state = Player.PlayerStates.BUSY
 
 	_sfx_door.play()
 	var t: Tween = create_tween().chain()
 	t.tween_property(player, "global_position", _exit_position.global_position, 0.5)
-	t.tween_property(_door, "position", Vector2.UP * 64, 0.9).as_relative().set_trans(Tween.TRANS_CUBIC).set_ease(
-		Tween.EASE_IN
+	(
+		t
+		. tween_property(_door, "position", Vector2.UP * 64, 0.9)
+		. as_relative()
+		. set_trans(Tween.TRANS_CUBIC)
+		. set_ease(Tween.EASE_IN)
 	)
 	t.parallel().tween_property(_light, "modulate:a", 1.0, 1)
 	t.chain().tween_callback(func() -> void: player.z_index -= 1)
@@ -49,11 +53,11 @@ func _do_exit_sequence_door(player: Player) -> void:
 	t.chain().tween_callback(_sfx_door.play)
 	(
 		t
-		.chain()
-		.tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
-		.as_relative()
-		.set_trans(Tween.TRANS_QUAD)
-		.set_ease(Tween.EASE_IN)
+		. chain()
+		. tween_property(_door, "position", Vector2.DOWN * 64, 0.9)
+		. as_relative()
+		. set_trans(Tween.TRANS_QUAD)
+		. set_ease(Tween.EASE_IN)
 	)
 
 	t.tween_callback(_exited)
@@ -64,7 +68,7 @@ func _do_exit_sequence_ded(player: Player) -> void:
 	var lid: Sprite2D = %Lid
 	var text: RichTextLabel = %Text
 
-	player.state = Player.PLAYER_STATES.BUSY
+	player.state = Player.PlayerStates.BUSY
 
 	var t: Tween = create_tween().chain()
 	t.tween_property(player, "global_position", _exit_position.global_position, 0.5)
@@ -75,8 +79,11 @@ func _do_exit_sequence_ded(player: Player) -> void:
 	)
 	t.tween_interval(2.0)
 	t.tween_callback(_sfx_door.play)
-	t.tween_property(lid, "global_position", base.global_position, 1.5).set_trans(Tween.TRANS_SINE).set_ease(
-		Tween.EASE_IN_OUT
+	(
+		t
+		. tween_property(lid, "global_position", base.global_position, 1.5)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
 	)
 	t.tween_property(text, "visible_ratio", 0.74, 1)
 	t.tween_interval(1.0)

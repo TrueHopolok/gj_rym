@@ -4,24 +4,15 @@ extends CharacterBody2D
 signal died
 signal exited
 
-enum PLAYER_STATES {
-	SKIP = 10, # used for cutscenes / manual control
-	BUSY = 20, # same but has gravitation
-	IDLE = 30,
-	MOVE = 40,
-	JUMP = 50,
+enum PlayerStates {
+	SKIP,  # used for cutscenes / manual control
+	BUSY,  # same but has gravitation
+	IDLE,
+	MOVE,
+	JUMP,
 }
 
-const PLAYER_STATES_TO_STRING: Dictionary[int, String] = {
-	PLAYER_STATES.SKIP: "SKIP",
-	PLAYER_STATES.BUSY: "BUSY",
-	PLAYER_STATES.IDLE: "IDLE",
-	PLAYER_STATES.MOVE: "MOVE",
-	PLAYER_STATES.JUMP: "JUMP",
-}
-
-const SpikeType = CorpseSpiked.SpikeType
-
+const SPIKE_TYPE = CorpseSpiked.SpikeType
 const KICK_FORCE: Vector2 = Vector2(100, -250)
 const RUN_FORCE: float = 900.0
 const JUMP_FORCE: float = 400.0
@@ -39,10 +30,10 @@ const SLOW_FORCE: float = RUN_FORCE * 3.0
 const CORPSE: PackedScene = preload("res://scenes/corpse/corpse.tscn")
 const CORPSE_POGO_VELOCITY: float = 450.0
 
+var state: PlayerStates = PlayerStates.IDLE
+
 var _was_in_air: bool = false
 var _has_cancel: bool = false
-
-var state: PLAYER_STATES = PLAYER_STATES.IDLE
 
 @onready var _sfx_jumping: AudioStreamPlayer = $SFXJumping
 @onready var _sfx_landing: AudioStreamPlayer = $SFXLanding
@@ -86,11 +77,11 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if is_queued_for_deletion():
 		return
-	if state <= PLAYER_STATES.SKIP:
+	if state <= PlayerStates.SKIP:
 		return
 	_resistance_horizontal(delta)
 	_resistance_vertical(delta)
-	if state <= PLAYER_STATES.BUSY:
+	if state <= PlayerStates.BUSY:
 		_update_animations()
 		return
 	for i: int in get_slide_collision_count():
@@ -106,7 +97,7 @@ func _physics_process(delta: float) -> void:
 	_movement_jump()
 	_update_state()
 	if OS.is_debug_build() && get_tree().debug_collisions_hint:
-		_debug_state_label.text = PLAYER_STATES_TO_STRING[state]
+		_debug_state_label.text = PlayerStates.keys()[state]
 	_update_animations()
 	move_and_slide()
 
@@ -130,7 +121,9 @@ func _movement_horizontal(delta: float) -> void:
 		return
 	if input_dir != sign(velocity.x):
 		velocity.x = 0.0
-	velocity.x = clampf(velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED)
+	velocity.x = clampf(
+		velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED
+	)
 
 
 func _resistance_vertical(delta: float) -> void:
@@ -166,7 +159,7 @@ func _movement_pogo() -> void:
 			_sfx_mega.play()
 		else:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
-		velocity.y = - force
+		velocity.y = -force
 		corpse.apply_central_impulse.call_deferred(Vector2.DOWN * 75)
 		add_collision_exception_with(corpse)
 		get_tree().create_timer(0.2).timeout.connect(remove_collision_exception_with.bind(corpse))
@@ -179,7 +172,7 @@ func _movement_jump() -> void:
 	if !_buffer_mega.is_stopped():
 		_buffer_jump.stop()
 		_buffer_mega.stop()
-		velocity.y = - MEGA_FORCE
+		velocity.y = -MEGA_FORCE
 		_sfx_mega.play()
 		return
 	if !is_on_floor() && _buffer_coyote.is_stopped():
@@ -188,17 +181,17 @@ func _movement_jump() -> void:
 	_buffer_coyote.stop()
 
 	_has_cancel = true
-	velocity.y = - JUMP_FORCE
+	velocity.y = -JUMP_FORCE
 	_sfx_jumping.play()
 
 
 func _update_state() -> void:
 	if !is_on_floor():
-		state = PLAYER_STATES.JUMP
+		state = PlayerStates.JUMP
 	elif not is_zero_approx(velocity.x):
-		state = PLAYER_STATES.MOVE
+		state = PlayerStates.MOVE
 	else:
-		state = PLAYER_STATES.IDLE
+		state = PlayerStates.IDLE
 
 
 func _update_animations() -> void:
@@ -206,14 +199,14 @@ func _update_animations() -> void:
 		_flipper.scale.x = signf(velocity.x)
 
 	if _sprite.animation == &"kick":
-		return # let it play out
+		return  # let it play out
 
 	match state:
-		PLAYER_STATES.IDLE, PLAYER_STATES.BUSY, PLAYER_STATES.SKIP:
+		PlayerStates.IDLE, PlayerStates.BUSY, PlayerStates.SKIP:
 			_sprite.play(&"idle")
-		PLAYER_STATES.MOVE:
+		PlayerStates.MOVE:
 			_sprite.play(&"run")
-		PLAYER_STATES.JUMP:
+		PlayerStates.JUMP:
 			if velocity.y < 0.0:
 				_sprite.play(&"jump")
 			else:
@@ -241,11 +234,11 @@ func _die() -> void:
 	died.emit()
 
 
-func _spike_death(spike_type: SpikeType, pos: Vector2, normal: Vector2) -> void:
+func _spike_death(spike_type: SPIKE_TYPE, pos: Vector2, normal: Vector2) -> void:
 	match spike_type:
-		SpikeType.NORMAL:
+		SPIKE_TYPE.NORMAL:
 			CorpseSpiked.spawn(get_parent(), normal, pos)
-		SpikeType.CURSED:
+		SPIKE_TYPE.CURSED:
 			var vel: Vector2 = get_position_delta() / get_physics_process_delta_time()
 			CorpseCursed.spawn(get_parent(), global_position, _safe_bounce(vel, normal))
 	_die()
@@ -266,7 +259,7 @@ func permadeath() -> void:
 
 
 func exit() -> void:
-	state = PLAYER_STATES.SKIP
+	state = PlayerStates.SKIP
 	exited.emit()
 
 
@@ -276,5 +269,5 @@ func _safe_bounce(vel: Vector2, n: Vector2) -> Vector2:
 	return vel.bounce(n)
 
 
-func set_state(s: PLAYER_STATES) -> void:
+func set_state(s: PlayerStates) -> void:
 	state = s

@@ -1,17 +1,17 @@
 class_name CorpseSpiked
 extends StaticBody2D
 
-const SCENE: PackedScene = preload("res://scenes/corpse/corpse_spiked.tscn")
-
 ## Types of spikes. Must correspond to tilemap custom data &"spike_type"
 enum SpikeType {
-	NONE = 0,
-	NORMAL = 1,
-	CURSED = 2,
+	NONE,
+	NORMAL,
+	CURSED,
 }
 
-@onready var _sfx_death: AudioStreamPlayer = $SFXDeath
+const SCENE: PackedScene = preload("res://scenes/corpse/corpse_spiked.tscn")
+
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var _sfx_death: AudioStreamPlayer = $SFXDeath
 
 
 func _ready() -> void:
@@ -19,7 +19,9 @@ func _ready() -> void:
 
 
 static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> CorpseSpiked:
-	var should_flip: bool = spike_normal.x < 0 or (is_zero_approx(spike_normal.x) and randi() % 2 == 0)
+	var should_flip: bool = (
+		spike_normal.x < 0 or (is_zero_approx(spike_normal.x) and randi() % 2 == 0)
+	)
 	if should_flip:
 		spike_normal = -spike_normal
 

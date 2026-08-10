@@ -5,7 +5,7 @@ extends Node2D
 signal player_spawned(p: Player)
 
 @export var spawn_on_ready: bool = true
-@export var spawn_player_state: Player.PLAYER_STATES = Player.PLAYER_STATES.IDLE
+@export var spawn_player_state: Player.PlayerStates = Player.PlayerStates.IDLE
 @export var initial_modulate: Color = Color(Color.YELLOW, 0.0)
 
 @export var _player: PackedScene
@@ -19,9 +19,10 @@ func _ready() -> void:
 
 	assert(is_instance_valid(_player), "WTH man, who do I spawn")
 
-	_animation_player.animation_finished.connect(func (_anim: StringName) -> void:
-		if get_tree().get_node_count_in_group(&"player") == 0:
-			spawn.call_deferred()
+	_animation_player.animation_finished.connect(
+		func(_anim: StringName) -> void:
+			if get_tree().get_node_count_in_group(&"player") == 0:
+				spawn.call_deferred()
 	)
 
 	if spawn_on_ready:
