@@ -40,6 +40,7 @@ func _ready() -> void:
 		var bus_idx: int = AudioServer.get_bus_index(bus)
 		if AudioServer.get_bus_effect_count(bus_idx) != 1:
 			push_warning(
+				# gdlint: ignore = max-line-length
 				"[AmbienceAudioPlayer]: SFX_panning bus has invalid amount of effects\nenable panning is disabled"
 			)
 			_enable_bus_panning = false
@@ -60,8 +61,8 @@ func _play_sound() -> void:
 		if _reset_panning_on_play:
 			_effect_panner.pan = 0.5
 		var tween: Tween = get_tree().create_tween()
-		var _delta_pan: float = randf_range(_min_panning, _max_panning) * [-1.0, 1.0].pick_random()
-		tween.tween_property(_effect_panner, ^"pan", _delta_pan, stream.get_length())
+		var delta_pan: float = randf_range(_min_panning, _max_panning) * [-1.0, 1.0].pick_random()
+		tween.tween_property(_effect_panner, ^"pan", delta_pan, stream.get_length())
 	play()
 
 
