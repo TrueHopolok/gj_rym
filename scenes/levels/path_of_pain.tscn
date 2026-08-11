@@ -16,6 +16,7 @@ position = Vector2(-24, 0)
 
 [node name="Exit" parent="." index="3" unique_id=1728432730]
 position = Vector2(81, -180)
+_next_lvl = "res://ui/menus/gg_menu/gg_pain_menu.tscn"
 
 [node name="CameraTrigger" parent="." index="4" unique_id=73767758 instance=ExtResource("2_f3sey")]
 position = Vector2(216, -112)
