@@ -168,7 +168,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxfr3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwo4r"]
+size = Vector2(20, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(30, 32)
@@ -190,7 +191,7 @@ animation = &"kick"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1761597414]
-shape = SubResource("CapsuleShape2D_jxfr3")
+shape = SubResource("RectangleShape2D_mwo4r")
 
 [node name="BufferJump" type="Timer" parent="." unique_id=1877728417]
 one_shot = true

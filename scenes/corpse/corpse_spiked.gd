@@ -38,6 +38,8 @@ static func spawn(parent: Node, spike_normal: Vector2, spike_pos: Vector2) -> Co
 	return inst
 
 
+## btw PIECE OF GARBAGE
+## FIX IT PLS
 static func get_spike_collision_type(collider: Object, posi: Vector2, normal: Vector2) -> SpikeType:
 	if collider is TileMapLayer:
 		var tm: TileMapLayer = collider as TileMapLayer
