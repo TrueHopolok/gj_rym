@@ -31,17 +31,13 @@ func _update_pos() -> void:
 		global_position = _current_player.global_position
 
 	for node: Node2D in get_tree().get_nodes_in_group(&"killzone"):
-		global_position.y = minf(
-			global_position.y, node.global_position.y - VIEWPORT_SIZE.y * 0.5 + 12
-		)
+		global_position.y = minf(global_position.y, node.global_position.y - VIEWPORT_SIZE.y * 0.5 + 12)
 
 
 func _animate_zoom(to: Vector2) -> void:
 	if _external_control:
 		return
-	create_tween().tween_property(self, "zoom", to, 1.2).set_trans(Tween.TRANS_SINE).set_ease(
-		Tween.EASE_IN_OUT
-	)
+	create_tween().tween_property(self, "zoom", to, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
 func trigger_on(ct: CameraTrigger) -> void:

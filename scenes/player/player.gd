@@ -121,9 +121,7 @@ func _movement_horizontal(delta: float) -> void:
 		return
 	if input_dir != sign(velocity.x):
 		velocity.x = 0.0
-	velocity.x = clampf(
-		velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED
-	)
+	velocity.x = clampf(velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED)
 
 
 func _resistance_vertical(delta: float) -> void:

@@ -34,9 +34,7 @@ func _animation() -> void:
 	(noise.noise as FastNoiseLite).seed = randi()
 
 	var t: Tween = create_tween()
-	t.tween_method(
-		func(v: float) -> void: set_instance_shader_parameter(&"progress", v), 1.0, -0.5, 1.5
-	)
+	t.tween_method(func(v: float) -> void: set_instance_shader_parameter(&"progress", v), 1.0, -0.5, 1.5)
 	t.parallel().tween_property(self, "damp", 0.0, 1.5)
 	t.chain().tween_callback(queue_free)
 
