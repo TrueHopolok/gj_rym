@@ -118,9 +118,7 @@ func _movement_horizontal(delta: float) -> void:
 		return
 	if input_dir != sign(velocity.x):
 		velocity.x = 0.0
-	velocity.x = clampf(
-		velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED
-	)
+	velocity.x = clampf(velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED)
 
 
 func _resistance_vertical(delta: float) -> void:
@@ -221,7 +219,7 @@ func _handle_kick(col: Object) -> void:
 	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1) - corpse.linear_velocity
 	corpse.apply_central_impulse(vel)
 
-	_pause_collision_with(corpse, 0.5)
+	_pause_collision_with(corpse, 0.2)
 
 
 func _die() -> void:
@@ -272,9 +270,20 @@ func _pause_collision_with(c: CollisionObject2D, t: float) -> void:
 	if not is_instance_valid(c):
 		return
 
+	var ref: CollisionObject2DRef = CollisionObject2DRef.new(c)
+
 	add_collision_exception_with(c)
 	get_tree().create_timer(t).timeout.connect(
 		func() -> void:
-			if is_instance_valid(c):
-				remove_collision_exception_with(c)
+			if is_instance_valid(ref.c):
+				remove_collision_exception_with(ref.c)
 	)
+
+
+# This is stupid. When binding / capturing an object in a lambda, if it is fried before lambda is executed,
+# godot throws an annoying error. Instead, we add another level of indirection to make godot shut up.
+class CollisionObject2DRef:
+	var c: CollisionObject2D
+
+	func _init(val: CollisionObject2D) -> void:
+		c = val
