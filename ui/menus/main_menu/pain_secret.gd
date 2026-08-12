@@ -13,4 +13,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	_cur.pop_front()
 	_cur.push_back(key_event.keycode)
 	if _cur == _goal:
-		Transition.change_scene_path("res://scenes/levels/path_of_pain.tscn")
+		Transition.change_scene_path("res://scenes/levels/pain/pain1.tscn")
