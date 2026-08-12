@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _resistance_horizontal(delta: float) -> void:
-	var input_dir: float = Input.get_axis(&"left", &"right")
+	var input_dir: float = signf(Input.get_axis(&"left", &"right"))
 	if input_dir != 0:
 		return
 	if INSTA_STOP:
@@ -116,7 +116,7 @@ func _resistance_horizontal(delta: float) -> void:
 
 
 func _movement_horizontal(delta: float) -> void:
-	var input_dir: float = Input.get_axis(&"left", &"right")
+	var input_dir: float = signf(Input.get_axis(&"left", &"right"))
 	if input_dir == 0:
 		return
 	if input_dir != sign(velocity.x):

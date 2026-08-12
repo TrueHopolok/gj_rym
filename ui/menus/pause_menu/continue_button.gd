@@ -2,6 +2,7 @@ extends BetterButton
 
 
 func _ready() -> void:
+	super()
 	visibility_changed.connect(_on_visibility_changed)
 
 
