@@ -276,7 +276,8 @@ func _pause_collision_with(c: CollisionObject2D, t: float) -> void:
 		return
 
 	add_collision_exception_with(c)
-	get_tree().create_timer(0.2).timeout.connect(func () -> void:
-		if is_instance_valid(c):
-			remove_collision_exception_with(c)
+	get_tree().create_timer(t).timeout.connect(
+		func() -> void:
+			if is_instance_valid(c):
+				remove_collision_exception_with(c)
 	)
