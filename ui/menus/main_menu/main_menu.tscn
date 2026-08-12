@@ -24,10 +24,10 @@ metadata/_edit_lock_ = true
 
 [node name="AudioSettings" parent="." unique_id=280711572 instance=ExtResource("2_6s8a2")]
 layout_mode = 1
-offset_left = 464.0
-offset_top = 114.0
-offset_right = 492.0
-offset_bottom = 142.0
+offset_left = 467.0
+offset_top = 91.0
+offset_right = 582.0
+offset_bottom = 232.0
 
 [node name="NewGameButton" type="Button" parent="." unique_id=997097277]
 layout_mode = 0
