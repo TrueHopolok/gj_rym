@@ -60,7 +60,7 @@ func _ready() -> void:
 	)
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"jump"):
 		get_viewport().set_input_as_handled()
 		_buffer_jump.start(BUFFER_JUMP_LENGTH)
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _resistance_horizontal(delta: float) -> void:
-	var input_dir: float = Input.get_axis(&"left", &"right")
+	var input_dir: float = signf(Input.get_axis(&"left", &"right"))
 	if input_dir != 0:
 		return
 	if INSTA_STOP:
@@ -116,12 +116,14 @@ func _resistance_horizontal(delta: float) -> void:
 
 
 func _movement_horizontal(delta: float) -> void:
-	var input_dir: float = Input.get_axis(&"left", &"right")
+	var input_dir: float = signf(Input.get_axis(&"left", &"right"))
 	if input_dir == 0:
 		return
 	if input_dir != sign(velocity.x):
 		velocity.x = 0.0
-	velocity.x = clampf(velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED)
+	velocity.x = clampf(
+		velocity.x + input_dir * delta * RUN_FORCE, -MAX_RUNNING_SPEED, MAX_RUNNING_SPEED
+	)
 
 
 func _resistance_vertical(delta: float) -> void:

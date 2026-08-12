@@ -8,6 +8,8 @@ const CAMPAIGN_PATH: String = "res://scenes/levels/campaign/campaign%d.tscn"
 func _ready() -> void:
 	super()
 	disabled = _lvl_num <= 1
+	if !disabled:
+		grab_focus()
 
 
 func _on_press() -> void:

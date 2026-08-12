@@ -105,7 +105,7 @@ tile_map_data = PackedByteArray("AAADAAEAAAAFAAAAAAACAAEAAAAFAAAAAAABAAEAAAAFAAA
 [node name="Altar" parent="." index="2" unique_id=1836274703]
 position = Vector2(0, 0)
 spawn_on_ready = false
-spawn_player_state = 20
+spawn_player_state = 1
 
 [node name="Label" type="RichTextLabel" parent="." index="3" unique_id=656517332]
 offset_left = -36.0

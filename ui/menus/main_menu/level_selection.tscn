@@ -16,120 +16,165 @@ text = "Level selection:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelButton8" type="Button" parent="." unique_id=1926907635]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 116.0
-offset_right = 60.0
-offset_bottom = 144.0
-size_flags_horizontal = 3
-text = "7"
-script = ExtResource("1_hfett")
-_lvl_num = 7
-metadata/_custom_type_script = "uid://2htt7bkeytt7"
-
-[node name="LevelButton4" type="Button" parent="." unique_id=918817761]
-layout_mode = 0
-offset_left = 132.0
-offset_top = 52.0
-offset_right = 188.0
-offset_bottom = 80.0
-size_flags_horizontal = 3
-text = "3"
-script = ExtResource("1_hfett")
-_lvl_num = 3
-metadata/_custom_type_script = "uid://2htt7bkeytt7"
-
-[node name="LevelButton3" type="Button" parent="." unique_id=1372082729]
-layout_mode = 0
-offset_left = 68.0
-offset_top = 52.0
-offset_right = 124.0
-offset_bottom = 80.0
-size_flags_horizontal = 3
-text = "2"
-script = ExtResource("1_hfett")
-_lvl_num = 2
-metadata/_custom_type_script = "uid://2htt7bkeytt7"
-
-[node name="LevelButton9" type="Button" parent="." unique_id=1903965756]
-layout_mode = 0
-offset_left = 68.0
-offset_top = 116.0
-offset_right = 124.0
-offset_bottom = 144.0
-size_flags_horizontal = 3
-text = "8"
-script = ExtResource("1_hfett")
-_lvl_num = 8
-metadata/_custom_type_script = "uid://2htt7bkeytt7"
-
-[node name="LevelButton2" type="Button" parent="." unique_id=1660874514]
+[node name="LevelButton1" type="Button" parent="." unique_id=1660874514]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 20.0
 offset_right = 156.0
 offset_bottom = 48.0
 size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../LevelButton2")
+focus_next = NodePath("../LevelButton2")
 text = "1"
 script = ExtResource("1_hfett")
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
 
-[node name="LevelButton10" type="Button" parent="." unique_id=1682354525]
+[node name="LevelButton2" type="Button" parent="." unique_id=1372082729]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 52.0
+offset_right = 124.0
+offset_bottom = 80.0
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../LevelButton1")
+focus_neighbor_right = NodePath("../LevelButton3")
+focus_neighbor_bottom = NodePath("../LevelButton4")
+focus_next = NodePath("../LevelButton3")
+focus_previous = NodePath("../LevelButton1")
+text = "2"
+script = ExtResource("1_hfett")
+_lvl_num = 2
+metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LevelButton3" type="Button" parent="." unique_id=918817761]
 layout_mode = 0
 offset_left = 132.0
-offset_top = 116.0
+offset_top = 52.0
 offset_right = 188.0
-offset_bottom = 144.0
+offset_bottom = 80.0
 size_flags_horizontal = 3
-text = "9"
+focus_neighbor_left = NodePath("../LevelButton2")
+focus_neighbor_top = NodePath("../LevelButton1")
+focus_neighbor_bottom = NodePath("../LevelButton5")
+focus_next = NodePath("../LevelButton4")
+focus_previous = NodePath("../LevelButton2")
+text = "3"
 script = ExtResource("1_hfett")
-_lvl_num = 9
+_lvl_num = 3
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
 
-[node name="LevelButton" type="Button" parent="." unique_id=1409067812]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 116.0
-offset_right = 252.0
-offset_bottom = 144.0
-text = "10"
-script = ExtResource("1_hfett")
-_lvl_num = 10
-metadata/_custom_type_script = "uid://2htt7bkeytt7"
-
-[node name="LevelButton5" type="Button" parent="." unique_id=1266431585]
+[node name="LevelButton4" type="Button" parent="." unique_id=1266431585]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 84.0
 offset_right = 92.0
 offset_bottom = 112.0
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../LevelButton2")
+focus_neighbor_right = NodePath("../LevelButton5")
+focus_neighbor_bottom = NodePath("../LevelButton7")
+focus_next = NodePath("../LevelButton5")
+focus_previous = NodePath("../LevelButton3")
 text = "4"
 script = ExtResource("1_hfett")
 _lvl_num = 4
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
 
-[node name="LevelButton7" type="Button" parent="." unique_id=416155183]
-layout_mode = 0
-offset_left = 164.0
-offset_top = 84.0
-offset_right = 220.0
-offset_bottom = 112.0
-size_flags_horizontal = 3
-text = "6"
-script = ExtResource("1_hfett")
-_lvl_num = 6
-metadata/_custom_type_script = "uid://2htt7bkeytt7"
-
-[node name="LevelButton6" type="Button" parent="." unique_id=831473779]
+[node name="LevelButton5" type="Button" parent="." unique_id=831473779]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 84.0
 offset_right = 156.0
 offset_bottom = 112.0
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../LevelButton4")
+focus_neighbor_top = NodePath("../LevelButton2")
+focus_neighbor_right = NodePath("../LevelButton6")
+focus_neighbor_bottom = NodePath("../LevelButton8")
+focus_next = NodePath("../LevelButton6")
+focus_previous = NodePath("../LevelButton4")
 text = "5"
 script = ExtResource("1_hfett")
 _lvl_num = 5
+metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LevelButton6" type="Button" parent="." unique_id=416155183]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 84.0
+offset_right = 220.0
+offset_bottom = 112.0
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../LevelButton5")
+focus_neighbor_top = NodePath("../LevelButton3")
+focus_neighbor_bottom = NodePath("../LevelButton9")
+focus_next = NodePath("../LevelButton7")
+focus_previous = NodePath("../LevelButton5")
+text = "6"
+script = ExtResource("1_hfett")
+_lvl_num = 6
+metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LevelButton7" type="Button" parent="." unique_id=1926907635]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 116.0
+offset_right = 60.0
+offset_bottom = 144.0
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../LevelButton4")
+focus_neighbor_right = NodePath("../LevelButton8")
+focus_next = NodePath("../LevelButton8")
+focus_previous = NodePath("../LevelButton6")
+text = "7"
+script = ExtResource("1_hfett")
+_lvl_num = 7
+metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LevelButton8" type="Button" parent="." unique_id=1903965756]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 116.0
+offset_right = 124.0
+offset_bottom = 144.0
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../LevelButton7")
+focus_neighbor_top = NodePath("../LevelButton4")
+focus_neighbor_right = NodePath("../LevelButton9")
+focus_next = NodePath("../LevelButton9")
+focus_previous = NodePath("../LevelButton7")
+text = "8"
+script = ExtResource("1_hfett")
+_lvl_num = 8
+metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LevelButton9" type="Button" parent="." unique_id=1682354525]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 116.0
+offset_right = 188.0
+offset_bottom = 144.0
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../LevelButton8")
+focus_neighbor_top = NodePath("../LevelButton5")
+focus_neighbor_right = NodePath("../LevelButton10")
+focus_next = NodePath("../LevelButton10")
+focus_previous = NodePath("../LevelButton8")
+text = "9"
+script = ExtResource("1_hfett")
+_lvl_num = 9
+metadata/_custom_type_script = "uid://2htt7bkeytt7"
+
+[node name="LevelButton10" type="Button" parent="." unique_id=1409067812]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 116.0
+offset_right = 252.0
+offset_bottom = 144.0
+focus_neighbor_left = NodePath("../LevelButton9")
+focus_neighbor_top = NodePath("../LevelButton6")
+focus_previous = NodePath("../LevelButton9")
+text = "10"
+script = ExtResource("1_hfett")
+_lvl_num = 10
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
