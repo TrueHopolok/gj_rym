@@ -161,8 +161,7 @@ func _movement_pogo() -> void:
 			_buffer_mega.start(BUFFER_MEGA_LENGTH)
 		velocity.y = -force
 		corpse.apply_central_impulse.call_deferred(Vector2.DOWN * 75)
-		add_collision_exception_with(corpse)
-		get_tree().create_timer(0.2).timeout.connect(remove_collision_exception_with.bind(corpse))
+		_pause_collision_with(corpse, 0.2)
 		corpse.play_bounce()
 
 
@@ -225,8 +224,7 @@ func _handle_kick(col: Object) -> void:
 	var vel: Vector2 = KICK_FORCE * Vector2(dir, 1) - corpse.linear_velocity
 	corpse.apply_central_impulse(vel)
 
-	add_collision_exception_with(corpse)
-	get_tree().create_timer(0.5).timeout.connect(remove_collision_exception_with.bind(corpse))
+	_pause_collision_with(corpse, 0.5)
 
 
 func _die() -> void:
@@ -271,3 +269,14 @@ func _safe_bounce(vel: Vector2, n: Vector2) -> Vector2:
 
 func set_state(s: PlayerStates) -> void:
 	state = s
+
+
+func _pause_collision_with(c: CollisionObject2D, t: float) -> void:
+	if not is_instance_valid(c):
+		return
+
+	add_collision_exception_with(c)
+	get_tree().create_timer(0.2).timeout.connect(func () -> void:
+		if is_instance_valid(c):
+			remove_collision_exception_with(c)
+	)
