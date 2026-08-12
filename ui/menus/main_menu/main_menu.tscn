@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://broo2gpchkd1g" path="res://assets/art/main_menu.png" id="8_uni0y"]
 [ext_resource type="PackedScene" uid="uid://bkv2wdfogpnnu" path="res://ui/menus/main_menu/level_selection.tscn" id="10_gpubi"]
 
-[node name="MainMenu" type="CanvasLayer" unique_id=1082861136]
+[node name="MainMenu" type="Control" unique_id=1300863386]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_m57jf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808407029]
@@ -21,12 +23,14 @@ texture = ExtResource("8_uni0y")
 metadata/_edit_lock_ = true
 
 [node name="AudioSettings" parent="." unique_id=280711572 instance=ExtResource("2_6s8a2")]
+layout_mode = 1
 offset_left = 464.0
 offset_top = 114.0
-offset_right = -65.0
-offset_bottom = -171.0
+offset_right = 492.0
+offset_bottom = 142.0
 
 [node name="NewGameButton" type="Button" parent="." unique_id=997097277]
+layout_mode = 0
 offset_left = 52.0
 offset_top = 102.0
 offset_right = 184.0
@@ -36,6 +40,7 @@ script = ExtResource("5_m57jf")
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
 
 [node name="ContinueButton" type="Button" parent="." unique_id=1330982424]
+layout_mode = 0
 offset_left = 52.0
 offset_top = 142.0
 offset_right = 184.0
@@ -45,6 +50,7 @@ script = ExtResource("3_igis3")
 metadata/_custom_type_script = "uid://2htt7bkeytt7"
 
 [node name="ResetButton" type="Button" parent="." unique_id=266406353]
+layout_mode = 0
 offset_left = 52.0
 offset_top = 182.0
 offset_right = 184.0
@@ -65,6 +71,7 @@ volume_db = -15.0
 _loop = ExtResource("8_0rrps")
 
 [node name="LevelSelection" parent="." unique_id=248725737 instance=ExtResource("10_gpubi")]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 212.0
 offset_right = 192.0

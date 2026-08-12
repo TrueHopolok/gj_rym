@@ -60,7 +60,7 @@ func _ready() -> void:
 	)
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"jump"):
 		get_viewport().set_input_as_handled()
 		_buffer_jump.start(BUFFER_JUMP_LENGTH)
