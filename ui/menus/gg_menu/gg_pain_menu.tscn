@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dfs2ep1iwjl3h" path="res://assets/art/win.png" id="1_2xf08"]
 [ext_resource type="Script" uid="uid://csqg2gm11h153" path="res://ui/menus/gg_menu/return_button.gd" id="2_w4sje"]
 
-[node name="GgMenu" type="CanvasLayer" unique_id=1224177206]
+[node name="GgMenu" type="Control" unique_id=245432195]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=47983497]
 position = Vector2(320, 180)
@@ -12,6 +14,7 @@ texture = ExtResource("1_2xf08")
 metadata/_edit_lock_ = true
 
 [node name="Credits" type="Label" parent="." unique_id=1480535202]
+layout_mode = 0
 offset_left = 244.0
 offset_top = 256.0
 offset_right = 396.0
@@ -19,6 +22,7 @@ offset_bottom = 270.0
 text = "Game by HOPOLOK, wailer, Echo_55"
 
 [node name="Pain" type="RichTextLabel" parent="." unique_id=1037371060]
+layout_mode = 0
 offset_left = 214.0
 offset_top = 260.0
 offset_right = 427.0
@@ -30,6 +34,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ReturnButton" type="Button" parent="." unique_id=775973039]
+layout_mode = 0
 offset_left = 254.0
 offset_top = 322.0
 offset_right = 386.0

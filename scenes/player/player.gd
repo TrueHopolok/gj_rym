@@ -5,8 +5,7 @@ signal died
 signal exited
 
 enum PlayerStates {
-	SKIP,  # used for cutscenes / manual control
-	BUSY,  # same but has gravitation
+	BUSY,  # used for cutscenes, has gravitation btw
 	IDLE,
 	MOVE,
 	JUMP,
@@ -76,8 +75,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_queued_for_deletion():
-		return
-	if state <= PlayerStates.SKIP:
 		return
 	_resistance_horizontal(delta)
 	_resistance_vertical(delta)
@@ -201,7 +198,7 @@ func _update_animations() -> void:
 		return  # let it play out
 
 	match state:
-		PlayerStates.IDLE, PlayerStates.BUSY, PlayerStates.SKIP:
+		PlayerStates.IDLE, PlayerStates.BUSY:
 			_sprite.play(&"idle")
 		PlayerStates.MOVE:
 			_sprite.play(&"run")
@@ -257,7 +254,7 @@ func permadeath() -> void:
 
 
 func exit() -> void:
-	state = PlayerStates.SKIP
+	state = PlayerStates.BUSY
 	exited.emit()
 
 

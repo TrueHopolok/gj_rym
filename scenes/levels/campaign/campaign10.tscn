@@ -10,7 +10,6 @@ tile_map_data = PackedByteArray("AAACAAEAAAACAAgAAAABAAEAAAABAAgAAAAAAAEAAAAEAAc
 
 [node name="Altar" parent="." index="2" unique_id=1836274703]
 position = Vector2(-13, -24)
-spawn_player_state = 30
 
 [node name="Exit" parent="." index="3" unique_id=1728432730]
 position = Vector2(441, 186)
