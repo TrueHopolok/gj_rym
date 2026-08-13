@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ckf40nid8wkeu" path="res://scenes/levels/level.tscn" id="1_g62vs"]
 [ext_resource type="PackedScene" uid="uid://di1woenaxyse0" path="res://scenes/exit/sarcafac.tscn" id="2_s2hr4"]
+[ext_resource type="PackedScene" uid="uid://beqoaw684pnm6" path="res://scenes/background/skely.tscn" id="3_7jsvx"]
+[ext_resource type="PackedScene" uid="uid://ct571njlwt3uj" path="res://scenes/background/lamp2.tscn" id="4_civ8v"]
 
 [node name="Level" unique_id=588267695 instance=ExtResource("1_g62vs")]
 
@@ -20,3 +22,19 @@ _next_lvl = "res://ui/menus/gg_menu/gg_menu.tscn"
 
 [node name="Killzone" parent="." index="5" unique_id=1677750993]
 position = Vector2(488, 48)
+
+[node name="Skely" parent="." index="7" unique_id=1713549925 instance=ExtResource("3_7jsvx")]
+position = Vector2(-12, 15)
+
+[node name="Lamp2" parent="." index="8" unique_id=1458508569 instance=ExtResource("4_civ8v")]
+position = Vector2(672, -105)
+
+[node name="Skely2" parent="." index="9" unique_id=908432398 instance=ExtResource("3_7jsvx")]
+position = Vector2(1203, -87)
+flip_h = true
+
+[node name="Lamp3" parent="." index="10" unique_id=521754584 instance=ExtResource("4_civ8v")]
+position = Vector2(1266, -231)
+
+[node name="Skely3" parent="." index="11" unique_id=235641438 instance=ExtResource("3_7jsvx")]
+position = Vector2(504, -81)
