@@ -18,6 +18,15 @@ func _ready() -> void:
 	body_entered.connect(_exit)
 
 
+func _submit_score() -> void:
+	if unlock_pain_left || unlock_pain_right:
+		Persistence.pain_left = Persistence.pain_left || unlock_pain_left
+		Persistence.pain_right = Persistence.pain_right || unlock_pain_right
+	else:
+		Persistence.current_level += 1
+	Persistence.submit()
+
+
 func _exit(body: PhysicsBody2D) -> void:
 	var player: Player = body as Player
 	if !is_instance_valid(player):
@@ -26,10 +35,7 @@ func _exit(body: PhysicsBody2D) -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitoriable", false)
 
-	Persistence.pain_left = Persistence.pain_left || unlock_pain_left
-	Persistence.pain_right = Persistence.pain_right || unlock_pain_right
-	Persistence.current_level += 1
-	Persistence.submit()
+	_submit_score()
 
 	if is_sarco:
 		_do_exit_sequence_ded(player)

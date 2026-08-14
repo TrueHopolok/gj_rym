@@ -45,9 +45,8 @@ func _save() -> void:
 
 ## Updates unlocked level if it was beaten and saves into file if it was
 func submit() -> void:
-	if current_level <= unlocked_level:
-		return
-	unlocked_level = current_level
+	if unlocked_level < current_level:
+		unlocked_level = current_level
 	_save()
 
 

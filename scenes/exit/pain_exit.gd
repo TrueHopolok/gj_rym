@@ -1,9 +1,13 @@
-@tool
 class_name PainExit
 extends Exit
 
-@export var _lockable: bool = false
-@export var _left: bool = false
+enum PainType {
+	LEFT,
+	RIGHT,
+	FINAL,
+}
+
+@export var _type: PainType
 
 var _anim: Tween = null
 
@@ -11,8 +15,7 @@ var _anim: Tween = null
 
 
 func _ready() -> void:
-	Persistence.pain_left = true
-	if _lockable:
+	if _type == PainType.FINAL:
 		var is_open: bool = Persistence.pain_left && Persistence.pain_right
 		if is_open:
 			super()
@@ -21,10 +24,15 @@ func _ready() -> void:
 			body_entered.connect(_unavailable)
 	else:
 		super()
-		if _left && Persistence.pain_left:
+		if (
+			(_type == PainType.LEFT && Persistence.pain_left)
+			|| (_type == PainType.RIGHT && Persistence.pain_right)
+		):
 			_light.modulate.a = 1.0
-		elif !_left && Persistence.pain_right:
-			_light.modulate.a = 1.0
+
+
+func _submit_score() -> void:
+	pass
 
 
 func _unavailable(body: PhysicsBody2D) -> void:

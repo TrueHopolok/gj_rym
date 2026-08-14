@@ -13,4 +13,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	_cur.pop_front()
 	_cur.push_back(key_event.keycode)
 	if _cur == _goal:
+		Persistence.current_level = -666
 		Transition.change_scene_path("res://scenes/levels/pain/pain_intro.tscn")

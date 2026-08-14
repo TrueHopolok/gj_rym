@@ -20,18 +20,15 @@ position = Vector2(186, 171)
 
 [node name="FinalExit" parent="." index="6" unique_id=937087184 instance=ExtResource("3_t18h1")]
 position = Vector2(132, -120)
-_lockable = true
-_left = false
+_type = 2
 _next_lvl = "res://scenes/levels/pain/pain_final.tscn"
 
 [node name="FinalExit2" parent="." index="7" unique_id=1112478051 instance=ExtResource("3_t18h1")]
 position = Vector2(-201, 78)
-_lockable = false
-_left = true
+_type = 0
 _next_lvl = "res://scenes/levels/pain/pain_left.tscn"
 
 [node name="FinalExit3" parent="." index="8" unique_id=104293593 instance=ExtResource("3_t18h1")]
 position = Vector2(468, 75)
-_lockable = false
-_left = false
+_type = 1
 _next_lvl = "res://scenes/levels/pain/pain_right.tscn"
