@@ -4,6 +4,8 @@ const SAVE_PATH: String = "user://progression.bin"
 
 var unlocked_level: int = 1
 var current_level: int = 1
+var pain_left: bool = false
+var pain_right: bool = false
 
 
 func _init() -> void:
@@ -20,6 +22,8 @@ func _load() -> void:
 		return
 	# NOTE: data = JSON.parse_string(file.get_as_text())
 	unlocked_level = file.get_32()
+	pain_left = file.get_8()
+	pain_right = file.get_8()
 	file.close()
 
 
@@ -30,7 +34,11 @@ func _save() -> void:
 		push_error("[Persistence]: saving error:", FileAccess.get_open_error())
 		return
 	# NOTE: file.store_string(JSON.stringify(data))
-	if not file.store_32(unlocked_level):
+	if (
+		not file.store_32(unlocked_level)
+		|| not file.store_8(pain_left)
+		|| not file.store_8(pain_right)
+	):
 		push_error("[Persistence]: saving error:", FileAccess.get_open_error())
 	file.close()
 
@@ -47,4 +55,6 @@ func submit() -> void:
 func reset() -> void:
 	unlocked_level = 0
 	current_level = 1
+	pain_left = false
+	pain_right = false
 	submit()
