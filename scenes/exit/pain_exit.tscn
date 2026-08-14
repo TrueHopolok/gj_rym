@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dlwqp2hpsawcl"]
+
+[ext_resource type="PackedScene" uid="uid://c2iawpi0rhu1r" path="res://scenes/exit/exit.tscn" id="1_4t8cw"]
+[ext_resource type="Script" uid="uid://br3jythyono3s" path="res://scenes/exit/pain_exit.gd" id="2_qsbwf"]
+
+[node name="FinalExit" unique_id=1728432730 instance=ExtResource("1_4t8cw")]
+script = ExtResource("2_qsbwf")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1079935196]
+position = Vector2(26, -90)
+scale = Vector2(1.25, 1.25)
+
+[node name="DoorMask" parent="." index="2" unique_id=86769507]
+position = Vector2(27, -90.00001)
+scale = Vector2(1.25, 1.25)
+
+[node name="Base" parent="." index="3" unique_id=1572727720]
+position = Vector2(-11.999999, -150)
+scale = Vector2(1.25, 1.25)
+
+[node name="Light" parent="." index="4" unique_id=369430856]
+position = Vector2(-11.999999, -150)
+scale = Vector2(1.25, 1.25)
+
+[node name="Warning" type="Label" parent="." index="7" unique_id=480757157]
+modulate = Color(1, 1, 1, 0)
+offset_left = -27.0
+offset_top = -162.0
+offset_right = 126.0
+offset_bottom = -148.0
+text = "Complete both paths to continue"

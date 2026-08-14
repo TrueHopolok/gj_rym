@@ -1,3 +1,4 @@
+class_name Exit
 extends Area2D
 
 @export_file_path("*.tscn") var _next_lvl: String
