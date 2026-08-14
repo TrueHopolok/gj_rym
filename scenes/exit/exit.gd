@@ -4,6 +4,10 @@ extends Area2D
 @export_file_path("*.tscn") var _next_lvl: String
 @export var is_sarco: bool = false
 
+@export_group("Pain Unlocks", "unlock_pain")
+@export var unlock_pain_left: bool = false
+@export var unlock_pain_right: bool = false
+
 @onready var _door: Sprite2D = %Door
 @onready var _light: Sprite2D = %Light
 @onready var _exit_position: Marker2D = %ExitPosition
@@ -22,6 +26,8 @@ func _exit(body: PhysicsBody2D) -> void:
 	set_deferred("monitoring", false)
 	set_deferred("monitoriable", false)
 
+	Persistence.pain_left = Persistence.pain_left || unlock_pain_left
+	Persistence.pain_right = Persistence.pain_right || unlock_pain_right
 	Persistence.current_level += 1
 	Persistence.submit()
 

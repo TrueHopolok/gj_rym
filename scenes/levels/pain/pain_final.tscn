@@ -6,3 +6,4 @@
 
 [node name="Exit" parent="." index="3" unique_id=1728432730]
 position = Vector2(171, 3)
+_next_lvl = "res://ui/menus/gg_menu/gg_pain_menu.tscn"

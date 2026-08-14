@@ -19,6 +19,8 @@ position = Vector2(601, -384)
 
 [node name="Exit" parent="." index="3" unique_id=1728432730]
 position = Vector2(1944, -384)
+_next_lvl = "res://scenes/levels/pain/pain_lobby.tscn"
+unlock_pain_right = true
 
 [node name="Killzone" parent="." index="4" unique_id=1677750993]
 position = Vector2(727, -226)

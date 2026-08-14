@@ -6,3 +6,4 @@
 
 [node name="Exit" parent="." index="3" unique_id=1728432730]
 position = Vector2(168, 3)
+_next_lvl = "res://scenes/levels/pain/pain_lobby.tscn"
