@@ -1,4 +1,3 @@
-class_name HKTrigger
 extends Area2D
 
 @export var _stage: int = 5
