@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _submit_score() -> void:
-	pass
+	GlobalMusic.set_stage(4 if _type == PainType.FINAL else 2)
 
 
 func _unavailable(body: PhysicsBody2D) -> void:

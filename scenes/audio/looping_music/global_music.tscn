@@ -3,11 +3,58 @@
 [ext_resource type="Script" uid="uid://bxw5rtkyk2iso" path="res://scenes/audio/looping_music/global_music.gd" id="1_vjfu3"]
 [ext_resource type="AudioStream" uid="uid://d3undur33dryh" path="res://assets/audio/music/intro.mp3" id="2_sou84"]
 [ext_resource type="AudioStream" uid="uid://bjrvx7o2luf7a" path="res://assets/audio/music/loop.mp3" id="3_ll4a5"]
+[ext_resource type="AudioStream" uid="uid://c33m7v0wxab2v" path="res://assets/audio/music/hk/stage1.mp3" id="4_6oyj1"]
+[ext_resource type="AudioStream" uid="uid://ew3un1mt6jjs" path="res://assets/audio/music/hk/stage2.mp3" id="5_gc6r0"]
+[ext_resource type="AudioStream" uid="uid://ctcl6pt2662wv" path="res://assets/audio/music/hk/stage3.mp3" id="6_f2ghh"]
+[ext_resource type="AudioStream" uid="uid://d05xt4dxibovp" path="res://assets/audio/music/hk/stage4.mp3" id="7_80u5p"]
+[ext_resource type="AudioStream" uid="uid://d37pan18q81ui" path="res://assets/audio/music/hk/stage5.mp3" id="8_4pcn4"]
+[ext_resource type="AudioStream" uid="uid://bkw2i6at1hkic" path="res://assets/audio/music/hk/stage67.mp3" id="9_a7vms"]
 
 [node name="GlobalMusic" type="AudioStreamPlayer" unique_id=344409773]
 process_mode = 3
 volume_db = -15.0
-bus = &"Music"
+bus = &"Music_regular"
 script = ExtResource("1_vjfu3")
 _intro = ExtResource("2_sou84")
 _loop = ExtResource("3_ll4a5")
+
+[node name="Stage1" type="AudioStreamPlayer" parent="." unique_id=1379298370]
+stream = ExtResource("4_6oyj1")
+autoplay = true
+bus = &"Music_HK"
+parameters/looping = true
+
+[node name="Stage2" type="AudioStreamPlayer" parent="." unique_id=1187283193]
+stream = ExtResource("5_gc6r0")
+volume_db = -80.0
+autoplay = true
+bus = &"Music_HK"
+parameters/looping = true
+
+[node name="Stage3" type="AudioStreamPlayer" parent="." unique_id=2018476822]
+stream = ExtResource("6_f2ghh")
+volume_db = -80.0
+autoplay = true
+bus = &"Music_HK"
+parameters/looping = true
+
+[node name="Stage4" type="AudioStreamPlayer" parent="." unique_id=2101174786]
+stream = ExtResource("7_80u5p")
+volume_db = -80.0
+autoplay = true
+bus = &"Music_HK"
+parameters/looping = true
+
+[node name="Stage5" type="AudioStreamPlayer" parent="." unique_id=1617994815]
+stream = ExtResource("8_4pcn4")
+volume_db = -80.0
+autoplay = true
+bus = &"Music_HK"
+parameters/looping = true
+
+[node name="Stage6" type="AudioStreamPlayer" parent="." unique_id=417882300]
+stream = ExtResource("9_a7vms")
+volume_db = -80.0
+autoplay = true
+bus = &"Music_HK"
+parameters/looping = true

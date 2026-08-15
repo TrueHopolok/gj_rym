@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://ihes6falfv6r" path="res://scenes/audio/looping_music/looping_music.tscn" id="8_gpubi"]
 [ext_resource type="Texture2D" uid="uid://broo2gpchkd1g" path="res://assets/art/main_menu.png" id="8_uni0y"]
 [ext_resource type="PackedScene" uid="uid://bkv2wdfogpnnu" path="res://ui/menus/main_menu/level_selection.tscn" id="10_gpubi"]
+[ext_resource type="Script" uid="uid://pdq84iuoost0" path="res://scenes/audio/hk/hk_secret.gd" id="11_tn877"]
 
 [node name="MainMenu" type="Control" unique_id=1300863386]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_m57jf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808407029]
 position = Vector2(320, 180)
@@ -68,6 +68,7 @@ script = ExtResource("5_j3h1s")
 [node name="LoopingMusic" parent="." unique_id=1912382015 instance=ExtResource("8_gpubi")]
 stream = ExtResource("8_0rrps")
 volume_db = -15.0
+bus = &"Music_regular"
 _loop = ExtResource("8_0rrps")
 
 [node name="LevelSelection" parent="." unique_id=248725737 instance=ExtResource("10_gpubi")]
@@ -76,3 +77,9 @@ offset_left = 192.0
 offset_top = 212.0
 offset_right = 192.0
 offset_bottom = 212.0
+
+[node name="PainSecret" type="Node" parent="." unique_id=1734224469]
+script = ExtResource("1_m57jf")
+
+[node name="HKSecret" type="Node" parent="." unique_id=995755431]
+script = ExtResource("11_tn877")
