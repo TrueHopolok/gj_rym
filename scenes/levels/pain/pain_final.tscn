@@ -53,7 +53,7 @@ position = Vector2(0, 0)
 
 [node name="Exit" parent="." index="3" unique_id=1728432730]
 position = Vector2(-324, -1800)
-_next_lvl = "res://ui/menus/gg_menu/gg_pain_menu.tscn"
+_next_lvl = "res://ui/menus/gg_menu/gg_swag_menu.tscn"
 
 [node name="Killzone" parent="." index="4" unique_id=1677750993]
 position = Vector2(0, 51)
