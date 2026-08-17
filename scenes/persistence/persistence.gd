@@ -34,11 +34,7 @@ func _save() -> void:
 		push_error("[Persistence]: saving error:", FileAccess.get_open_error())
 		return
 	# NOTE: file.store_string(JSON.stringify(data))
-	if (
-		not file.store_32(unlocked_level)
-		|| not file.store_8(pain_left)
-		|| not file.store_8(pain_right)
-	):
+	if not file.store_32(unlocked_level) || not file.store_8(pain_left) || not file.store_8(pain_right):
 		push_error("[Persistence]: saving error:", FileAccess.get_open_error())
 	file.close()
 
