@@ -38,10 +38,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
-	body_entered.connect(
-		func(_b: Node2D) -> void: get_tree().call_group(&"custom_camera", "trigger_on", self)
-	)
+	body_entered.connect(func(_b: Node2D) -> void: get_tree().call_group(&"custom_camera", "trigger_on", self))
 
-	body_exited.connect(
-		func(_b: Node2D) -> void: get_tree().call_group(&"custom_camera", "trigger_off", self)
-	)
+	body_exited.connect(func(_b: Node2D) -> void: get_tree().call_group(&"custom_camera", "trigger_off", self))

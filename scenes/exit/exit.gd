@@ -1,8 +1,12 @@
 class_name Exit
 extends Area2D
 
+signal animation_paused
+signal animation_continue
+
 @export_file_path("*.tscn") var _next_lvl: String
 @export var is_sarco: bool = false
+@export var pause_exit_animation: bool = false
 
 @export_group("Pain Unlocks", "unlock_pain")
 @export var unlock_pain_left: bool = false
@@ -44,7 +48,11 @@ func _exit(body: PhysicsBody2D) -> void:
 
 
 func _exited() -> void:
-	Transition.change_scene_path(_next_lvl)
+	if pause_exit_animation:
+		animation_continue.connect(Transition.change_scene_path.bind(_next_lvl), CONNECT_ONE_SHOT)
+		animation_paused.emit()
+	else:
+		Transition.change_scene_path(_next_lvl)
 
 
 func _do_exit_sequence_door(player: Player) -> void:
@@ -53,12 +61,8 @@ func _do_exit_sequence_door(player: Player) -> void:
 	_sfx_door.play()
 	var t: Tween = create_tween().chain()
 	t.tween_property(player, "global_position", _exit_position.global_position, 0.5)
-	(
-		t
-		. tween_property(_door, "position", Vector2.UP * 64, 0.9)
-		. as_relative()
-		. set_trans(Tween.TRANS_CUBIC)
-		. set_ease(Tween.EASE_IN)
+	t.tween_property(_door, "position", Vector2.UP * 64, 0.9).as_relative().set_trans(Tween.TRANS_CUBIC).set_ease(
+		Tween.EASE_IN
 	)
 	t.parallel().tween_property(_light, "modulate:a", 1.0, 1)
 	t.chain().tween_callback(func() -> void: player.z_index -= 1)
@@ -92,11 +96,8 @@ func _do_exit_sequence_ded(player: Player) -> void:
 	)
 	t.tween_interval(2.0)
 	t.tween_callback(_sfx_door.play)
-	(
-		t
-		. tween_property(lid, "global_position", base.global_position, 1.5)
-		. set_trans(Tween.TRANS_SINE)
-		. set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(lid, "global_position", base.global_position, 1.5).set_trans(Tween.TRANS_SINE).set_ease(
+		Tween.EASE_IN_OUT
 	)
 	t.tween_property(text, "visible_ratio", 0.74, 1)
 	t.tween_interval(1.0)

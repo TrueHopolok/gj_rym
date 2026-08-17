@@ -24,10 +24,7 @@ func _ready() -> void:
 			body_entered.connect(_unavailable)
 	else:
 		super()
-		if (
-			(_type == PainType.LEFT && Persistence.pain_left)
-			|| (_type == PainType.RIGHT && Persistence.pain_right)
-		):
+		if (_type == PainType.LEFT && Persistence.pain_left) || (_type == PainType.RIGHT && Persistence.pain_right):
 			_light.modulate.a = 1.0
 
 
