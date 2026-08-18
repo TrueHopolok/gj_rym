@@ -83,3 +83,12 @@ script = ExtResource("1_m57jf")
 
 [node name="HKSecret" type="Node" parent="." unique_id=995755431]
 script = ExtResource("11_tn877")
+
+[node name="Label" type="Label" parent="." unique_id=2086021835]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 346.0
+offset_right = 640.0
+offset_bottom = 360.0
+text = "ver 1.1"
+vertical_alignment = 1
